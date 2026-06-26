@@ -1,0 +1,21 @@
+tmp
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.out
+*.log
+*.toc
+*.xdv
+*.run.xml
+.DS_Store
+~$*
+tmp.tex
+*.synctex(busy)
+# pixi environments
+.pixi# pixi environments
+.pixi
+__pycache__

@@ -1,0 +1,31 @@
+\documentclass[
+    lang=cn,
+    mode=simple,
+    device=normal,
+    chinesefont=founder,
+    color=black,
+    twoside,
+    external=true
+]{simplebook}
+
+\linenumbers
+
+\title{线性代数及应用}
+\author{朱亮亮}
+% \includeonly{tex/estimation.tex}
+\begin{document}
+\maketitle
+
+\frontmatter
+\pagenumbering{Roman}
+\tableofcontents
+
+\mainmatter
+\pagenumbering{arabic}
+
+\include{tex/0_abstract.tex}
+\include{tex/1_vector.tex}
+
+\printbibliography[heading=bibintoc, title=\ebibname]
+
+\end{document}
