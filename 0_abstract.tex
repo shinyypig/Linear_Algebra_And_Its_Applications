@@ -144,3 +144,99 @@
     则它既是单射又是满射，因此是双射。
 \end{example}
 
+映射之间还可以进行复合。设
+\[
+    f:A\rightarrow B,\qquad g:B\rightarrow C
+\]
+是两个映射。对于任意 \(x\in A\)，先由 \(f\) 将其对应到 \(B\) 中的元素 \(f(x)\)，再由 \(g\) 将 \(f(x)\) 对应到 \(C\) 中的元素 \(g(f(x))\)。这样便得到一个从 \(A\) 到 \(C\) 的映射，称为 \(g\) 与 \(f\) 的\textbf{复合映射}，记作
+\[
+    g\circ f:A\rightarrow C,\qquad (g\circ f)(x)=g(f(x)).
+\]
+需要注意的是，在复合映射 \(g\circ f\) 中，先作用的是 \(f\)，后作用的是 \(g\)。
+
+在诸多映射中，有两类映射是最为简单的。第一类是恒等映射，它将集合中的每个元素映射到自身；第二类是逆映射，它将双射的陪域中的每个元素映射回定义域中的唯一对应元素。
+
+对于任意集合 \(A\)，映射
+\[
+    \operatorname{id}_A:A\rightarrow A,\qquad \operatorname{id}_A(x)=x
+\]
+称为集合 \(A\) 上的\textbf{恒等映射}。恒等映射不改变集合中的任何元素，是最简单的一类映射。
+
+若映射 \(f:A\rightarrow B\) 是双射，则对 \(B\) 中的每个元素 \(y\)，都存在唯一的 \(x\in A\)，使得 \(f(x)=y\)。换言之，已知 \(y\) 之后，可以唯一地找回它在 \(A\) 中对应的元素 \(x\)。由此得到的从 \(B\) 到 \(A\) 的映射称为 \(f\) 的\textbf{逆映射}，记作
+\[
+    f^{-1}:B\rightarrow A.
+\]
+逆映射满足
+\[
+    f^{-1}(f(x))=x,\qquad x\in A,
+\]
+以及
+\[
+    f(f^{-1}(y))=y,\qquad y\in B.
+\]
+用复合映射的语言，这可以写成
+\[
+    f^{-1}\circ f=\operatorname{id}_A,\qquad f\circ f^{-1}=\operatorname{id}_B.
+\]
+
+映射不仅仅可以作用到定义域中元素上得到陪域中的元素，还可以直接作用到集合上得到另一个集合。设 \(f:A\rightarrow B\) 是一个映射，则其作用到集合\( S \subseteq A \)上的结果记作
+\[
+    f(S)=\{f(x)\mid x\in S\}.
+\]
+并称\( f(S) \) 为集合 \(S\) 在 \(f\) 下的\textbf{像}。若 \(T\subseteq B\)，则称
+\[
+    f^{-1}(T)=\{x\in A\mid f(x)\in T\}
+\]
+为集合 \(T\) 在 \(f\) 下的\textbf{原像}。需要注意的是，在这里\(f^{-1}\)并不代表逆映射，而是表示获得原像的运算符号。因为，显然即便逆映射不存在，对于任意集合 \(T\subseteq B\)，其原像 \(f^{-1}(T)\) 仍然是有意义的。
+
+进一步地，若 \(S=A\)，则称
+\[
+    f(A)=\{f(x)\mid x\in A\}
+\]
+称为映射 \(f\) 的\textbf{值域}。显然，值域是陪域的子集，即
+\[
+    f(A)\subseteq B.
+\]
+因此，满射也可以理解为值域等于陪域的映射，即 \(f(A)=B\)。
+
+\begin{example}
+    仍然考虑对应法则 \(f(x)=x^2\)。如\cref{fig_la_square_image_preimage} 所示，集合的原像描述的是陪域中的一个集合在定义域中对应的部分。
+
+    首先将定义域限制为非负实数集，即考虑映射
+    \[
+        f:[0,\infty)\rightarrow [0,\infty),\qquad f(x)=x^2,
+    \]
+    此时 \(f\) 是双射，因此存在逆映射。若取 \(T=[1,2.25]\subseteq[0,\infty)\)，则
+    \[
+        f^{-1}(T)=[1,1.5].
+    \]
+    从\cref{fig_la_square_image} 可以看出，\(y\) 轴上的区间 \([1,2.25]\) 只对应到 \(x\) 轴上的一个区间 \([1,1.5]\)。
+
+    如果考虑映射
+    \[
+        f:\mathbb R\rightarrow [0,\infty),\qquad f(x)=x^2,
+    \]
+    则 \(f\) 不再是单射，因此不存在逆映射。但是，对于同一个集合 \(T=[1,2.25]\)，它的原像仍然可以写出：
+    \[
+        f^{-1}(T)=[-1.5,-1]\cup[1,1.5].
+    \]
+    从\cref{fig_la_square_preimage} 可以看出，\(y\) 轴上的区间 \([1,2.25]\) 同时对应到 \(x\) 轴上的两个区间 \([-1.5,-1]\) 和 \([1,1.5]\)。这说明，集合原像的记号 \(f^{-1}(T)\) 并不要求映射 \(f\) 存在逆映射。
+
+    \begin{figure}[htb!]
+        \centering
+        \begin{subfigure}{.3\textwidth}
+            \centering
+            \includegraphics[width=.9\textwidth]{./img/0-abstract/map_square_preimage_restricted_interval.tikz}
+            \caption{存在逆映射}
+            \label{fig_la_square_image}
+        \end{subfigure}
+        \begin{subfigure}{.3\textwidth}
+            \centering
+            \includegraphics[width=.9\textwidth]{./img/0-abstract/map_square_preimage_interval.tikz}
+            \caption{不存在逆映射}
+            \label{fig_la_square_preimage}
+        \end{subfigure}
+        \caption{映射 \(f(x)=x^2\) 下集合的原像}
+        \label{fig_la_square_image_preimage}
+    \end{figure}
+\end{example}

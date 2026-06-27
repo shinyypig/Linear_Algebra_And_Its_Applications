@@ -6,12 +6,10 @@
             xmin=-2, xmax=2,
             ymin=-1.2, ymax=4.2,
             ticklabel style={font=\scriptsize},
-            label style={font=\small},
             axis equal image,
             axis lines=middle,
             axis line style={-Stealth},
-            xlabel style={anchor=west},
-            ylabel style={anchor=south},
+            label style={font=\small},
         ]
         \addplot[
             c1,
