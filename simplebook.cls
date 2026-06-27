@@ -320,6 +320,18 @@
 \definecolor{second5}{RGB}{0,0,0}%
 \definecolor{third5}{RGB}{0,0,0}%
 
+% theorem box colors
+\definecolor{boxdefinition}{RGB}{86,132,112}%
+\definecolor{boxtheorem}{RGB}{70,102,158}%
+\definecolor{boxlemma}{RGB}{93,121,142}%
+\definecolor{boxcorollary}{RGB}{133,103,154}%
+\definecolor{boxproposition}{RGB}{76,139,150}%
+\definecolor{boxproperty}{RGB}{93,111,170}%
+\definecolor{boxexample}{RGB}{166,103,112}%
+\definecolor{boxremark}{RGB}{118,126,132}%
+\definecolor{boxaxiom}{RGB}{146,92,135}%
+\definecolor{boxpostulate}{RGB}{153,124,78}%
+
 % corlor definition
 \definecolor{winered}{rgb}{0.5,0,0}
 \definecolor{bule}{RGB}{18,29,57}
@@ -1057,29 +1069,95 @@
     % \let\proofname\relax
     % \let\endproof\relax
 
-    % declare a new theorem style
-    \newtheoremstyle{defstyle}{3pt}{3pt}{\citshape}{-3pt}{
-        \bfseries\color{main}}{}{0.5em}{\thmname{#1} \thmnumber{#2} \thmnote{（#3）}}
-    \newtheoremstyle{thmstyle}{3pt}{3pt}{\citshape}{-3pt}{
-        \bfseries\color{second}}{}{0.5em}{\thmname{#1} \thmnumber{#2} \thmnote{（#3）}}
-    \newtheoremstyle{prostyle}{3pt}{3pt}{\citshape}{-3pt}{
-        \bfseries\color{third}}{}{0.5em}{\thmname{#1} \thmnumber{#2} \thmnote{（#3）}}
+    \tcbset{
+        simplethm/.style={
+                enhanced,
+                shield externalize,
+                breakable,
+                arc=2mm,
+                outer arc=2mm,
+                boxrule=0.5pt,
+                left=8pt,
+                right=8pt,
+                top=6pt,
+                bottom=6pt,
+                before skip=8pt,
+                after skip=8pt,
+                fonttitle=\bfseries,
+                coltitle=white,
+                separator sign={.},
+            },
+        simpleboxcolor/.style={
+                simplethm,
+                colframe=#1,
+                colback=#1!5,
+                colbacktitle=#1,
+            },
+        simpledefinition/.style={
+                simpleboxcolor=boxdefinition,
+            },
+        simpletheorem/.style={
+                simpleboxcolor=boxtheorem,
+            },
+        simplelemma/.style={
+                simpleboxcolor=boxlemma,
+            },
+        simplecorollary/.style={
+                simpleboxcolor=boxcorollary,
+            },
+        simplepostulate/.style={
+                simpleboxcolor=boxpostulate,
+            },
+        simpleaxiom/.style={
+                simpleboxcolor=boxaxiom,
+            },
+        simpleproperty/.style={
+                simpleboxcolor=boxproperty,
+            },
+        simpleremark/.style={
+                simpleboxcolor=boxremark,
+            },
+        simpleproposition/.style={
+                simpleboxcolor=boxproposition,
+            },
+    }
 
-
-    \theoremstyle{defstyle} % definition style
-    \newtheorem{definition}{\definitionname}[\SIMPLE@thmcnt]
-
-    \theoremstyle{thmstyle} %theorem style
-    \newtheorem{theorem}{\theoremname}[\SIMPLE@thmcnt]
-    \newtheorem{lemma}{\lemmaname}[\SIMPLE@thmcnt]
-    \newtheorem{corollary}{\corollaryname}[\SIMPLE@thmcnt]
-    \newtheorem{postulate}{\postulatename}[\SIMPLE@thmcnt]
-    \newtheorem{axiom}{\axiomname}[\SIMPLE@thmcnt]
-    \newtheorem{property}{\propertyname}[\SIMPLE@thmcnt]
-    \newtheorem{remark}{\remarkname}[\SIMPLE@thmcnt]
-
-    \theoremstyle{prostyle} % proposition style
-    \newtheorem{proposition}{\propositionname}[\SIMPLE@thmcnt]
+    \DeclareTColorBox[auto counter,number within=\SIMPLE@thmcnt]{definition}{ o t\label g }{
+        simpledefinition,
+        IfValueTF={#1}{title={\definitionname~\thetcbcounter\ (#1)}}{title=\definitionname~\thetcbcounter},
+        IfBooleanTF={#2}{label=#3}{}}
+    \DeclareTColorBox[auto counter,number within=\SIMPLE@thmcnt]{theorem}{ o t\label g }{
+        simpletheorem,
+        IfValueTF={#1}{title={\theoremname~\thetcbcounter\ (#1)}}{title=\theoremname~\thetcbcounter},
+        IfBooleanTF={#2}{label=#3}{}}
+    \DeclareTColorBox[auto counter,number within=\SIMPLE@thmcnt]{lemma}{ o t\label g }{
+        simplelemma,
+        IfValueTF={#1}{title={\lemmaname~\thetcbcounter\ (#1)}}{title=\lemmaname~\thetcbcounter},
+        IfBooleanTF={#2}{label=#3}{}}
+    \DeclareTColorBox[auto counter,number within=\SIMPLE@thmcnt]{corollary}{ o t\label g }{
+        simplecorollary,
+        IfValueTF={#1}{title={\corollaryname~\thetcbcounter\ (#1)}}{title=\corollaryname~\thetcbcounter},
+        IfBooleanTF={#2}{label=#3}{}}
+    \DeclareTColorBox[auto counter,number within=\SIMPLE@thmcnt]{postulate}{ o t\label g }{
+        simplepostulate,
+        IfValueTF={#1}{title={\postulatename~\thetcbcounter\ (#1)}}{title=\postulatename~\thetcbcounter},
+        IfBooleanTF={#2}{label=#3}{}}
+    \DeclareTColorBox[auto counter,number within=\SIMPLE@thmcnt]{axiom}{ o t\label g }{
+        simpleaxiom,
+        IfValueTF={#1}{title={\axiomname~\thetcbcounter\ (#1)}}{title=\axiomname~\thetcbcounter},
+        IfBooleanTF={#2}{label=#3}{}}
+    \DeclareTColorBox[auto counter,number within=\SIMPLE@thmcnt]{property}{ o t\label g }{
+        simpleproperty,
+        IfValueTF={#1}{title={\propertyname~\thetcbcounter\ (#1)}}{title=\propertyname~\thetcbcounter},
+        IfBooleanTF={#2}{label=#3}{}}
+    \DeclareTColorBox[auto counter,number within=\SIMPLE@thmcnt]{remark}{ o t\label g }{
+        simpleremark,
+        IfValueTF={#1}{title={\remarkname~\thetcbcounter\ (#1)}}{title=\remarkname~\thetcbcounter},
+        IfBooleanTF={#2}{label=#3}{}}
+    \DeclareTColorBox[auto counter,number within=\SIMPLE@thmcnt]{proposition}{ o t\label g }{
+        simpleproposition,
+        IfValueTF={#1}{title={\propositionname~\thetcbcounter\ (#1)}}{title=\propositionname~\thetcbcounter},
+        IfBooleanTF={#2}{label=#3}{}}
 }{\relax}
 
 % main（green-def): example exercise problem solution
@@ -1092,8 +1170,27 @@
 \renewcommand{\theexam}{\thechapter.\arabic{exam}}
 \newenvironment{example}[1][]{
     \refstepcounter{exam}
-    \par\noindent\textbf{\color{main}{\examplename} \theexam #1 }\rmfamily}{
-    \par\ignorespacesafterend}
+    \begin{tcolorbox}[
+            enhanced,
+            shield externalize,
+            breakable,
+            arc=2mm,
+            outer arc=2mm,
+            boxrule=0.5pt,
+            left=8pt,
+            right=8pt,
+            top=6pt,
+            bottom=6pt,
+            before skip=8pt,
+            after skip=8pt,
+            colframe=boxexample,
+            colback=boxexample!5,
+            coltitle=white,
+            colbacktitle=boxexample,
+            fonttitle=\bfseries,
+            title={\examplename~\theexam\ifstrempty{#1}{}{~#1}},
+        ]\rmfamily}{
+    \end{tcolorbox}\ignorespacesafterend}
 
 %% Exercise with counter
 \newcounter{exer}[chapter]

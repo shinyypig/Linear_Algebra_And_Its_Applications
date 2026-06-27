@@ -101,29 +101,20 @@
         f(x)=x^2.
     \]
     如\cref{fig_la_square} 所示，若修改定义域和陪域，则映射 \(f\) 的性质也会发生变化。
-    \begin{figure}[htb!]
-        \centering
-        \begin{subfigure}{.3\textwidth}
-            \centering
-            \includegraphics[width=.9\textwidth]{./img/0-abstract/map_square_R_to_R.tikz}
-            \caption{非单射且非满射}
-            \label{fig_la_square_1}
-        \end{subfigure}
-        \begin{subfigure}{.3\textwidth}
-            \centering
-            \includegraphics[width=.9\textwidth]{./img/0-abstract/map_square_R_to_nonnegative.tikz}
-            \caption{满射但非单射}
-            \label{fig_la_square_2}
-        \end{subfigure}
-        \begin{subfigure}{.3\textwidth}
-            \centering
-            \includegraphics[width=.9\textwidth]{./img/0-abstract/map_square_nonnegative_to_nonnegative.tikz}
-            \caption{双射}
-            \label{fig_la_square_3}
-        \end{subfigure}
+    \begin{center}
+        \captionsetup{type=figure}
+        \subcaptionbox{非单射且非满射\label{fig_la_square_1}}[.3\textwidth]{
+            \includegraphics[width=.9\linewidth]{./img/0-abstract/map_square_R_to_R.tikz}
+        }
+        \subcaptionbox{满射但非单射\label{fig_la_square_2}}[.3\textwidth]{
+            \includegraphics[width=.9\linewidth]{./img/0-abstract/map_square_R_to_nonnegative.tikz}
+        }
+        \subcaptionbox{双射\label{fig_la_square_3}}[.3\textwidth]{
+            \includegraphics[width=.9\linewidth]{./img/0-abstract/map_square_nonnegative_to_nonnegative.tikz}
+        }
         \caption{同一个对应法则 \(f(x)=x^2\) 在不同定义域和陪域下的映射性质}
         \label{fig_la_square}
-    \end{figure}
+    \end{center}
 
     若将它看作映射
     \[
@@ -222,21 +213,15 @@
     \]
     从\cref{fig_la_square_preimage} 可以看出，\(y\) 轴上的区间 \([1,2.25]\) 同时对应到 \(x\) 轴上的两个区间 \([-1.5,-1]\) 和 \([1,1.5]\)。这说明，集合原像的记号 \(f^{-1}(T)\) 并不要求映射 \(f\) 存在逆映射。
 
-    \begin{figure}[htb!]
-        \centering
-        \begin{subfigure}{.3\textwidth}
-            \centering
-            \includegraphics[width=.9\textwidth]{./img/0-abstract/map_square_preimage_restricted_interval.tikz}
-            \caption{存在逆映射}
-            \label{fig_la_square_image}
-        \end{subfigure}
-        \begin{subfigure}{.3\textwidth}
-            \centering
-            \includegraphics[width=.9\textwidth]{./img/0-abstract/map_square_preimage_interval.tikz}
-            \caption{不存在逆映射}
-            \label{fig_la_square_preimage}
-        \end{subfigure}
+    \begin{center}
+        \captionsetup{type=figure}
+        \subcaptionbox{存在逆映射\label{fig_la_square_image}}[.3\textwidth]{
+            \includegraphics[width=.9\linewidth]{./img/0-abstract/map_square_preimage_restricted_interval.tikz}
+        }
+        \subcaptionbox{不存在逆映射\label{fig_la_square_preimage}}[.3\textwidth]{
+            \includegraphics[width=.9\linewidth]{./img/0-abstract/map_square_preimage_interval.tikz}
+        }
         \caption{映射 \(f(x)=x^2\) 下集合的原像}
         \label{fig_la_square_image_preimage}
-    \end{figure}
+    \end{center}
 \end{example}
