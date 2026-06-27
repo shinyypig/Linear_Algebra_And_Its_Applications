@@ -19,3 +19,4 @@ tmp.tex
 .pixi# pixi environments
 .pixi
 __pycache__
+assets/

@@ -1,0 +1,146 @@
+\chapter{抽象代数基础}
+尽管本书侧重以几何直观作为理解线性代数的起点，但仍需借助准确的语言和严谨的符号加以表达。同时，线性代数中的部分概念也建立在基本代数结构之上。因此，本章将从集合与映射出发，简要介绍群与域，并讨论与后文相关的基本性质。这些内容既是对初等教育阶段所学数学知识的抽象与整理，也将帮助读者建立统一的符号语言，为后续学习做好准备。
+
+\section{集合与映射}
+
+在初等数学中，我们早已接触过集合（set）的概念，例如自然数集、实数集等等。那么，集合究竟是什么呢？在朴素的观念中，我们通常认为集合就是``符合任意特定性质的一堆东西''。然而，这一观念会导致悖论的出现，为此，公理化集合论（Zermelo–Fraenkel set theory, ZFC）引入了严格的公理体系来规定集合必须满足的条件。具体而言，一个合法的集合应当满足以下公理：
+\begin{enumerate}
+    \item \textbf{外延公理}：两个集合如果含有完全相同的元素，那么它们就是同一个集合。
+    \item \textbf{空集公理}：存在一个不含任何元素的集合，记作 \(\varnothing\)。
+    \item \textbf{配对公理}：任意两个集合 \(A,B\) 可以放在一起，组成一个新的集合 \(\{A,B\}\)。
+    \item \textbf{并集公理}：如果一个集合的元素本身也是集合，那么可以把这些集合中的元素合并起来，组成一个新的集合。
+    \item \textbf{幂集公理}：任意集合 \(A\) 的所有子集可以组成一个新的集合，记作 \(\mathcal P(A)\)。
+    \item \textbf{分离公理}：可以从一个已经存在的集合中，挑出满足某个条件的元素，组成一个新的集合。
+    \item \textbf{替换公理}：如果按照某个确定规则，把一个集合中的每个元素都变成另一个对象，那么这些结果也可以组成一个新的集合。
+    \item \textbf{无穷公理}：存在无限集合，因此可以构造自然数集合。
+    \item \textbf{正则公理}：集合不能包含自己，也不能出现一层一层无穷向下嵌套的情况。
+    \item \textbf{选择公理}：如果有很多个非空集合，那么可以从每个集合中各选出一个元素。
+\end{enumerate}
+
+上述公理看似纷繁复杂，后续本书中出现的一些概念和定义也同样如此。数学概念的定义脱离直观的认知是许多读者在学习数学时感到抽象和困难的重要原因之一。然而需要注意的是，这些公理和定义并不是凭空出现的，而是人们为了使理论体系更加严谨、完整和自洽而作出的规定。正因为要兼顾一般性与严密性，它们在形式上往往不可避免地显得繁琐。因此，在学习这些内容时，我们不必一开始就拘泥于每一个细节，而应首先把握其背后的核心思想：它想解决什么问题，刻画什么对象。然后再琢磨每一个看似繁琐的定义其背后是否存在某种特殊的反例，从而进一步深刻理解这个数学概念。
+
+比如上述公理中的正则公理，虽然看起来很莫名其妙，但其实它的作用是防止集合论中出现一些荒谬的情况。比如，我们可以构造一个这样的``集合''：
+\[
+    R=\{x\mid x\notin x\},
+\]
+即一个包含所有``不包含自身的集合''的集合。那么，\(R\) 是否包含自身呢？如果\( R \in R \)，根据定义则有\(R \notin R\)；反之，如果 \( R \notin R \)，根据定义则有 \(R \in R\) 。无论哪种情况都会导致矛盾，这中矛盾被称为\textbf{罗素悖论}，是集合论中最著名的悖论之一。正则公理正是为了排除这种悖论而引入的。
+
+好在，类似的极端情况在实际应用中几乎不会遇到，因此读者不必过于担心。用朴素的观念去理解并使用集合，通常是没有问题的。但我们始终要保持警惕，意识到这些概念背后可能存在的陷阱和矛盾，并且在必要时回过头来审视它们的定义和公理，以确保我们所使用的理论体系是自洽的。
+
+常见的集合有自然数集、整数集、有理数集、实数集和复数集，在本书中使用如下的符号来表示：
+\[
+    \mathbb{N},\quad \mathbb{Z},\quad \mathbb{Q},\quad \mathbb{R},\quad \mathbb{C}.
+\]
+
+集合常见的运算除了常见的交、并和差外：
+\begin{align*}
+    A\cap B
+     & =\{x\mid x\in A\ \text{且}\ x\in B\},    \\
+    A\cup B
+     & =\{x\mid x\in A\ \text{或}\ x\in B\},    \\
+    A\setminus B
+     & =\{x\mid x\in A\ \text{且}\ x\notin B\}.
+\end{align*}
+其中，\(A\cap B\) 称为 \(A\) 与 \(B\) 的\textbf{交集}，\(A\cup B\) 称为二者的\textbf{并集}，\(A\setminus B\) 称为 \(A\) 关于 \(B\) 的\textbf{差集}。若 \(A\cap B=\varnothing\)，则称 \(A\) 与 \(B\) 不相交。
+
+需要注意的是，根据外延公理，集合本身不记录元素的顺序。但坐标需要区分不同位置，例如，平面上的点 \((1,2)\) 与 \((2,1)\) 通常不是同一个点。像 \((a,b)\) 这样带有顺序的两个元素称为\textbf{有序对}，并规定两个有序对相等的条件是它们的对应元素相等，即
+\[
+    (a,b)=(c,d)\iff a=c\ \text{且}\ b=d.
+\]
+
+基于有序对的概念，可以定义两个集合的笛卡尔积。
+\begin{definition}[笛卡尔积]
+    集合 \(A\) 与 \(B\) 的笛卡尔积定义为
+    \[
+        A\times B=\{(a,b)\mid a\in A,\ b\in B\}.
+    \]
+\end{definition}
+
+例如，平面上的所有的点构成了一个集合，这个集合可以看作是实数集 \(\mathbb{R}\) 与自身的笛卡尔积，即
+\[
+    \mathbb{R}^2=\mathbb{R}\times\mathbb{R}
+    =\{(x,y)\mid x,y\in\mathbb{R}\}.
+\]
+类似地，
+\[
+    \mathbb{R}^n
+    =\underbrace{\mathbb{R}\times\cdots\times\mathbb{R}}_{n\text{ 个}}
+\]
+表示所有 \(n\) 个实数组成的有序数组的集合，对应于几何中的 \(n\) 维空间。
+
+
+在集合的基础上，映射描述了一个集合中的元素与另一个集合中的元素之间的对应关系。
+\begin{definition}[映射]
+    设 \(A,B\) 是两个集合。若按照某个确定的对应法则，对集合 \(A\) 中的每个元素 \(x\)，都有集合 \(B\) 中唯一确定的元素与之对应，则称这个对应为从 \(A\) 到 \(B\) 的映射，记作
+    \[
+        f:A\rightarrow B.
+    \]
+    对每个 \(x\in A\)，与 \(x\) 对应的唯一元素记为 \(f(x)\)，称为 \(x\) 在 \(f\) 下的\textbf{像}。其中，\(A\) 称为 \(f\) 的\textbf{定义域}，\(B\) 称为 \(f\) 的\textbf{陪域}。
+\end{definition}
+
+在初等数学中所学的函数是映射的一种特殊情况，即定义域和陪域都是实数集的映射。正是因为函数往往是指定义域和陪域都是实数集，因此过去的学习中，我们通常忽略了一个函数的定义域和陪域。然而，在本书中，这种忽略会带来致命的错误。因此，在后续的学习中，我们遇到函数或者更一般的映射时，都必须明确其定义域和陪域。
+
+根据映射的情形不同，可以将映射分为以下几类：
+\begin{enumerate}
+    \item \textbf{单射}：若映射 \(f:A\rightarrow B\) 满足不同的元素在 \(A\) 中有不同的像在 \(B\) 中，即
+          \[
+              f(x_1)=f(x_2)\implies x_1=x_2,
+          \]
+          则称 \(f\) 是从 \(A\) 到 \(B\) 的\textbf{单射}，也称为\textbf{一一映射}。
+    \item \textbf{满射}：若映射 \(f:A\rightarrow B\) 满足 \(B\) 中的每个元素都是 \(A\) 中某个元素的像，即
+          \[
+              \forall y\in B,\exists x\in A\text{ 使得 }f(x)=y,
+          \]
+          则称 \(f\) 是从 \(A\) 到 \(B\)的\textbf{满射}，也称为\textbf{上射}。
+    \item \textbf{双射}：若映射 \(f:A\rightarrow B\) 既是单射又是满射，则称 \(f\) 是从 \(A\) 到 \(B\) 的\textbf{双射}，也称为\textbf{一一对应}。
+\end{enumerate}
+
+\begin{example}
+    考虑同一个对应法则
+    \[
+        f(x)=x^2.
+    \]
+    如\cref{fig_la_square} 所示，若修改定义域和陪域，则映射 \(f\) 的性质也会发生变化。
+    \begin{figure}[htb!]
+        \centering
+        \begin{subfigure}{.3\textwidth}
+            \centering
+            \includegraphics[width=.9\textwidth]{./img/0-abstract/map_square_R_to_R.tikz}
+            \caption{非单射且非满射}
+            \label{fig_la_square_1}
+        \end{subfigure}
+        \begin{subfigure}{.3\textwidth}
+            \centering
+            \includegraphics[width=.9\textwidth]{./img/0-abstract/map_square_R_to_nonnegative.tikz}
+            \caption{满射但非单射}
+            \label{fig_la_square_2}
+        \end{subfigure}
+        \begin{subfigure}{.3\textwidth}
+            \centering
+            \includegraphics[width=.9\textwidth]{./img/0-abstract/map_square_nonnegative_to_nonnegative.tikz}
+            \caption{双射}
+            \label{fig_la_square_3}
+        \end{subfigure}
+        \caption{同一个对应法则 \(f(x)=x^2\) 在不同定义域和陪域下的映射性质}
+        \label{fig_la_square}
+    \end{figure}
+
+    若将它看作映射
+    \[
+        f:\mathbb R\to \mathbb R,\qquad f(x)=x^2,
+    \]
+    则它不是满射，因为不存在实数 \(x\) 使得 \(x^2=-1\)。
+
+    若将它看作映射
+    \[
+        f:\mathbb R\to [0,\infty),\qquad f(x)=x^2,
+    \]
+    则它是满射，但不是单射，因为对每个 \(y\in (0,\infty)\)，都可以找到实数 \(x\) 和 \( -x \) 使得 \(x^2=y\)。
+
+    若进一步将定义域限制为非负实数集，即
+    \[
+        f:[0,\infty)\to [0,\infty),\qquad f(x)=x^2,
+    \]
+    则它既是单射又是满射，因此是双射。
+\end{example}
+

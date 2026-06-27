@@ -54,11 +54,11 @@ sub tikzlatex {
                     system("sed \"s/mkdir -p/mkdir/\" $aux_dir1$base.makefile > $aux_dir1$base.makefile.tmp");
                     rename "$aux_dir1$base.makefile.tmp", "$aux_dir1$base.makefile";
 
-                    system "cp $aux_dir1$aux_dir1*.md5 $aux_dir1";
+                    system "for f in $aux_dir1$aux_dir1*.md5; do [ -e \"\$f\" ] && cp \"\$f\" $aux_dir1; done";
 
                     system "rm -rf $aux_dir1$aux_dir1";
                     $ret = system "sh make",  "-j", "10", "-f", "$aux_dir1$base.makefile";
-                    system "rm $base.run.xml";
+                    unlink "$base.run.xml";
                 }
                 else {
                     $ret = system "make",  "-j", "10", "-f", "$base.makefile";
@@ -97,10 +97,10 @@ sub tikzlatex {
                 print "Tikzlatex: ---Running 'make -f $aux_dir1$base.makefile' ...\n";
                 if ($aux_dir) {
                     system("sed -i 's|$base.figlist|$aux_dir1$base.figlist|g' $aux_dir1$base.makefile");
-                    system "cp $aux_dir1$aux_dir1*.md5 $aux_dir1";
+                    system "for f in $aux_dir1$aux_dir1*.md5; do [ -e \"\$f\" ] && cp \"\$f\" $aux_dir1; done";
                     system "rm -rf $aux_dir1$aux_dir1";
                     $ret = system "make",  "-j", "128", "-f", "$aux_dir1$base.makefile";
-                    system "rm $base.run.xml";
+                    unlink "$base.run.xml";
                 }
                 else {
                     $ret = system "make",  "-j", "128", "-f", "$base.makefile";
@@ -140,10 +140,10 @@ sub tikzlatex {
                 print "Tikzlatex: ---Running 'make -f $aux_dir1$base.makefile' ...\n";
                 if ($aux_dir) {
                     system('sed', '-i', '', "s#$base.figlist#$aux_dir1$base.figlist#g", "$aux_dir1$base.makefile");
-                    system "cp $aux_dir1$aux_dir1*.md5 $aux_dir1";
+                    system "for f in $aux_dir1$aux_dir1*.md5; do [ -e \"\$f\" ] && cp \"\$f\" $aux_dir1; done";
                     system "rm -rf $aux_dir1$aux_dir1";
                     $ret = system "make",  "-j", "10", "-f", "$aux_dir1$base.makefile";
-                    system "rm $base.run.xml";
+                    unlink "$base.run.xml";
                 }
                 else {
                     $ret = system "make",  "-j", "10", "-f", "$base.makefile";
