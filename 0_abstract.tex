@@ -101,6 +101,7 @@
         f(x)=x^2.
     \]
     如\cref{fig_la_square} 所示，若修改定义域和陪域，则映射 \(f\) 的性质也会发生变化。
+
     \begin{center}
         \captionsetup{type=figure}
         \subcaptionbox{非单射且非满射\label{fig_la_square_1}}[.3\textwidth]{
@@ -112,7 +113,7 @@
         \subcaptionbox{双射\label{fig_la_square_3}}[.3\textwidth]{
             \includegraphics[width=.9\linewidth]{./img/0-abstract/map_square_nonnegative_to_nonnegative.tikz}
         }
-        \caption{同一个对应法则 \(f(x)=x^2\) 在不同定义域和陪域下的映射性质}
+        \captionof{figure}{同一个对应法则 \(f(x)=x^2\) 在不同定义域和陪域下的映射性质}
         \label{fig_la_square}
     \end{center}
 
@@ -193,6 +194,18 @@
 \begin{example}
     仍然考虑对应法则 \(f(x)=x^2\)。如\cref{fig_la_square_image_preimage} 所示，集合的原像描述的是陪域中的一个集合在定义域中对应的部分。
 
+    \begin{center}
+        \captionsetup{type=figure}
+        \subcaptionbox{存在逆映射\label{fig_la_square_image}}[.3\textwidth]{
+            \includegraphics[width=.9\linewidth]{./img/0-abstract/map_square_preimage_restricted_interval.tikz}
+        }
+        \subcaptionbox{不存在逆映射\label{fig_la_square_preimage}}[.3\textwidth]{
+            \includegraphics[width=.9\linewidth]{./img/0-abstract/map_square_preimage_interval.tikz}
+        }
+        \captionof{figure}{映射 \(f(x)=x^2\) 下集合的原像}
+        \label{fig_la_square_image_preimage}
+    \end{center}
+
     首先将定义域限制为非负实数集，即考虑映射
     \[
         f:[0,\infty)\rightarrow [0,\infty),\qquad f(x)=x^2,
@@ -213,15 +226,33 @@
     \]
     从\cref{fig_la_square_preimage} 可以看出，\(y\) 轴上的区间 \([1,2.25]\) 同时对应到 \(x\) 轴上的两个区间 \([-1.5,-1]\) 和 \([1,1.5]\)。这说明，集合原像的记号 \(f^{-1}(T)\) 并不要求映射 \(f\) 存在逆映射。
 
-    \begin{center}
-        \captionsetup{type=figure}
-        \subcaptionbox{存在逆映射\label{fig_la_square_image}}[.3\textwidth]{
-            \includegraphics[width=.9\linewidth]{./img/0-abstract/map_square_preimage_restricted_interval.tikz}
-        }
-        \subcaptionbox{不存在逆映射\label{fig_la_square_preimage}}[.3\textwidth]{
-            \includegraphics[width=.9\linewidth]{./img/0-abstract/map_square_preimage_interval.tikz}
-        }
-        \caption{映射 \(f(x)=x^2\) 下集合的原像}
-        \label{fig_la_square_image_preimage}
-    \end{center}
 \end{example}
+
+\section{二元运算与群}
+
+在初等数学中，我们接触到的映射通常是以一个元素为输入的函数。借助集合的笛卡尔积，也可以将多个元素组成的有序组作为映射的输入，从而描述多个输入分量与输出之间的对应关系。二元运算就是这样一类映射。
+\begin{definition}[二元运算]
+    设 \(G\) 是一个集合，映射
+    \[
+        \circ:G\times G\rightarrow G,
+    \]
+    称为集合 \(G\) 上的一个\textbf{二元运算}。对于任意 \(a,b\in G\)，通常将 \(\circ(a,b)\) 记作 \(a\circ b\)。
+\end{definition}
+最常见的二元运算是数的加法和乘法。例如，实数集 \(\mathbb R\) 上的加法可以看作映射
+\[
+    +:\mathbb R\times\mathbb R\rightarrow \mathbb R,\qquad (x,y)\mapsto x+y,
+\]
+乘法可以看作映射
+\[
+    \cdot:\mathbb R\times \mathbb R\rightarrow \mathbb R,\qquad (x,y)\mapsto x\cdot y.
+\]
+
+上述表述提醒我们：任何运算都定义在特定的集合上，因而运算符号本身必须连同其作用对象一起理解。我们有时会不加说明地拓展已有的运算，但这种拓展并非总是自然成立。例如，人们常将有序对 \((a,b)\) 与标量 \(c\) 相加，并写出如下的结果
+\[
+    (a,b)+c=(a+c,b+c).
+\]
+然而，如果只定义了有序对之间的加法，那么 \((a,b)+c\) 本身并没有意义。上式实际上先将标量 \(c\) 对应为有序对 \((c,c)\)，再按照有序对的加法计算
+\[
+    (a,b)+(c,c)=(a+c,b+c).
+\]
+因此，在使用一个运算符号之前，应先明确它定义在哪个集合上，并判断参与运算的对象是否属于相应的定义域。养成这一习惯，可以避免许多由符号混用引起的错误。
