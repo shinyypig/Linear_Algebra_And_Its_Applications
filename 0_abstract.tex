@@ -276,7 +276,7 @@
               \]
               其中，\(e\) 是二元运算 \(\circ\) 的单位元。
     \end{enumerate}
-    则称集合 \(G\) 关于二元运算 \(\circ\) 构成一个\textbf{群}，记作 \((G,\circ)\)。
+    则称集合 \(G\) 关于二元运算 \(\circ\) 构成一个\textbf{群}\footnote{方便起见，有时可以省略二元运算 \(\circ\)，直接称集合 \(G\) 为一个群。}，记作 \((G,\circ)\)。
 \end{definition}
 需要注意的是，群的定义首先要求 \(\circ\) 是 \(G\) 上的二元运算，这保证了运算的\textbf{封闭性}，即对于任意 \(a,b\in G\)，都有 \(a\circ b\in G\)。封闭性虽然没有在上述三个条件中单独列出，却是群结构成立的基础。
 
@@ -300,4 +300,17 @@
 \]
 因此，\(a\) 的逆元同样具有唯一性。
 
+前面主要通过数及其运算来认识群，但群中的元素并不一定是数，群运算也不一定是通常的加法或乘法。几何图形的对称变换就是群的一个直观来源。下面以正方形为例，说明它的八个对称变换如何构成一个群。
+\begin{example}[正方形的对称群]
+    如\cref{fig_square_eight_symmetries} 所示，一个正方形关于竖直轴、水平轴或两条对角线反射后，所得图形仍与原正方形重合。类似地，将它绕中心分别旋转 \(0^\circ\)、\(90^\circ\)、\(180^\circ\) 和 \(270^\circ\)，所得图形也与原图形重合。
+    \begin{center}
+        \captionsetup{type=figure}
+        \includegraphics[width=.98\linewidth]{./img/0-abstract/square_eight_symmetries.tikz}
+        \captionof{figure}{正方形的八个对称变换}
+        \label{fig_square_eight_symmetries}
+    \end{center}
+
+    记对应的八个操作构成的集合为\( G = \left\{ e, r_{\frac{\pi}{2}}, r_{\pi}, r_{\frac{3\pi}{2}}, s_0, s_{\frac{\pi}{4}}, s_{\frac{\pi}{2}}, s_{\frac{3\pi}{4}} \right\} \)，并令对应的二元运算为操作的复合。则 \((G,\circ)\) 构成一个群。
+\end{example}
+类似地，正 \(n\) 边形的所有 \(2n\) 个对称变换也构成一个群，称为\textbf{二面体群}（dihedral group），记作 \(D_n\)。从几何的角度来看，群这一抽象的代数结构变得更加具体和直观：群中的元素可以是具体的几何变换，而群运算则对应于这些变换的复合。
 
