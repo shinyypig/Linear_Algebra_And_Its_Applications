@@ -977,6 +977,7 @@
 %%define the note and proof environment
 \RequirePackage{pifont,manfnt,bbding}
 \RequirePackage[many]{tcolorbox}
+\RequirePackage{footnotehyper}
 % \newlength{\normalparindent}
 % \setlength{\normalparindent}{\parindent}
 \ifdefstring{\SIMPLE@mode}{fancy}{
@@ -1165,6 +1166,16 @@
         IfBooleanTF={#2}{label=#3}{}}
 }{\relax}
 
+\makesavenoteenv{definition}
+\makesavenoteenv{theorem}
+\makesavenoteenv{lemma}
+\makesavenoteenv{corollary}
+\makesavenoteenv{postulate}
+\makesavenoteenv{axiom}
+\makesavenoteenv{property}
+\makesavenoteenv{remark}
+\makesavenoteenv{proposition}
+
 % main（green-def): example exercise problem solution
 % second（orange-thm）: proof note remark    
 % third（blue-prop):    assumptions property conclusion custom
@@ -1199,6 +1210,7 @@
             title={\examplename~\theexam\ifstrempty{#1}{}{~#1}},
         ]\rmfamily}{
     \end{tcolorbox}\ignorespacesafterend}
+\makesavenoteenv{example}
 
 %% Exercise with counter
 \newcounter{exer}[chapter]
@@ -1206,10 +1218,15 @@
 \renewcommand{\theexer}{\thechapter.\arabic{exer}}
 \newenvironment{exercise}[1][]{
     \refstepcounter{exer}
-    \par\noindent\makebox[-3pt][r]{
-        \scriptsize\color{red!90}\HandPencilLeft\quad}
-    \textbf{\color{main}{\exercisename} \theexer #1 }\rmfamily}{
-    \par\ignorespacesafterend}
+    \par\addvspace{0.6\baselineskip}
+    \noindent
+    \textbf{\color{main}\theexer.}\enspace
+    \ifstrempty{#1}{}{\textbf{#1}\quad}
+    \ignorespaces
+}{
+    \par\addvspace{0.3\baselineskip}
+    \ignorespacesafterend
+}
 
 %% Problem with counter
 \newcounter{prob}[chapter]
