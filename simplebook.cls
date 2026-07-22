@@ -191,13 +191,13 @@
 \ifdefstring{\SIMPLE@lang}{cn}{
     \ifdefstring{\SIMPLE@chinesefont}{founder}{
         \RequirePackage[UTF8,scheme=plain,fontset=none]{ctex}
-        \setCJKmainfont[BoldFont={Adobe Heiti Std},ItalicFont={Adobe Kaiti Std}]{Adobe Song Std}
-        \setCJKsansfont[BoldFont={Adobe Heiti Std}]{Adobe Kaiti Std}
-        \setCJKmonofont[BoldFont={Adobe Heiti Std}]{Adobe Fangsong Std}
-        \setCJKfamilyfont{zhsong}{Adobe Song Std}[AutoFakeBold]
-        \setCJKfamilyfont{zhhei}{Adobe Heiti Std}
-        \setCJKfamilyfont{zhkai}[BoldFont={Adobe Heiti Std}]{Adobe Kaiti Std}
-        \setCJKfamilyfont{zhfs}[BoldFont={Adobe Heiti Std}]{Adobe Fangsong Std}
+        \setCJKmainfont[BoldFont={FZHei-B01},ItalicFont={FZKai-Z03}]{FZShuSong-Z01}
+        \setCJKsansfont[BoldFont={FZHei-B01}]{FZKai-Z03}
+        \setCJKmonofont[BoldFont={FZHei-B01}]{FZFangSong-Z02}
+        \setCJKfamilyfont{zhsong}[BoldFont={FZHei-B01}]{FZShuSong-Z01}
+        \setCJKfamilyfont{zhhei}{FZHei-B01}
+        \setCJKfamilyfont{zhkai}[BoldFont={FZHei-B01}]{FZKai-Z03}
+        \setCJKfamilyfont{zhfs}[BoldFont={FZHei-B01}]{FZFangSong-Z02}
         \newcommand*{\songti}{\CJKfamily{zhsong}}
         \newcommand*{\heiti}{\CJKfamily{zhhei}}
         \newcommand*{\kaishu}{\CJKfamily{zhkai}}

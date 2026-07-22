@@ -338,8 +338,27 @@
         H\leq G.
     \]
 \end{definition}
+对于\( G \)的一个非空子集，可以使用子群判定定理快速判断它是否是 \( G \) 的子群：
+\begin{theorem}[子群判定定理]
+    设 \((G,\circ)\) 是一个群，\(H\) 是 \(G\) 的非空子集，若对任意 \(a,b\in H\)，都有 \(a\circ b^{-1}\in H\)，则 \(H\) 是 \(G\) 的一个子群。
+\end{theorem}
+\begin{proof}
+    设 \(e\) 是群 \(G\) 的单位元。由于 \(H\) 是 \(G\) 的非空子集，存在元素 \(a\in H\)。由假设可得
+    \[
+        a\circ a^{-1}=e\in H.
+    \]
+    因此，\(H\) 中包含\textbf{单位元}。设 \(b\in H\)，则由假设可得
+    \[
+        e\circ b^{-1}=b^{-1}\in H.
+    \]
+    因此，\(H\) 中包含每个元素的\textbf{逆元}。任取 \(a,b\in H\)。由上面的结论，\(b^{-1}\in H\)。将判定条件中的两个元素分别取为 \(a\) 和 \(b^{-1}\)，可得
+    \[
+        a\circ (b^{-1})^{-1}=a\circ b\in H.
+    \]
+    因此，\(H\) 关于运算 \(\circ\) \textbf{封闭}。此外，运算 \(\circ\) 在 \(H\) 上的\textbf{结合律}继承自群 \(G\)。综上，\(H\) 关于运算 \(\circ\) 构成一个群，因此是 \(G\) 的一个子群。
+\end{proof}
 
-对于一个有限群的子群，有如下定理：
+此外，对于一个有限群的子群，有如下定理：
 \begin{theorem}[拉格朗日定理]
     设 \((G,\circ)\) 是一个有限群，\(H\le G\) 是 \(G\) 的一个子群，则 \(H\) 的阶数\footnote{对于有限群，其元素的个数称为群的阶（Order）}，记作\( |H| \)，一定能整除 \(|G|\)。
 \end{theorem}
@@ -390,6 +409,85 @@
 
 
 \section{习题}
+
 \begin{exercise}
-    设 \(G\) 是一个群，\(H\) 是 \(G\) 的一个子群。证明：对于任意 \(g\in G\)，左陪集 \(gH\) 与 \(H\) 所含元素的个数相同，即\(|gH|=|H|.\)
+    分别判断下列映射是否为单射、满射或双射，并说明理由：
+    \begin{enumerate}
+        \item \(f:\mathbb Z\rightarrow\mathbb Z,\quad f(n)=2n\)；
+        \item \(g:\mathbb R\rightarrow\mathbb R,\quad g(x)=x^3\)；
+        \item \(h:\mathbb R\rightarrow[0,\infty),\quad h(x)=|x|\)。
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    设 \(f:A\rightarrow B\)，\(g:B\rightarrow C\)。证明：
+    \begin{enumerate}
+        \item 若 \(g\circ f\) 是单射，则 \(f\) 是单射；
+        \item 若 \(g\circ f\) 是满射，则 \(g\) 是满射。
+    \end{enumerate}
+    上述两个命题的逆命题是否成立？若不成立，请分别给出反例。
+\end{exercise}
+
+\begin{exercise}
+    设 \(f:A\rightarrow B\) 是双射。证明其逆映射 \(f^{-1}\) 也是双射，并且\( \left(f^{-1}\right)^{-1}=f. \)
+\end{exercise}
+
+\begin{exercise}
+    设 \(f:A\rightarrow B\) 和 \(g:B\rightarrow C\) 都是双射。证明 \(g\circ f\) 也是双射，并且\( (g\circ f)^{-1}=f^{-1}\circ g^{-1}. \)
+\end{exercise}
+
+\begin{exercise}
+    设 \(f:A\rightarrow B\)，\(S_1,S_2\subseteq A\)，\(T_1,T_2\subseteq B\)。证明：
+    \[
+        f(S_1\cup S_2)=f(S_1)\cup f(S_2),
+    \]
+    \[
+        f^{-1}(T_1\cup T_2)=f^{-1}(T_1)\cup f^{-1}(T_2),
+    \]
+    \[
+        f^{-1}(T_1\cap T_2)=f^{-1}(T_1)\cap f^{-1}(T_2).
+    \]
+\end{exercise}
+
+\begin{exercise}
+    判断下列运算是否为给定集合上的二元运算，并说明理由：
+    \begin{enumerate}
+        \item 整数集 \(\mathbb Z\) 上的减法；
+        \item 自然数集 \(\mathbb N\) 上的减法；
+        \item 非零实数集 \(\mathbb R\setminus\{0\}\) 上的除法；
+        \item 正实数集 \((0,\infty)\) 上的乘法。
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    在整数集 \(\mathbb Z\) 上定义运算
+    \[
+        a\circ b=a+b+1.
+    \]
+    证明 \((\mathbb Z,\circ)\) 构成交换群，并求其单位元以及任意元素 \(a\) 的逆元。
+\end{exercise}
+
+\begin{exercise}
+    判断下列集合是否构成相应群的子群，并说明理由：
+    \begin{enumerate}
+        \item \(2\mathbb Z=\{2k\mid k\in\mathbb Z\}\) 是否为 \((\mathbb Z,+)\) 的子群；
+        \item 正实数集 \((0,\infty)\) 是否为 \((\mathbb R\setminus\{0\},\cdot)\) 的子群；
+        \item 非负实数集 \([0,\infty)\) 是否为 \((\mathbb R,+)\) 的子群。
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    设 \(H_1,H_2\) 是群 \(G\) 的两个子群，证明 \(H_1\cap H_2\) 是 \(G\) 的子群
+\end{exercise}
+
+\begin{exercise}
+    在加法群 \((\mathbb Z,+)\) 中，取子群
+    \[
+        H=3\mathbb Z=\{3k\mid k\in\mathbb Z\}.
+    \]
+    写出由整数 \(0,1,2,3,4,5\) 确定的左陪集，并指出其中有几个互不相同的左陪集。
+\end{exercise}
+
+\begin{exercise}
+    设 \(G\) 是一个群，\(H\) 是 \(G\) 的一个子群。证明：对于任意 \(g\in G\)，左陪集 \(gH\) 与 \(H\) 所含元素的个数相同。
 \end{exercise}
