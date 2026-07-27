@@ -439,36 +439,43 @@
 \]
 则称 \(R\) 为\textbf{含幺环}（Ring with Identity），元素 \(1\) 称为环的乘法单位元。与群中单位元的情形类似，环的乘法单位元若存在，则必然是唯一的。
 
-整数集 \(\mathbb Z\) 关于加法和乘法构成一个交换含幺环，称为\textbf{整数环}。其中，加法单位元为 \(0\)，乘法单位元为 \(1\)。除了整数环以外，模运算也给出了一类重要的环。给定正整数 \(n\)，按照除以 \(n\) 所得余数的不同，可以将所有整数分为 \(n\) 类。分别用
-\[
-    \overline 0,\overline 1,\ldots,\overline{n-1}
-\]
-表示这些类。并记
-\[
-    \mathbb Z_n=\{\overline{a}, a \in \mathbb Z\},
-\]
-需要注意的是，对于任意一个整数，其余数必然是 \(0,1,\ldots,n-1\) 中的一个。因此 \(\mathbb Z_n\) 中实际上只有 \(n\) 个不同的元素，比如\( \overline 1 \) 和 \( \overline{n+1} \) 是同一个元素，两者相等\( \overline 1 = \overline{n+1} \)。对于集合\(\mathbb{Z}_n\) ，定义如下加法和乘法：
-\[
-    \overline a+\overline b=\overline{a+b},\quad \overline a\cdot\overline b=\overline{ab}.
-\]
-容易验证，\(\mathbb Z_n\) 关于上述运算构成一个交换含幺环，其中加法单位元是 \(\overline 0\)，乘法单位元是 \(\overline 1\)。像这样的环称为\textbf{模 \(n\) 整数环}。
+整数集 \(\mathbb Z\) 关于加法和乘法构成一个交换含幺环，称为\textbf{整数环}。其中，加法单位元为 \(0\)，乘法单位元为 \(1\)。除了整数环以外，模运算也给出了一类重要的环。
 
-环中的元素也不一定是数。设 \(X\) 是一个非空集合，所有从 \(X\) 到 \(\mathbb R\) 的映射构成集合
-\[
-    \mathcal F(X,\mathbb R)=\{f\mid f:X\rightarrow\mathbb R\}.
-\]
-对于任意 \(f,g\in\mathcal F(X,\mathbb R)\)，定义
-\[
-    (f+g)(x)=f(x)+g(x),\qquad
-    (fg)(x)=f(x)g(x).
-\]
-容易验证，\(\mathcal F(X,\mathbb R)\) 关于上述运算构成一个交换含幺环。其中，加法单位元是恒为 \(0\) 的映射，乘法单位元是恒为 \(1\) 的映射。
+\begin{example}
+    给定正整数 \(n\)，按照除以 \(n\) 所得余数的不同，可以将所有整数分为 \(n\) 类。分别用
+    \[
+        \overline 0,\overline 1,\ldots,\overline{n-1}
+    \]
+    表示这些类。并记
+    \[
+        \mathbb Z_n=\{\overline{a}, a \in \mathbb Z\},
+    \]
+    需要注意的是，对于任意一个整数，其余数必然是 \(0,1,\ldots,n-1\) 中的一个。因此 \(\mathbb Z_n\) 中实际上只有 \(n\) 个不同的元素，比如\( \overline 1 \) 和 \( \overline{n+1} \) 是同一个元素，两者相等\( \overline 1 = \overline{n+1} \)。对于集合\(\mathbb{Z}_n\) ，定义如下加法和乘法：
+    \[
+        \overline a+\overline b=\overline{a+b},\quad \overline a\cdot\overline b=\overline{ab}.
+    \]
+    容易验证，\(\mathbb Z_n\) 关于上述运算构成一个交换含幺环，其中加法单位元是 \(\overline 0\)，乘法单位元是 \(\overline 1\)。像这样的环称为\textbf{模 \(n\) 整数环}。
+\end{example}
 
 在模\( n \)整数环上的乘法表现出了一些有趣的性质。例如，在模 \(6\) 整数环 \(\mathbb Z_6\) 中，元素 \(\overline 2\) 和 \(\overline 3\) 的乘积为
 \[
     \overline 2\cdot \overline 3=\overline{6}=\overline 0.
 \]
 这说明，环中两个非零元素的乘积可能为零。像这样的非零元素称为\textbf{零因子}（Zero Divisor）。在模 \(5\) 整数环 \(\mathbb Z_5\) 中，任意两个非零元素的乘积都不为零，因此 \(\mathbb Z_5\) 中没有零因子。并且像\(\mathbb Z_5\)这样的环被称为\textbf{整环}（Integral Domain），换言之，整环是一个没有零因子的交换含幺环。
+
+环中的元素也不一定是数，比如下面这个例子。
+\begin{example}
+    设 \(X\) 是一个非空集合，所有从 \(X\) 到 \(\mathbb R\) 的映射构成集合
+    \[
+        \mathcal F(X,\mathbb R)=\{f\mid f:X\rightarrow\mathbb R\}.
+    \]
+    对于任意 \(f,g\in\mathcal F(X,\mathbb R)\)，定义
+    \[
+        (f+g)(x)=f(x)+g(x),\qquad
+        (fg)(x)=f(x)g(x).
+    \]
+    容易验证，\(\mathcal F(X,\mathbb R)\) 关于上述运算构成一个交换含幺环。其中，加法单位元是恒为 \(0\) 的映射，乘法单位元是恒为 \(1\) 的映射。
+\end{example}
 
 在一般的环中，非零元素不一定存在乘法逆元。例如，在整数环 \(\mathbb Z\) 中，不存在整数 \(b\) 使得 \(2b=1\)。如果一个交换含幺环中的每个非零元素都有乘法逆元，便得到比环更特殊的代数结构。
 
@@ -612,22 +619,6 @@
 
 \begin{exercise}
     设 \(R\) 是一个环，\(a,b\in R\)。证明\( 0 \cdot a=a \cdot 0=0 \)。
-\end{exercise}
-
-\begin{exercise}
-    设 \(X\) 是一个非空集合，所有从 \(X\) 到 \(\mathbb R\) 的映射
-    构成集合
-    \[
-        \mathcal F(X,\mathbb R)
-        =\{f\mid f:X\rightarrow\mathbb R\}.
-    \]
-    定义
-    \[
-        (f+g)(x)=f(x)+g(x),
-        \quad
-        (f \cdot g)(x)=f(x)g(x).
-    \]
-    证明 \(\mathcal F(X,\mathbb R)\) 关于上述运算构成一个交换含幺环，并写出其加法单位元、乘法单位元以及任意元素 \(f\) 的加法逆元。
 \end{exercise}
 
 \begin{exercise}
