@@ -1,0 +1,47 @@
+\begin{tikzpicture}[
+        >=Stealth,
+        axis/.style={black!58, line width=.75pt, -{Stealth[length=4pt,width=4pt]}},
+        rotated axis/.style={c2!88!black, line width=.8pt, -{Stealth[length=4pt,width=4pt]}},
+        vector/.style={c1, line width=1.65pt, -{Stealth[length=5pt,width=5pt]}},
+        projection/.style={black!32, densely dashed, line width=.6pt},
+        tick/.style={black!55, line width=.65pt},
+        coordinate card/.style={
+                draw=black!15,
+                fill=black!1,
+                rounded corners=2pt,
+                line width=.55pt,
+                inner xsep=10pt,
+                inner ysep=7pt,
+                text width=3.35cm,
+                align=left,
+            },
+    ]
+    % Standard Cartesian coordinate system.
+    \draw[axis] (-2,0) -- (2,0)
+        node[below right=-1pt, text=black!72] {$x$};
+    \draw[axis] (0,-2) -- (0,2) node[above, text=black!72] {$y$};
+
+    % Coordinate system obtained by rotating the standard axes by 45 degrees.
+    \draw[rotated axis] (-2/1.414,-2/1.414) -- (2/1.414,2/1.414)
+        node[above=2pt, text=c2!88!black] {$x'$};
+    \draw[rotated axis] (2/1.414,-2/1.414) -- (-2/1.414,2/1.414)
+        node[above left=-1pt, text=c2!88!black] {$y'$};
+
+    % The same geometric vector and its projections in the standard basis.
+    \draw[projection] (1,0) -- (1,1) -- (0,1);
+    \draw[tick] (1,-.045) -- (1,.045);
+    \draw[tick] (-.045,1) -- (.045,1);
+    \node[font=\scriptsize, text=black!65, below=2pt] at (1,0) {$1$};
+    \node[font=\scriptsize, text=black!65, left=2pt] at (0,1) {$1$};
+
+    \draw[vector] (0,0) -- (1,1);
+    % \fill[c1] (1,1) circle (1.25pt);
+    \node[font=\small\bfseries, text=c1] at (1.18,.83) {$\bm v$};
+
+    % Rotation angle and the x'-coordinate of the vector.
+    \draw[c2!70!black, line width=.55pt]
+        (.39,0) arc[start angle=0,end angle=45,radius=.39];
+
+    \fill[black!65] (0,0) circle (1pt);
+    \node[font=\scriptsize, below left=2pt, text=black!72] at (0,0) {$O$};
+\end{tikzpicture}
