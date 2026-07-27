@@ -417,11 +417,11 @@
         \item \(R\) 关于加法构成交换群；
         \item 乘法满足结合律，即对于任意 \(a,b,c\in R\)，都有
               \[
-                  (ab)c=a(bc);
+                  (a \cdot b)\cdot c=a\cdot(b\cdot c);
               \]
         \item 乘法对加法满足分配律，即对于任意 \(a,b,c\in R\)，都有
               \[
-                  a(b+c)=ab+ac,\qquad (a+b)c=ac+bc,
+                  a\cdot(b+c)=a\cdot b+a\cdot c,\qquad (a+b)\cdot c=a\cdot c+b\cdot c,
               \]
     \end{enumerate}
     则称 \(R\) 关于加法和乘法构成一个\textbf{环}（Ring）。
@@ -464,6 +464,12 @@
 \]
 容易验证，\(\mathcal F(X,\mathbb R)\) 关于上述运算构成一个交换含幺环。其中，加法单位元是恒为 \(0\) 的映射，乘法单位元是恒为 \(1\) 的映射。
 
+在模\( n \)整数环上的乘法表现出了一些有趣的性质。例如，在模 \(6\) 整数环 \(\mathbb Z_6\) 中，元素 \(\overline 2\) 和 \(\overline 3\) 的乘积为
+\[
+    \overline 2\cdot \overline 3=\overline{6}=\overline 0.
+\]
+这说明，环中两个非零元素的乘积可能为零。像这样的非零元素称为\textbf{零因子}（Zero Divisor）。在模 \(5\) 整数环 \(\mathbb Z_5\) 中，任意两个非零元素的乘积都不为零，因此 \(\mathbb Z_5\) 中没有零因子。并且像\(\mathbb Z_5\)这样的环被称为\textbf{整环}（Integral Domain），换言之，整环是一个没有零因子的交换含幺环。
+
 在一般的环中，非零元素不一定存在乘法逆元。例如，在整数环 \(\mathbb Z\) 中，不存在整数 \(b\) 使得 \(2b=1\)。如果一个交换含幺环中的每个非零元素都有乘法逆元，便得到比环更特殊的代数结构。
 
 \begin{definition}[域]
@@ -481,6 +487,32 @@
 关于乘法也构成交换群。换而言之，域是一个同时具有加法和乘法两种运算的代数结构，其中加法和乘法分别构成交换群，并且乘法对加法满足分配律。
 
 有理数集 \(\mathbb Q\)、实数集 \(\mathbb R\) 和复数集 \(\mathbb C\) 关于通常的加法和乘法都构成域。整数环 \(\mathbb Z\) 则不是域，因为除 \(1\) 和 \(-1\) 以外，其余非零整数在 \(\mathbb Z\) 中都没有乘法逆元。
+
+对于整数环\( \mathbb{Z}_n \)，有如下定理：
+\begin{theorem}
+    设 \(n\) 是大于 1 的整数，则模 \(n\) 整数环 \(\mathbb Z_n\) 是域的充分必要条件是 \(n\) 是素数。
+\end{theorem}
+\begin{proof}
+    若 \(n\) 是素数，则对于任意非零元素 \(\overline a\in\mathbb Z_n\)，有两者的最大公约数 \(\gcd(a,n)=1\)。根据贝祖定理，存在整数 \(x,y\) 使得
+    \[
+        ax+ny=1.
+    \]
+    将上式取模 \(n\)，可得
+    \[
+        \overline{a}\cdot \overline{x}=\overline{1}.
+    \]
+    因此，\(\overline x\) 是 \(\overline a\) 的乘法逆元。由于 \(\overline a\) 是任意非零元素，因此 \(\mathbb Z_n\) 中每个非零元素都有乘法逆元，从而 \(\mathbb Z_n\) 是域。
+
+    若 \(n\) 不是素数，则存在大于 1 且小于 \(n\) 的整数 \(a,b\)，使得 \(ab=n\)。此时，非零元素 \(\overline a,\overline b\in\mathbb Z_n\) 的乘积为
+    \[
+        \overline a\cdot \overline b=\overline{ab}=\overline n=\overline 0.
+    \]
+    由于\( \overline{a} \)不为零元素，因此，如果此时\( \mathbb{Z}_n \)是域的话，其必然存在逆。对上式两边同乘\( \overline{a}^{-1} \)，可得
+    \[
+        \overline{a}^{-1} \cdot (\overline{a} \cdot \overline{b}) = \overline{b} = 0.
+    \]
+    这与 \(\overline{b}\) 为非零元素矛盾。因此，当\( n \)不是素数的时候，\( \mathbb{Z}_n \)不可能是域。
+\end{proof}
 
 
 \section{习题}
@@ -565,4 +597,47 @@
 
 \begin{exercise}
     设 \(G\) 是一个群，\(H\) 是 \(G\) 的一个子群。证明：对于任意 \(g\in G\)，左陪集 \(gH\) 与 \(H\) 所含元素的个数相同。
+\end{exercise}
+
+\begin{exercise}
+    判断下列集合关于通常的加法和乘法是否构成环。若构成环，
+    进一步判断它是否为交换环、含幺环、整环或域，并说明理由。
+    \begin{enumerate}
+        \item 偶数集 \(2\mathbb Z\)；
+        \item 有理数集 \(\mathbb Q\)；
+        \item 模 \(4\) 整数环 \(\mathbb Z_4\)；
+        \item 模 \(5\) 整数环 \(\mathbb Z_5\)。
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    设 \(R\) 是一个环，\(a,b\in R\)。证明\( 0 \cdot a=a \cdot 0=0 \)。
+\end{exercise}
+
+\begin{exercise}
+    设 \(X\) 是一个非空集合，所有从 \(X\) 到 \(\mathbb R\) 的映射
+    构成集合
+    \[
+        \mathcal F(X,\mathbb R)
+        =\{f\mid f:X\rightarrow\mathbb R\}.
+    \]
+    定义
+    \[
+        (f+g)(x)=f(x)+g(x),
+        \quad
+        (f \cdot g)(x)=f(x)g(x).
+    \]
+    证明 \(\mathcal F(X,\mathbb R)\) 关于上述运算构成一个交换含幺环，并写出其加法单位元、乘法单位元以及任意元素 \(f\) 的加法逆元。
+\end{exercise}
+
+\begin{exercise}
+    证明贝祖定理：对于整数 \(a,n\)，存在整数 \(x, y \in \mathbb{Z} \)，使得 \(ax+ny=\gcd(a,n)\)。
+\end{exercise}
+
+\begin{exercise}
+    设 \(R\) 是一个交换含幺环。若 \(R\) 中存在零因子，证明 \(R\) 不是域。
+\end{exercise}
+
+\begin{exercise}
+    证明：有限整环一定是域。
 \end{exercise}
