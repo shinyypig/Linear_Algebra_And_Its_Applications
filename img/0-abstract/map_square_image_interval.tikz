@@ -28,13 +28,13 @@
         ] {x^2};
         \addplot[
             c2,
-            line width=4pt,
+            ultra thick,
             opacity=0.6,
             forget plot,
         ] coordinates {(-1,0) (2,0)};
         \addplot[
             c2,
-            line width=4pt,
+            ultra thick,
             opacity=0.6,
             forget plot,
         ] coordinates {(0,0) (0,4)};

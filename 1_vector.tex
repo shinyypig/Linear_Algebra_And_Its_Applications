@@ -37,7 +37,7 @@
     \[
         \bm v=(v_1,v_2,\ldots,v_n).
     \]
-    其中，\(v_1,v_2,\ldots,v_n\) 称为向量 \(\bm v\) 的\textbf{分量}\footnote{也可以使用\( (\bm{v})_i \)来表示向量\( \bm{v} \)的第 \(i\) 个分量}。所有 \(n\) 维实向量组成的集合记作 \(\mathbb R^n\)。
+    其中，\(v_1,v_2,\ldots,v_n\) 称为向量 \(\bm v\) 的\textbf{分量}\footnote{也可以使用\( (\bm{v})_i \)来表示向量\( \bm{v} \)的第 \(i\) 个分量。}。所有 \(n\) 维实向量组成的集合记作 \(\mathbb R^n\)。
 \end{definition}
 
 例如，二维向量和三维向量可以分别写作
@@ -85,9 +85,30 @@
 
 从几何上看，向量可以表示具有大小和方向的量，因此，我们首先希望能够将两个向量所表示的变化合并起来。例如，一个物体先沿向量 \(\bm u\) 移动，再沿向量 \(\bm v\) 移动，那么这两次移动的总效果仍然可以用一个向量表示，这个向量称为 \(\bm u\) 与 \(\bm v\) 的和，记作 \(\bm u+\bm v\)。
 
-从几何上看，可以先将 \(\bm v\) 平移，使它的起点与 \(\bm u\) 的终点重合，此时从 \(\bm u\) 的起点指向 \(\bm v\) 的终点的向量就是 \(\bm u+\bm v\)，这称为向量加法的\textbf{三角形法则}。也可以将 \(\bm u\) 和 \(\bm v\) 的起点放在一起，以它们为邻边作平行四边形，此时从公共起点出发的对角线就是 \(\bm u+\bm v\)，这称为\textbf{平行四边形法则}。\Cref{fig_vector_addition} 展示的正是后一种作法。
+可以先将 \(\bm v\) 平移，使它的起点与 \(\bm u\) 的终点重合，此时从 \(\bm u\) 的起点指向 \(\bm v\) 的终点的向量就是 \(\bm u+\bm v\)，这称为向量加法的\textbf{三角形法则}。也可以将 \(\bm u\) 和 \(\bm v\) 的起点放在一起，以它们为邻边作平行四边形，此时从公共起点出发的对角线就是 \(\bm u+\bm v\)，这称为\textbf{平行四边形法则}。两种作法如\cref{fig_vector_addition_rules} 所示。
 
-在 \(\mathbb R^n\) 中，向量加法可以直接通过对应分量相加来定义。
+\begin{center}
+    \captionsetup{type=figure}
+    \begin{subfigure}{.35\linewidth}
+        \centering
+        \includegraphics[height=.9\linewidth]{./img/1-vector/vector_addition_triangle.tikz}
+        \caption{三角形法则}
+        \label{fig_vector_addition_triangle}
+    \end{subfigure}
+    \begin{subfigure}{.35\linewidth}
+        \centering
+        \includegraphics[height=.9\linewidth]{./img/1-vector/vector_addition.tikz}
+        \caption{平行四边形法则}
+        \label{fig_vector_addition_parallelogram}
+    \end{subfigure}
+    \captionof{figure}{向量加法的两种几何法则}
+    \label{fig_vector_addition_rules}
+\end{center}
+
+
+
+
+将这一几何直观翻译为代数语言，便得到 \(\mathbb R^n\) 中向量加法的定义。
 
 \begin{definition}[向量加法]
     设
@@ -143,15 +164,8 @@
     (-1)\bm v=-\bm v,\qquad
     0\bm v=\bm 0.
 \]
-例如，若 \(\bm v=(2,-1)\)，则
-\[
-    3\bm v=(6,-3),
-    \qquad
-    -\frac12\bm v=(-1,\tfrac12).
-\]
 
-向量加法和数乘继承了实数加法与乘法的基本规律。
-
+向量加法和数乘继承了实数加法与乘法的基本规律，具体如下。
 \begin{property}[向量运算律]
     对于任意 \(\bm u,\bm v,\bm w\in\mathbb R^n\) 以及 \(\lambda,\mu\in\mathbb R\)，有
     \begin{enumerate}
@@ -166,15 +180,13 @@
     \end{enumerate}
 \end{property}
 
-特别地，\(\mathbb R^n\) 关于向量加法构成一个交换群；数乘则描述了实数与向量之间的运算。对于 \(\mathbb C^n\) 中的复向量，只需将上述标量 \(\lambda,\mu\) 取为复数，相同的定义和运算律仍然成立。
+特别地，\(\mathbb R^n\) 关于向量加法构成一个交换群；数乘则描述了实数与向量之间的运算。对于 \(\mathbb C^n\) 中的复向量，只需将上述标量 \(\lambda,\mu\) 取为复数，相同的定义和运算律仍然成立。不过，在本书中，我们主要研究实向量，因此在不特别说明的情况下，向量均指实向量。
 
-向量加法与数乘还可以进一步组合。为了描述这种组合，我们需要把若干个向量作为一个整体来研究。由有限个同维向量按照一定顺序排列而成的整体
+在许多问题中，需要同时处理多个向量，可以将它们作为一个整体来考察。由有限个同维向量按照一定顺序排列而成的整体
 \[
     (\bm v_1,\bm v_2,\ldots,\bm v_m)
 \]
-称为一个\textbf{向量组}。向量组中的向量可以相同，也可以包含零向量。这里的下标只是用来区分各个向量，并不表示向量的分量。
-
-对向量组中的每个向量分别进行数乘，再将所得向量相加，就得到这个向量组的一个线性组合。
+称为一个\textbf{向量组}。对向量组中的每个向量分别进行数乘，再将所得向量相加，就得到这个向量组的一个线性组合，其定义如下。
 
 \begin{definition}[线性组合]
     设 \(\bm v_1,\bm v_2,\ldots,\bm v_m\in\mathbb R^n\)，\(\lambda_1,\lambda_2,\ldots,\lambda_m\in\mathbb R\)。向量
@@ -184,21 +196,7 @@
     称为向量组 \((\bm v_1,\bm v_2,\ldots,\bm v_m)\) 的一个\textbf{线性组合}，其中 \(\lambda_1,\lambda_2,\ldots,\lambda_m\) 称为这个线性组合的\textbf{系数}。
 \end{definition}
 
-例如，设
-\[
-    \bm v_1=(1,0),\qquad \bm v_2=(1,1).
-\]
-则
-\[
-    (3,2)=\bm v_1+2\bm v_2,
-\]
-所以 \((3,2)\) 是 \(\bm v_1,\bm v_2\) 的线性组合。一般地，若要判断 \(\bm b=(b_1,b_2)\) 是否可以由 \(\bm v_1,\bm v_2\) 线性表示，只需考察是否存在实数 \(\lambda_1,\lambda_2\)，使
-\[
-    \lambda_1\bm v_1+\lambda_2\bm v_2=\bm b.
-\]
-比较等式两边的对应分量，便可以得到关于 \(\lambda_1,\lambda_2\) 的方程。
-
-一个向量组通常可以产生许多不同的线性组合。将这些线性组合全部收集起来，就得到这个向量组的张成。
+一个向量组通常可以产生许多不同的线性组合，所有组合得到的向量构成的集合称为这个向量组的\textbf{张成}，其定义如下。
 
 \begin{definition}[张成]
     向量组 \((\bm v_1,\bm v_2,\ldots,\bm v_m)\) 的所有线性组合组成的集合称为该向量组的\textbf{张成}，记作
@@ -212,22 +210,31 @@
     \]
 \end{definition}
 
-若 \(\bm v\ne\bm 0\)，则 \(\operatorname{span}\{\bm v\}\) 是所有 \(\lambda\bm v\) 组成的集合。从几何上看，在 \(\mathbb R^2\) 或 \(\mathbb R^3\) 中，它表示一条经过原点、方向为 \(\bm v\) 的直线。若 \(\bm u\) 与 \(\bm v\) 不在同一条直线上，则 \(\operatorname{span}\{\bm u,\bm v\}\) 在 \(\mathbb R^3\) 中表示一个经过原点的平面；在 \(\mathbb R^2\) 中，它就是整个平面。
+若一个向量\(\bm v\ne\bm 0\)，则 \(\operatorname{span}\{\bm v\}\) 是所有 \(\lambda\bm v\) 组成的集合。从几何上看，它表示一条经过原点、方向为 \(\bm v\) 的直线。若 \(\bm u\) 与 \(\bm v\) 不在同一条直线上，则 \(\operatorname{span}\{\bm u,\bm v\}\) 在 \(\mathbb R^3\) 中表示一个经过原点的平面；在 \(\mathbb R^2\) 中，它就是整个平面。两种情形如\cref{fig_span_geometry} 所示。
 
-如果向量 \(\bm b\) 属于 \(\operatorname{span}\{\bm v_1,\ldots,\bm v_m\}\)，就称 \(\bm b\) 可以由向量组 \((\bm v_1,\ldots,\bm v_m)\) \textbf{线性表示}。因此，判断一个向量能否由某个向量组线性表示，与判断它是否属于这个向量组的张成是同一个问题。
+\begin{center}
+    \captionsetup{type=figure}
+    \begin{subfigure}{.35\linewidth}
+        \centering
+        \includegraphics[width=.9\linewidth]{./img/1-vector/span_line_3d.tikz}
+        \caption{\(\operatorname{span}\{\bm{v}\}\)：一条直线}
+        \label{fig_span_line}
+    \end{subfigure}
+    \begin{subfigure}{.35\linewidth}
+        \centering
+        \includegraphics[width=.9\linewidth]{./img/1-vector/span_plane_3d.tikz}
+        \caption{\(\operatorname{span}\{\bm{u},\bm{v}\}\)：一个平面}
+        \label{fig_span_plane}
+    \end{subfigure}
+    \captionof{figure}{\(\mathbb R^3\) 中向量组张成的几何形状}
+    \label{fig_span_geometry}
+\end{center}
 
-张成对向量加法和数乘是封闭的。事实上，若
+如果向量 \(\bm b\) 属于 \(\operatorname{span}\{\bm v_1,\ldots,\bm v_m\}\)，就称 \(\bm b\) 可以由向量组 \((\bm v_1,\ldots,\bm v_m)\) \textbf{线性表示}。从代数上来看，这意味着存在实数 \(\lambda_1,\ldots,\lambda_m\)，使得
 \[
-    \bm x=\sum_{i=1}^m\lambda_i\bm v_i,
-    \qquad
-    \bm y=\sum_{i=1}^m\mu_i\bm v_i,
+    \bm b=\lambda_1\bm v_1+\cdots+\lambda_m\bm v_m.
 \]
-则对于任意 \(a,b\in\mathbb R\)，有
-\[
-    a\bm x+b\bm y
-    =\sum_{i=1}^m(a\lambda_i+b\mu_i)\bm v_i,
-\]
-所以 \(a\bm x+b\bm y\) 仍然属于 \(\operatorname{span}\{\bm v_1,\ldots,\bm v_m\}\)。这一性质将在讨论线性空间时发挥重要作用。
+从几何上来看，这意味着 \(\bm b\) 落在由 \(\bm v_1,\ldots,\bm v_m\) 张成的直线、平面或更高维的超平面中。
 
 \section{线性相关与线性无关}
 
@@ -309,7 +316,6 @@
 \]
 因此，从一个有限向量组中不断删去能够由其余向量线性表示的向量，最终可以得到一个线性无关的向量组，同时保持原来的张成不变。
 
-\newpage
 \section{线性空间、基与坐标}
 
 到目前为止，我们主要研究了 \(\mathbb R^n\) 和 \(\mathbb C^n\) 中的向量。真正使这些向量能够进行线性运算的，并不是它们写成有序数组的形式，而是向量加法和数乘满足一组共同的规律。把这些规律抽象出来，就得到线性空间的概念。

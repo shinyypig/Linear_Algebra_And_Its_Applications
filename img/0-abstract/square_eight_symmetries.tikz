@@ -4,7 +4,7 @@
                 draw=c1,
                 fill=white,
                 text=c1!70!black,
-                line width=.7pt,
+                thick,
                 minimum size=4.2mm,
                 inner sep=0pt,
                 font=\scriptsize\bfseries,
@@ -12,21 +12,21 @@
         square/.style={
                 draw=black!70,
                 fill=c1!5,
-                line width=.8pt,
+                thick,
             },
         symmetry axis/.style={
                 c2,
                 dashed,
-                line width=.7pt,
+                thick,
             },
         rotation arrow/.style={
                 c2,
-                line width=.8pt,
+                thick,
                 -{Stealth[length=3pt,width=3pt]},
             },
         rotation guide/.style={
                 black!60,
-                line width=.4pt,
+                thin,
             },
         operation label/.style={
                 font=\scriptsize,

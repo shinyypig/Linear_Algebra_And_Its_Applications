@@ -9,7 +9,6 @@
             axis lines=middle,
             xlabel={$x$},
             ylabel={$y$},
-            clip=false,
             legend cell align=left,
             legend style={
                     anchor=north east,
@@ -18,21 +17,15 @@
                     fill=none
                 }
         ]
-        % Parallelogram guide lines
-        \addplot[black!28, densely dashed, semithick]
-        coordinates {(2,1) (3,3)};
-        \addplot[black!28, densely dashed, semithick]
-        coordinates {(1,2) (3,3)};
-
         % Vector u = (2,1)
         \addplot[c1, thick, -latex]
         coordinates {(0,0) (2,1)};
         \node[font=\small, text=c1, below right=1pt] at (axis cs:1,.5) {$\bm{u}$};
 
-        % Vector v = (1,2)
+        % Vector v = (1,2) placed at tip of u (triangle rule)
         \addplot[c2, thick, -latex]
-        coordinates {(0,0) (1,2)};
-        \node[font=\small, text=c2, left=3pt] at (axis cs:.5,1) {$\bm{v}$};
+        coordinates {(2,1) (3,3)};
+        \node[font=\small, text=c2, right=3pt] at (axis cs:2.5,2) {$\bm{v}$};
 
         % Vector u+v = (3,3)
         \addplot[c5, thick, -latex]
