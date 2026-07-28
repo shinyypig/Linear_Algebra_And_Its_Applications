@@ -37,7 +37,7 @@
     \[
         \bm v=(v_1,v_2,\ldots,v_n).
     \]
-    其中，\(v_1,v_2,\ldots,v_n\) 称为向量 \(\bm v\) 的\textbf{分量}。所有 \(n\) 维实向量组成的集合记作 \(\mathbb R^n\)。
+    其中，\(v_1,v_2,\ldots,v_n\) 称为向量 \(\bm v\) 的\textbf{分量}\footnote{也可以使用\( (\bm{v})_i \)来表示向量\( \bm{v} \)的第 \(i\) 个分量}。所有 \(n\) 维实向量组成的集合记作 \(\mathbb R^n\)。
 \end{definition}
 
 例如，二维向量和三维向量可以分别写作
@@ -80,3 +80,428 @@
 零向量没有确定的方向，但在向量运算中具有重要作用。
 
 坐标表示将向量的几何特征转化为有序数组中的数值，从而使我们能够通过分量进行计算。接下来，我们将在此基础上讨论向量的加法与数乘。
+
+\section{向量的运算与线性组合}
+
+从几何上看，向量可以表示具有大小和方向的量，因此，我们首先希望能够将两个向量所表示的变化合并起来。例如，一个物体先沿向量 \(\bm u\) 移动，再沿向量 \(\bm v\) 移动，那么这两次移动的总效果仍然可以用一个向量表示，这个向量称为 \(\bm u\) 与 \(\bm v\) 的和，记作 \(\bm u+\bm v\)。
+
+从几何上看，可以先将 \(\bm v\) 平移，使它的起点与 \(\bm u\) 的终点重合，此时从 \(\bm u\) 的起点指向 \(\bm v\) 的终点的向量就是 \(\bm u+\bm v\)，这称为向量加法的\textbf{三角形法则}。也可以将 \(\bm u\) 和 \(\bm v\) 的起点放在一起，以它们为邻边作平行四边形，此时从公共起点出发的对角线就是 \(\bm u+\bm v\)，这称为\textbf{平行四边形法则}。\Cref{fig_vector_addition} 展示的正是后一种作法。
+
+在 \(\mathbb R^n\) 中，向量加法可以直接通过对应分量相加来定义。
+
+\begin{definition}[向量加法]
+    设
+    \[
+        \bm u=(u_1,u_2,\ldots,u_n),
+        \qquad
+        \bm v=(v_1,v_2,\ldots,v_n)
+    \]
+    是 \(\mathbb R^n\) 中的两个向量，定义它们的和为
+    \[
+        \bm u+\bm v
+        =(u_1+v_1,u_2+v_2,\ldots,u_n+v_n).
+    \]
+\end{definition}
+
+例如，对于二维向量
+\[
+    \bm u=(2,1),\qquad \bm v=(1,2),
+\]
+有
+\[
+    \bm u+\bm v=(2+1,1+2)=(3,3),
+\]
+这与\cref{fig_vector_addition} 中平行四边形的对角线一致。需要注意的是，只有维数相同的向量才能按照上述方式相加，因为只有此时它们的分量才能一一对应。
+
+零向量在向量加法中的作用与数 \(0\) 在实数加法中的作用相同。对于任意向量 \(\bm v\in\mathbb R^n\)，都有
+\[
+    \bm v+\bm 0=\bm 0+\bm v=\bm v.
+\]
+对于向量 \(\bm v=(v_1,v_2,\ldots,v_n)\)，将每个分量都变为相反数，得到向量
+\[
+    -\bm v=(-v_1,-v_2,\ldots,-v_n),
+\]
+称为 \(\bm v\) 的\textbf{负向量}。显然，\(\bm v+(-\bm v)=\bm 0\)。因此，可以将向量减法定义为加上一个负向量，即
+\[
+    \bm u-\bm v=\bm u+(-\bm v)
+    =(u_1-v_1,u_2-v_2,\ldots,u_n-v_n).
+\]
+
+除了将两个向量相加以外，我们还可以用一个数改变向量的大小和方向。设 \(\lambda\in\mathbb R\)，将向量 \(\bm v\) 的每个分量都乘以 \(\lambda\)，便得到向量 \(\lambda\bm v\)。这种运算称为向量的\textbf{数乘}。
+
+\begin{definition}[向量的数乘]
+    设 \(\lambda\in\mathbb R\)，\(\bm v=(v_1,v_2,\ldots,v_n)\in\mathbb R^n\)，定义
+    \[
+        \lambda\bm v
+        =(\lambda v_1,\lambda v_2,\ldots,\lambda v_n).
+    \]
+\end{definition}
+
+数乘也有直接的几何意义。当 \(\lambda>0\) 时，\(\lambda\bm v\) 与 \(\bm v\) 的方向相同；当 \(\lambda<0\) 时，二者方向相反。\(\lvert\lambda\rvert\) 决定向量长度被放大或缩小的倍数。特别地，
+\[
+    1\bm v=\bm v,\qquad
+    (-1)\bm v=-\bm v,\qquad
+    0\bm v=\bm 0.
+\]
+例如，若 \(\bm v=(2,-1)\)，则
+\[
+    3\bm v=(6,-3),
+    \qquad
+    -\frac12\bm v=(-1,\tfrac12).
+\]
+
+向量加法和数乘继承了实数加法与乘法的基本规律。
+
+\begin{property}[向量运算律]
+    对于任意 \(\bm u,\bm v,\bm w\in\mathbb R^n\) 以及 \(\lambda,\mu\in\mathbb R\)，有
+    \begin{enumerate}
+        \item \textbf{加法交换律}：\(\bm u+\bm v=\bm v+\bm u\)；
+        \item \textbf{加法结合律}：\((\bm u+\bm v)+\bm w=\bm u+(\bm v+\bm w)\)；
+        \item \textbf{零向量}：\(\bm v+\bm 0=\bm v\)；
+        \item \textbf{负向量}：\(\bm v+(-\bm v)=\bm 0\)；
+        \item \textbf{数乘结合律}：\((\lambda\mu)\bm v=\lambda(\mu\bm v)\)；
+        \item \textbf{数乘单位元}：\(1\bm v=\bm v\)；
+        \item \textbf{对向量加法的分配律}：\(\lambda(\bm u+\bm v)=\lambda\bm u+\lambda\bm v\)；
+        \item \textbf{对标量加法的分配律}：\((\lambda+\mu)\bm v=\lambda\bm v+\mu\bm v\)。
+    \end{enumerate}
+\end{property}
+
+特别地，\(\mathbb R^n\) 关于向量加法构成一个交换群；数乘则描述了实数与向量之间的运算。对于 \(\mathbb C^n\) 中的复向量，只需将上述标量 \(\lambda,\mu\) 取为复数，相同的定义和运算律仍然成立。
+
+向量加法与数乘还可以进一步组合。为了描述这种组合，我们需要把若干个向量作为一个整体来研究。由有限个同维向量按照一定顺序排列而成的整体
+\[
+    (\bm v_1,\bm v_2,\ldots,\bm v_m)
+\]
+称为一个\textbf{向量组}。向量组中的向量可以相同，也可以包含零向量。这里的下标只是用来区分各个向量，并不表示向量的分量。
+
+对向量组中的每个向量分别进行数乘，再将所得向量相加，就得到这个向量组的一个线性组合。
+
+\begin{definition}[线性组合]
+    设 \(\bm v_1,\bm v_2,\ldots,\bm v_m\in\mathbb R^n\)，\(\lambda_1,\lambda_2,\ldots,\lambda_m\in\mathbb R\)。向量
+    \[
+        \lambda_1\bm v_1+\lambda_2\bm v_2+\cdots+\lambda_m\bm v_m
+    \]
+    称为向量组 \((\bm v_1,\bm v_2,\ldots,\bm v_m)\) 的一个\textbf{线性组合}，其中 \(\lambda_1,\lambda_2,\ldots,\lambda_m\) 称为这个线性组合的\textbf{系数}。
+\end{definition}
+
+例如，设
+\[
+    \bm v_1=(1,0),\qquad \bm v_2=(1,1).
+\]
+则
+\[
+    (3,2)=\bm v_1+2\bm v_2,
+\]
+所以 \((3,2)\) 是 \(\bm v_1,\bm v_2\) 的线性组合。一般地，若要判断 \(\bm b=(b_1,b_2)\) 是否可以由 \(\bm v_1,\bm v_2\) 线性表示，只需考察是否存在实数 \(\lambda_1,\lambda_2\)，使
+\[
+    \lambda_1\bm v_1+\lambda_2\bm v_2=\bm b.
+\]
+比较等式两边的对应分量，便可以得到关于 \(\lambda_1,\lambda_2\) 的方程。
+
+一个向量组通常可以产生许多不同的线性组合。将这些线性组合全部收集起来，就得到这个向量组的张成。
+
+\begin{definition}[张成]
+    向量组 \((\bm v_1,\bm v_2,\ldots,\bm v_m)\) 的所有线性组合组成的集合称为该向量组的\textbf{张成}，记作
+    \[
+        \operatorname{span}\{\bm v_1,\bm v_2,\ldots,\bm v_m\}
+        =\left\{
+        \lambda_1\bm v_1+\cdots+\lambda_m\bm v_m
+        \mathrel{\Big|}
+        \lambda_1,\ldots,\lambda_m\in\mathbb R
+        \right\}.
+    \]
+\end{definition}
+
+若 \(\bm v\ne\bm 0\)，则 \(\operatorname{span}\{\bm v\}\) 是所有 \(\lambda\bm v\) 组成的集合。从几何上看，在 \(\mathbb R^2\) 或 \(\mathbb R^3\) 中，它表示一条经过原点、方向为 \(\bm v\) 的直线。若 \(\bm u\) 与 \(\bm v\) 不在同一条直线上，则 \(\operatorname{span}\{\bm u,\bm v\}\) 在 \(\mathbb R^3\) 中表示一个经过原点的平面；在 \(\mathbb R^2\) 中，它就是整个平面。
+
+如果向量 \(\bm b\) 属于 \(\operatorname{span}\{\bm v_1,\ldots,\bm v_m\}\)，就称 \(\bm b\) 可以由向量组 \((\bm v_1,\ldots,\bm v_m)\) \textbf{线性表示}。因此，判断一个向量能否由某个向量组线性表示，与判断它是否属于这个向量组的张成是同一个问题。
+
+张成对向量加法和数乘是封闭的。事实上，若
+\[
+    \bm x=\sum_{i=1}^m\lambda_i\bm v_i,
+    \qquad
+    \bm y=\sum_{i=1}^m\mu_i\bm v_i,
+\]
+则对于任意 \(a,b\in\mathbb R\)，有
+\[
+    a\bm x+b\bm y
+    =\sum_{i=1}^m(a\lambda_i+b\mu_i)\bm v_i,
+\]
+所以 \(a\bm x+b\bm y\) 仍然属于 \(\operatorname{span}\{\bm v_1,\ldots,\bm v_m\}\)。这一性质将在讨论线性空间时发挥重要作用。
+
+\section{线性相关与线性无关}
+
+同一个向量有时可以由一个向量组以不同的方式线性表示。例如，若 \(\bm v_3=\bm v_1+\bm v_2\)，则在任何线性组合中，\(\bm v_3\) 都可以用 \(\bm v_1\) 和 \(\bm v_2\) 代替。此时，向量组中存在可以由其余向量代替的冗余向量。线性相关与线性无关正是用来描述这种现象的。
+
+考察等式
+\[
+    \lambda_1\bm v_1+\lambda_2\bm v_2+\cdots+\lambda_m\bm v_m=\bm 0.
+\]
+无论向量组如何选取，令所有系数都等于零总能使等式成立，这组系数称为\textbf{平凡解}。关键在于，这个等式是否还存在不全为零的系数。
+
+\begin{definition}[线性相关与线性无关]
+    设 \(\bm v_1,\bm v_2,\ldots,\bm v_m\in\mathbb R^n\)。如果存在不全为零的实数 \(\lambda_1,\lambda_2,\ldots,\lambda_m\)，使得
+    \[
+        \lambda_1\bm v_1+\lambda_2\bm v_2+\cdots+\lambda_m\bm v_m=\bm 0,
+    \]
+    则称向量组 \((\bm v_1,\bm v_2,\ldots,\bm v_m)\) \textbf{线性相关}。如果上述等式只有平凡解
+    \[
+        \lambda_1=\lambda_2=\cdots=\lambda_m=0,
+    \]
+    则称这个向量组\textbf{线性无关}。
+\end{definition}
+
+例如，向量组
+\[
+    \bm e_1=(1,0),\qquad \bm e_2=(0,1)
+\]
+线性无关。因为
+\[
+    \lambda_1\bm e_1+\lambda_2\bm e_2
+    =(\lambda_1,\lambda_2)=\bm 0
+\]
+只能推出 \(\lambda_1=\lambda_2=0\)。而向量组
+\[
+    \bm v_1=(1,0),\qquad
+    \bm v_2=(0,1),\qquad
+    \bm v_3=(1,1)
+\]
+线性相关，因为
+\[
+    \bm v_1+\bm v_2-\bm v_3=\bm 0
+\]
+给出了一个不全为零的系数组合。
+
+下述判定揭示了线性相关与“存在冗余向量”之间的联系。
+
+\begin{theorem}[线性相关的等价刻画]
+    一个含有至少两个向量的向量组线性相关，当且仅当其中至少有一个向量可以由其余向量线性表示。
+\end{theorem}
+
+\begin{proof}
+    若向量组 \((\bm v_1,\ldots,\bm v_m)\) 线性相关，则存在不全为零的 \(\lambda_1,\ldots,\lambda_m\)，使
+    \[
+        \lambda_1\bm v_1+\cdots+\lambda_m\bm v_m=\bm 0.
+    \]
+    设 \(\lambda_k\ne0\)，移项并除以 \(\lambda_k\)，得到
+    \[
+        \bm v_k=-\sum_{i\ne k}\frac{\lambda_i}{\lambda_k}\bm v_i,
+    \]
+    因而 \(\bm v_k\) 可以由其余向量线性表示。
+
+    反过来，若 \(\bm v_k=\sum_{i\ne k}\mu_i\bm v_i\)，则
+    \[
+        \sum_{i\ne k}\mu_i\bm v_i-\bm v_k=\bm 0.
+    \]
+    其中 \(\bm v_k\) 的系数为 \(-1\)，所以这些系数不全为零，向量组线性相关。
+\end{proof}
+
+由定义还可以立即得到一些简单结论：含有零向量的向量组一定线性相关；含有两个相同向量的向量组一定线性相关；只含一个向量的向量组 \((\bm v)\) 线性无关，当且仅当 \(\bm v\ne\bm 0\)。此外，线性相关向量组再增加向量后仍然线性相关，而线性无关向量组的任意一部分仍然线性无关。
+
+如果向量组中的某个向量可以由其余向量线性表示，那么删去这个向量不会改变向量组的张成。例如，若
+\[
+    \bm v_m\in\operatorname{span}\{\bm v_1,\ldots,\bm v_{m-1}\},
+\]
+则
+\[
+    \operatorname{span}\{\bm v_1,\ldots,\bm v_{m-1},\bm v_m\}
+    =\operatorname{span}\{\bm v_1,\ldots,\bm v_{m-1}\}.
+\]
+因此，从一个有限向量组中不断删去能够由其余向量线性表示的向量，最终可以得到一个线性无关的向量组，同时保持原来的张成不变。
+
+\newpage
+\section{线性空间、基与坐标}
+
+到目前为止，我们主要研究了 \(\mathbb R^n\) 和 \(\mathbb C^n\) 中的向量。真正使这些向量能够进行线性运算的，并不是它们写成有序数组的形式，而是向量加法和数乘满足一组共同的规律。把这些规律抽象出来，就得到线性空间的概念。
+
+下面用 \(\mathbb F\) 表示实数域 \(\mathbb R\) 或复数域 \(\mathbb C\)。\(\mathbb F\) 中的元素称为标量。
+
+\begin{definition}[线性空间]
+    设 \(V\) 是一个非空集合。在 \(V\) 中定义了向量加法，在 \(\mathbb F\) 与 \(V\) 之间定义了数乘。如果对于任意 \(\bm u,\bm v,\bm w\in V\) 以及 \(\lambda,\mu\in\mathbb F\)，下列性质都成立：
+    \begin{enumerate}
+        \item \(\bm u+\bm v=\bm v+\bm u\)；
+        \item \((\bm u+\bm v)+\bm w=\bm u+(\bm v+\bm w)\)；
+        \item 存在 \(\bm 0\in V\)，使 \(\bm v+\bm 0=\bm v\)；
+        \item 对每个 \(\bm v\in V\)，存在 \(-\bm v\in V\)，使 \(\bm v+(-\bm v)=\bm 0\)；
+        \item \((\lambda\mu)\bm v=\lambda(\mu\bm v)\)；
+        \item \(1\bm v=\bm v\)；
+        \item \(\lambda(\bm u+\bm v)=\lambda\bm u+\lambda\bm v\)；
+        \item \((\lambda+\mu)\bm v=\lambda\bm v+\mu\bm v\)，
+    \end{enumerate}
+    则称 \(V\) 是数域 \(\mathbb F\) 上的一个\textbf{线性空间}，也称为\textbf{向量空间}。\(V\) 中的元素称为\textbf{向量}。
+\end{definition}
+
+按照前面定义的加法和数乘，\(\mathbb R^n\) 是实数域上的线性空间，\(\mathbb C^n\) 是复数域上的线性空间。线性空间中的元素也不一定必须以有向线段的形式出现。例如，所有次数不超过 \(n\) 的实系数多项式组成的集合
+\[
+    \mathcal P_n
+    =\left\{a_0+a_1x+\cdots+a_nx^n\mid a_0,\ldots,a_n\in\mathbb R\right\}
+\]
+在通常的多项式加法和实数数乘下也是一个线性空间。每个多项式由它的有序系数数组
+\[
+    (a_0,a_1,\ldots,a_n)
+\]
+唯一确定，因此 \(\mathcal P_n\) 与 \(\mathbb R^{n+1}\) 具有相同的线性结构。
+
+一个线性空间中常常包含一些较小的集合，它们在原来的加法和数乘下仍然构成线性空间。
+
+\newpage
+\begin{definition}[子空间]
+    设 \(V\) 是数域 \(\mathbb F\) 上的线性空间，\(U\) 是 \(V\) 的非空子集。如果 \(U\) 在 \(V\) 中原有的向量加法和数乘下也构成线性空间，则称 \(U\) 是 \(V\) 的一个\textbf{线性子空间}，简称\textbf{子空间}。
+\end{definition}
+
+直接逐条验证八条运算律通常没有必要。由于结合律、交换律和分配律等性质已经由 \(V\) 继承下来，只需检查运算结果是否仍然留在 \(U\) 中。
+
+\begin{theorem}[子空间判定定理]
+    设 \(U\) 是线性空间 \(V\) 的非空子集。则 \(U\) 是 \(V\) 的子空间，当且仅当对于任意 \(\bm u,\bm v\in U\) 和任意 \(\lambda,\mu\in\mathbb F\)，都有
+    \[
+        \lambda\bm u+\mu\bm v\in U.
+    \]
+\end{theorem}
+
+\begin{proof}
+    若 \(U\) 是子空间，则它对向量加法和数乘封闭，因而必有 \(\lambda\bm u+\mu\bm v\in U\)。
+
+    反过来，设上述条件成立。由于 \(U\) 非空，可以取 \(\bm u\in U\)。令 \(\lambda=\mu=0\)，得到 \(\bm 0\in U\)；令 \(\lambda=-1,\mu=0\)，得到 \(-\bm u\in U\)。分别取 \((\lambda,\mu)=(1,1)\) 和 \((\lambda,\mu)=(\lambda,0)\)，还可得到 \(U\) 对向量加法和数乘封闭。其余运算律由 \(V\) 继承，因此 \(U\) 是 \(V\) 的子空间。
+\end{proof}
+
+\begin{example}
+    考虑 \(\mathbb R^3\) 的子集
+    \[
+        U=\{(x,y,z)\in\mathbb R^3\mid x+y+z=0\}.
+    \]
+    若 \(\bm u=(u_1,u_2,u_3)\in U\)，\(\bm v=(v_1,v_2,v_3)\in U\)，则
+    \[
+        u_1+u_2+u_3=0,
+        \qquad
+        v_1+v_2+v_3=0.
+    \]
+    因此，对于任意 \(\lambda,\mu\in\mathbb R\)，向量 \(\lambda\bm u+\mu\bm v\) 的三个分量之和为
+    \[
+        \lambda(u_1+u_2+u_3)+\mu(v_1+v_2+v_3)=0.
+    \]
+    由子空间判定定理，\(U\) 是 \(\mathbb R^3\) 的子空间。从几何上看，它是一个经过原点的平面。
+\end{example}
+
+任意向量组的张成都是子空间。事实上，上一节已经说明张成对向量加法和数乘封闭。更进一步，\(\operatorname{span}\{\bm v_1,\ldots,\bm v_m\}\) 是包含 \(\bm v_1,\ldots,\bm v_m\) 的最小子空间：任何包含这些向量的子空间，都必须包含它们的一切线性组合。
+
+需要注意的是，子空间必须包含零向量。因此，\(\mathbb R^2\) 中不经过原点的直线不是 \(\mathbb R^2\) 的子空间，\(\mathbb R^3\) 中不经过原点的平面也不是 \(\mathbb R^3\) 的子空间。
+
+对于一个线性空间，我们希望找到尽可能少的一组向量，使空间中的每个向量都可以由它们线性表示。张成保证这组向量“足够多”，线性无关则保证其中没有多余的向量。把这两个条件结合起来，就得到基的概念。
+
+\begin{definition}[基]
+    设 \(V\) 是数域 \(\mathbb F\) 上的线性空间。如果向量组
+    \[
+        \mathcal B=(\bm b_1,\bm b_2,\ldots,\bm b_n)
+    \]
+    线性无关，并且
+    \[
+        V=\operatorname{span}\{\bm b_1,\bm b_2,\ldots,\bm b_n\},
+    \]
+    则称 \(\mathcal B\) 是线性空间 \(V\) 的一组\textbf{基}，其中的向量称为\textbf{基向量}。
+\end{definition}
+
+例如，在 \(\mathbb R^n\) 中，令
+\[
+    \bm e_1=(1,0,\ldots,0),\quad
+    \bm e_2=(0,1,\ldots,0),\quad\ldots\quad,
+    \bm e_n=(0,0,\ldots,1).
+\]
+任意向量 \(\bm v=(v_1,v_2,\ldots,v_n)\) 都可以写成
+\[
+    \bm v=v_1\bm e_1+v_2\bm e_2+\cdots+v_n\bm e_n,
+\]
+而且 \(\bm e_1,\ldots,\bm e_n\) 线性无关。因此，\((\bm e_1,\ldots,\bm e_n)\) 是 \(\mathbb R^n\) 的一组基，称为\textbf{标准基}。
+
+基的关键作用不仅在于能够表示空间中的每个向量，还在于这种表示是唯一的。
+
+\begin{theorem}[基表示的唯一性]
+    设 \(\mathcal B=(\bm b_1,\ldots,\bm b_n)\) 是线性空间 \(V\) 的一组基。则对于任意 \(\bm v\in V\)，存在唯一的一组标量 \(c_1,\ldots,c_n\)，使得
+    \[
+        \bm v=c_1\bm b_1+c_2\bm b_2+\cdots+c_n\bm b_n.
+    \]
+\end{theorem}
+
+\begin{proof}
+    因为基张成 \(V\)，所以这样的标量一定存在。若还有
+    \[
+        \bm v=d_1\bm b_1+d_2\bm b_2+\cdots+d_n\bm b_n,
+    \]
+    将两个等式相减，得到
+    \[
+        (c_1-d_1)\bm b_1+\cdots+(c_n-d_n)\bm b_n=\bm 0.
+    \]
+    由于基向量线性无关，只能有 \(c_i-d_i=0\)，即 \(c_i=d_i\)，其中 \(i=1,2,\ldots,n\)。因此表示唯一。
+\end{proof}
+
+为了定义空间的维数，还需要说明同一个有限维线性空间的不同基含有相同数目的向量。这个事实来自下面的交换定理。
+
+\begin{theorem}[交换定理]
+    设向量组 \((\bm v_1,\ldots,\bm v_r)\) 线性无关，向量组 \((\bm w_1,\ldots,\bm w_s)\) 张成线性空间 \(V\)。如果 \(\bm v_1,\ldots,\bm v_r\in V\)，则 \(r\leq s\)。此外，可以用 \(\bm v_1,\ldots,\bm v_r\) 依次替换 \(\bm w_1,\ldots,\bm w_s\) 中的某些向量，使替换后的向量组仍然张成 \(V\)。
+\end{theorem}
+
+\begin{proof}
+    因为 \((\bm w_1,\ldots,\bm w_s)\) 张成 \(V\)，所以 \(\bm v_1\) 可以由它们线性表示。这个表示中至少有一个系数不为零，否则将有 \(\bm v_1=\bm 0\)，与线性无关矛盾。解出对应的 \(\bm w_j\)，可知用 \(\bm v_1\) 替换 \(\bm w_j\) 后，新向量组仍然张成 \(V\)。
+
+    接着用新向量组表示 \(\bm v_2\)。在这次表示中，除 \(\bm v_1\) 以外的向量至少有一个系数不为零，否则 \(\bm v_2\) 将是 \(\bm v_1\) 的线性组合，与 \(\bm v_1,\bm v_2\) 线性无关矛盾。因此还可以用 \(\bm v_2\) 替换另一个 \(\bm w_j\)，同时保持张成不变。重复这一过程，每加入一个 \(\bm v_i\) 都必须替换一个尚未被替换的 \(\bm w_j\)。所以这个过程至多进行 \(s\) 次，从而 \(r\leq s\)。
+\end{proof}
+
+如果 \(\mathcal B_1\) 和 \(\mathcal B_2\) 都是 \(V\) 的有限基，把 \(\mathcal B_1\) 看成线性无关向量组、把 \(\mathcal B_2\) 看成生成向量组，由交换定理可知 \(\mathcal B_1\) 中的向量个数不超过 \(\mathcal B_2\)；交换二者的角色又得到相反的不等式。因此，两组基所含向量的个数相同。
+
+\begin{definition}[维数]
+    如果线性空间 \(V\) 有一组由 \(n\) 个向量组成的基，则称 \(V\) 是\textbf{有限维线性空间}，并称 \(n\) 为 \(V\) 的\textbf{维数}，记作
+    \[
+        \dim V=n.
+    \]
+    只含零向量的线性空间 \(\{\bm 0\}\) 的维数规定为 \(0\)。如果 \(V\) 不存在有限基，则称 \(V\) 是无限维线性空间。
+\end{definition}
+
+由标准基可知，\(\dim\mathbb R^n=n\)，\(\dim\mathbb C^n=n\)。多项式空间 \(\mathcal P_n\) 的一组基为
+\[
+    (1,x,x^2,\ldots,x^n),
+\]
+所以 \(\dim\mathcal P_n=n+1\)。交换定理还说明，在 \(n\) 维线性空间中，任何含有多于 \(n\) 个向量的向量组都线性相关，任何含有少于 \(n\) 个向量的向量组都不能张成整个空间。
+
+\newpage
+基还为抽象线性空间中的向量提供了数值表示。
+
+\begin{definition}[向量在一组基下的坐标]
+    设 \(\mathcal B=(\bm b_1,\bm b_2,\ldots,\bm b_n)\) 是线性空间 \(V\) 的一组基。若
+    \[
+        \bm v=c_1\bm b_1+c_2\bm b_2+\cdots+c_n\bm b_n,
+    \]
+    则称有序数组
+    \[
+        (c_1,c_2,\ldots,c_n)
+    \]
+    为向量 \(\bm v\) 在基 \(\mathcal B\) 下的\textbf{坐标}，记作
+    \[
+        [\bm v]_{\mathcal B}=(c_1,c_2,\ldots,c_n).
+    \]
+\end{definition}
+
+\begin{example}
+    在 \(\mathbb R^2\) 中取基
+    \[
+        \mathcal B=(\bm b_1,\bm b_2),
+        \qquad
+        \bm b_1=(1,1),\quad \bm b_2=(1,-1).
+    \]
+    对于向量 \(\bm v=(3,1)\)，设 \(\bm v=c_1\bm b_1+c_2\bm b_2\)。比较两个分量，得到
+    \[
+        c_1+c_2=3,
+        \qquad
+        c_1-c_2=1.
+    \]
+    因而 \(c_1=2,c_2=1\)，所以
+    \[
+        \bm v=2\bm b_1+\bm b_2,
+        \qquad
+        [\bm v]_{\mathcal B}=(2,1).
+    \]
+\end{example}
+
+同一个向量在不同基下通常具有不同的坐标，但向量本身并没有改变。基表示的唯一性保证了：一旦基及其排列顺序确定，每个向量便对应唯一的有序坐标数组。反过来，每个有序数组 \((c_1,\ldots,c_n)\) 也唯一确定向量
+\[
+    c_1\bm b_1+\cdots+c_n\bm b_n.
+\]
+因此，选定一组基以后，任意 \(n\) 维线性空间都可以用 \(\mathbb F^n\) 中的有序数组来描述。下一章将进一步研究向量在不同基下的坐标如何相互转换，以及保持向量加法和数乘的映射。
