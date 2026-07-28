@@ -422,7 +422,7 @@
     \]
     其中至少有一个 \(\beta_j\ne0\)，否则 \(\bm v_k\) 可以由\(\bm v_1,\ldots,\bm v_{k-1}\) 线性表示，这与\( \mathcal{V} \)是线性无关相悖。继续调整尚未被替换的向量的次序，令 \(\beta_k\ne0\)，则根据\cref{lem:replacement}，用 \(\bm v_k\) 替换 \(\bm w_k\) 后，向量组仍然与 \(\mathcal W\) 具有相同的张成空间。
 
-    需要注意的是，如果\( r > s \)，那么在\( k=s \)时，\( \mathcal{W} \)中所有的向量都被替换完了，对应的张成为
+    需要注意的是，如果\( r > s \)，那么在\( k=s \)时，\( \mathcal{W} \)中所有的向量都被替换完了。此时，按照上述推导，对应的张成满足
     \[
         \operatorname{span}(\bm v_1,\ldots,\bm v_s) = \operatorname{span}(\mathcal W).
     \]
@@ -433,72 +433,67 @@
     这与\(\operatorname{span} \mathcal{V} \subseteq \operatorname{span} \mathcal{W}\)相矛盾。因此，必须有 \(r\leq s\)。此时，依次序可以用\(\bm v_1,\ldots,\bm v_r\) 完整替换 \(\mathcal W\) 中的 \(r\) 个向量，并保持张成空间不变。
 \end{proof}
 
-
-
-
-
+尽管对于一个线性相关的向量组，其极大线性无关组不唯一，但根据交换定理可以证明，所有极大线性无关组所含向量的个数相同。
 \begin{proposition}
     一个有限向量组的任意两个极大线性无关组所含向量的个数相同。
 \end{proposition}
 
 \begin{proof}
-    设
-    \[
-        \mathcal B=(\bm b_1,\ldots,\bm b_r),
-        \quad
-        \mathcal C=(\bm c_1,\ldots,\bm c_s)
-    \]
-    都是向量组 \(\mathcal A\) 的极大线性无关组。
-
-    由于 \(\mathcal C\) 张成 \(\operatorname{span}\mathcal A\)，
-    可以依次用 \(\bm b_1,\ldots,\bm b_r\) 替换
-    \(\mathcal C\) 中的向量，并保持张成空间不变。
-    每加入一个 \(\bm b_i\)，都必须替换一个尚未替换的向量，
-    因而
-    \[
-        r\leq s.
-    \]
-    交换 \(\mathcal B\) 与 \(\mathcal C\) 的地位，同理可得
-    \[
-        s\leq r.
-    \]
-    因此 \(r=s\)。
+    设\( \mathcal V=(\bm v_1,\ldots,\bm v_r) \)和\( \mathcal W=(\bm w_1,\ldots,\bm w_s) \)是同一个有限向量组的两个极大线性无关组。由于，\( \operatorname{span}(\mathcal{V}) \subseteq \operatorname{span}(\mathcal{W}) \) 且 \(\mathcal V\) 线性无关，根据\cref{thm:exchange}，有 \(r\leq s\)。同理，由于 \( \operatorname{span}(\mathcal{W}) \subseteq \operatorname{span}(\mathcal{V}) \) 且 \(\mathcal W\) 线性无关，也有 \(s\leq r\)。因此，\(r=s\)，即两个极大线性无关组所含向量的个数相同。
 \end{proof}
 
 
-\section{线性空间的基、维数与坐标}
+\section{线性空间的概念与性质}
 \label{sec:basis_dim_coord}
 
-到目前为止，我们主要研究了 \(\mathbb R^n\) 和 \(\mathbb C^n\) 中的向量，以及对应的向量加法和数乘，以及由此衍生的张成、线性相关、线性无关等概念。实际上，这些概念并不局限于 \(\mathbb R^n\) 或 \(\mathbb C^n\)，而是可以推广到更一般的情形。把这些规律抽象出来，独立于运算的对象，就可以得到线性空间这一重要的概念。
+到目前为止，我们主要研究了 \(\mathbb R^n\) 和 \(\mathbb C^n\) 中的向量，包括向量加法与数乘，以及由此衍生的张成、线性相关与线性无关等概念。这些概念并不依赖于 \(\mathbb R^n\) 或 \(\mathbb C^n\) 的具体形式，而是可以推广到更一般的情形。将这些运算所满足的基本规律抽象出来，便可以得到线性空间这一重要概念。
 
 \begin{definition}[线性空间]
     \label{def:linear_space}
-    设 \(V\) 是一个非空集合。在 \(V\) 中定义了向量加法，在 \(\mathbb F\) 与 \(V\) 之间定义了数乘。如果对于任意 \(\bm u,\bm v,\bm w\in V\) 以及 \(\lambda,\mu\in\mathbb F\)，下列性质都成立：
-    \begin{enumerate}
-        \item \(\bm u+\bm v=\bm v+\bm u\)；
-        \item \((\bm u+\bm v)+\bm w=\bm u+(\bm v+\bm w)\)；
-        \item 存在 \(\bm 0\in V\)，使 \(\bm v+\bm 0=\bm v\)；
-        \item 对每个 \(\bm v\in V\)，存在 \(-\bm v\in V\)，使 \(\bm v+(-\bm v)=\bm 0\)；
-        \item \((\lambda\mu)\bm v=\lambda(\mu\bm v)\)；
-        \item \(1\bm v=\bm v\)；
-        \item \(\lambda(\bm u+\bm v)=\lambda\bm u+\lambda\bm v\)；
-        \item \((\lambda+\mu)\bm v=\lambda\bm v+\mu\bm v\)，
-    \end{enumerate}
-    则称 \(V\) 是数域 \(\mathbb F\) 上的一个\textbf{线性空间}，也称为\textbf{向量空间}。\(V\) 中的元素称为\textbf{向量}。
+    设 \(V\) 是一个非空集合，\( \mathbb F \)是一个域，并定义了如下运算\footnote{需要注意的是，数乘运算\( \cdot \)与标量乘法并不是同一个运算，但通常都可以省略，直接记作\( \lambda \bm{v} \)}：
+    \[
+        +:V\times V\to V,\quad \cdot:\mathbb F\times V\to V,
+    \]
+    如果对于任意 \(\bm u,\bm v,\bm w\in V\) 以及 \(\lambda,\mu\in\mathbb F\)，下列性质都成立：
+
+    \textbf{加法运算律}：
+    \begin{itemize}
+        \item 交换律：\(\bm u+\bm v=\bm v+\bm u\)
+        \item 结合律：\((\bm u+\bm v)+\bm w=\bm u+(\bm v+\bm w)\)
+        \item 零向量：存在 \(\bm 0\in V\)，使 \(\bm v+\bm 0=\bm v\)
+        \item 负向量：存在 \(-\bm v\in V\)，使 \(\bm v+(-\bm v)=\bm 0\)
+    \end{itemize}
+    \textbf{数乘运算律}：
+    \begin{itemize}
+        \item 结合律：\((\lambda\mu) \cdot \bm v=\lambda \cdot (\mu \cdot\bm v)\)
+        \item 单位元：\(1\cdot \bm v=\bm v\)
+        \item 分配律1：\(\lambda \cdot (\bm u+\bm v)=\lambda\cdot\bm u+\lambda\cdot\bm v\)
+        \item 分配律2：\((\lambda+\mu)\cdot\bm v=\lambda\cdot\bm v+\mu\cdot\bm v\)
+    \end{itemize}
+    则称 \(V\) 是域 \(\mathbb F\) 上的一个\textbf{线性空间}，也称为\textbf{向量空间}。
 \end{definition}
 
-前面关于线性组合、张成、线性相关与线性无关的定义，只使用了向量加法和数乘，因此可以原样推广到任意线性空间。今后若无特别说明，这些概念都在线性空间及其所属数域上使用。
+值得注意的是，前面关于线性组合、张成、线性相关与线性无关的定义，以及相关的命题、引理、定理和对应的证明，只使用了向量加法和数乘，因此可以原样推广到任意线性空间。
 
-按照前面定义的加法和数乘，\(\mathbb R^n\) 是实数域上的线性空间，\(\mathbb C^n\) 是复数域上的线性空间。线性空间中的元素也不一定必须以有向线段的形式出现。例如，所有次数不超过 \(n\) 的实系数多项式组成的集合
+按照前面定义的加法和数乘，\(\mathbb R^n\) 是实数域上的线性空间，\(\mathbb C^n\) 是复数域上的线性空间。除此以外，线性空间中的元素也不一定必须以有序数组的形式出现。例如，所有次数不超过 \(n\) 的实系数多项式组成的集合
 \[
     \mathcal P_n
     =\left\{a_0+a_1x+\cdots+a_nx^n\mid a_0,\ldots,a_n\in\mathbb R\right\}
 \]
-在通常的多项式加法和实数数乘下也是一个线性空间。每个多项式由它的有序系数数组
+在通常的多项式加法和实数数乘下也是一个线性空间。有趣的是，尽管表现形式不同，但每个多项式都可以由其系数组成的有序数组：
 \[
     (a_0,a_1,\ldots,a_n)
 \]
-唯一确定，因此 \(\mathcal P_n\) 与 \(\mathbb R^{n+1}\) 具有相同的线性结构。
+唯一确定，并且对应的加法和数乘运算也保持不变。像这样的线性空间之间的对应关系称为\textbf{线性空间同构}，其定义如下。
+\begin{definition}
+    \label{def:linear_space_isomorphism}
+    设 \(V\) 和 \(W\) 是数域 \(\mathbb F\) 上的两个线性空间。如果存在一个双射 \(\varphi:V\to W\)，使得对于任意 \(\bm u,\bm v\in V\) 和任意 \(\lambda\in\mathbb F\)，都有
+    \[
+        \varphi(\bm u+\bm v)=\varphi(\bm u)+\varphi(\bm v),\quad \varphi(\lambda \bm v)=\lambda \varphi(\bm v),
+    \]
+    则称 \(V\) 与 \(W\) 是\textbf{同构}（Isomorphism）的，记作 \(V\simeq W\)。映射 \(\varphi\) 称为一个线性空间同构。
+\end{definition}
+从\cref{def:linear_space_isomorphism}可以看出，线性空间同构不仅要求两个线性空间之间的元素一一对应，还要求映射保持向量加法和数乘的运算结构。换句话说，同构的两个线性空间在代数结构上是完全相同的，只是元素的表现形式不同。
 
 一个线性空间中常常包含一些较小的集合，它们在原来的加法和数乘下仍然构成线性空间。
 
