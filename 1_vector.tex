@@ -1,1 +1,82 @@
 \chapter{向量与线性空间}
+
+向量作为线性代数的基本概念之一，在数学、物理、工程等领域中有着广泛的应用。向量不仅可以表示空间中的点和方向，还可以用于描述物理量，如速度、力和电场等。在本章中，我们将系统地介绍向量的定义、运算以及线性空间的基本性质。
+
+\section{向量的概念与表示}
+
+在生活中，温度、质量、时间等等都可以使用一个数来描述，像这样的量称为\textbf{标量}（Scalar）。而像速度、力、电场等物理量不仅仅有大小，还有方向，这样的量称为\textbf{向量}（Vector）。在线性代数中，我们通常使用加粗的小写字母表示向量，例如 \(\bm v\)。
+
+在平面或空间中，向量通常画成一条有向线段。对于这样的几何向量，我们关心的是它的大小和方向，而不关心它的起点位于何处，因此可以在保持大小和方向不变的情况下对它进行平移。将向量的起点平移到原点 \(O\) 后，它的终点 \(P\) 便可以唯一确定这个向量；反过来，这个向量也唯一确定点 \(P\)。正是在这个意义下，向量既可以画成从原点出发的有向线段，也可以只用它的终点来表示。
+
+\begin{example}
+    如\cref{fig_vector_interpretations} 所示，当向量表示位移、速度等具有方向的量时，将它画成有向线段更为直观；当一组数据由多个数共同描述时，则常将它画成坐标空间中的一个点。例如，一个人的身高和鞋码可以组成一组二维数据，并在平面上对应一个点。
+
+    \begin{center}
+        \captionsetup{type=figure}
+        \begin{subfigure}{.4\linewidth}
+            \centering
+            \includegraphics[height=.9\linewidth]{./img/1-vector/vector_addition.tikz}
+            \caption{有向线段}
+            \label{fig_vector_addition}
+        \end{subfigure}
+        \begin{subfigure}{.4\linewidth}
+            \centering
+            \includegraphics[height=.9\linewidth]{./img/1-vector/vector_as_data_point.tikz}
+            \caption{空间中的点}
+            \label{fig_vector_data_point}
+        \end{subfigure}
+        \captionof{figure}{向量的两种几何表示}
+        \label{fig_vector_interpretations}
+    \end{center}
+\end{example}
+
+上述几何图形可以帮助我们直观地理解向量，但这种直观主要局限于二维和三维空间。在线性代数中，我们还需要把任意有限个数作为一个整体来研究，因此将向量定义为有序数组。
+
+\begin{definition}[实向量]
+    由 \(n\) 个实数组成的有序数组称为一个 \(n\) 维\textbf{实向量}，记作
+    \[
+        \bm v=(v_1,v_2,\ldots,v_n).
+    \]
+    其中，\(v_1,v_2,\ldots,v_n\) 称为向量 \(\bm v\) 的\textbf{分量}。所有 \(n\) 维实向量组成的集合记作 \(\mathbb R^n\)。
+\end{definition}
+
+例如，二维向量和三维向量可以分别写作
+\[
+    \bm u=(u_1,u_2),
+    \quad
+    \bm v=(v_1,v_2,v_3).
+\]
+类似地，我们可以定义复向量，记作\( \bm{v} \in \mathbb{C}^n \)。
+
+结合前面的几何表示可以看出，``向量''一词有两种紧密相关的用法：在几何中，向量表示具有大小和方向的对象；在代数中，向量就是由若干个数组成的有序数组。选定坐标系后，每个几何向量都可以用一个有序数组表示，这个有序数组称为该向量在此坐标系下的\textbf{坐标表示}。几何向量本身不依赖于坐标系，但它的坐标表示通常会随着坐标系的改变而改变。
+
+\begin{example}
+    如\cref{fig_vector_same_two_coords} 所示，在标准直角坐标系中，向量 \(\bm v\) 的坐标为 \((1,1)\)。将坐标系整体逆时针旋转 \(45^\circ\) 后，向量 \(\bm v\) 完全落在新坐标系的 \(x'\) 轴上，因此它在新坐标系中的坐标为 \((\sqrt{2},0)\)。两组坐标虽然不同，表示的却是同一个几何向量。
+
+    \begin{center}
+        \captionsetup{type=figure}
+        \includegraphics[width=.35\linewidth]{./img/1-vector/vector_same_in_two_bases.tikz}
+        \captionof{figure}{同一个向量在两个不同坐标系下的表示}
+        \label{fig_vector_same_two_coords}
+    \end{center}
+\end{example}
+
+在同一个坐标系下，两个向量相等，当且仅当它们对应位置上的分量分别相等。也就是说，若
+\[
+    \bm u=(u_1,u_2,\ldots,u_n),
+    \qquad
+    \bm v=(v_1,v_2,\ldots,v_n),
+\]
+则
+\[
+    \bm u=\bm v
+    \iff
+    u_i=v_i,\qquad i=1,2,\ldots,n.
+\]
+所有分量都等于零的向量称为\textbf{零向量}，记作
+\[
+    \bm 0=(0,0,\ldots,0).
+\]
+零向量没有确定的方向，但在向量运算中具有重要作用。
+
+坐标表示将向量的几何特征转化为有序数组中的数值，从而使我们能够通过分量进行计算。接下来，我们将在此基础上讨论向量的加法与数乘。

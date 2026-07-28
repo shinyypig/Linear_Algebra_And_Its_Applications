@@ -1,0 +1,48 @@
+\begin{tikzpicture}
+    \begin{axis}[
+            width=5.5cm,
+            height=5.5cm,
+            xmin=0, xmax=4.3,
+            ymin=0, ymax=4.3,
+            ticklabel style={font=\small},
+            label style={font=\small},
+            axis lines=middle,
+            xlabel={$x$},
+            ylabel={$y$},
+            % clip=false,
+            legend cell align=left,
+            legend style={
+                    anchor=north east,
+                    font=\tiny,
+                    draw=none,
+                    fill=none
+                }
+        ]
+        % Parallelogram guide lines
+        \addplot[black!28, densely dashed, line width=.6pt]
+        coordinates {(2,1) (3,3)};
+        \addplot[black!28, densely dashed, line width=.6pt]
+        coordinates {(1,2) (3,3)};
+
+        % Vector u = (2,1)
+        \addplot[c1, line width=1.65pt, -{Stealth[length=5pt,width=5pt]}]
+        coordinates {(0,0) (2,1)};
+        \node[font=\small, text=c1, below right=1pt] at (axis cs:1,.5) {$\bm{u}$};
+
+        % Vector v = (1,2)
+        \addplot[c2, line width=1.65pt, -{Stealth[length=5pt,width=5pt]}]
+        coordinates {(0,0) (1,2)};
+        \node[font=\small, text=c2, left=3pt] at (axis cs:.5,1) {$\bm{v}$};
+
+        % Vector u+v = (3,3)
+        \addplot[c5, line width=1.65pt, -{Stealth[length=5pt,width=5pt]}]
+        coordinates {(0,0) (3,3)};
+        \node[font=\small, text=c5, left=2pt] at (axis cs:1.85,2.35) {$\bm{u}+\bm{v}$};
+
+        % Origin dot and label
+        \addplot[only marks, mark=*, mark size=1.2pt, black!65]
+        coordinates {(0,0)};
+        \node[font=\scriptsize, below left=2pt, text=black!72]
+        at (axis cs:0,0) {$O$};
+    \end{axis}
+\end{tikzpicture}
