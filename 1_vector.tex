@@ -201,7 +201,7 @@
     \label{def:linear_combination}
     设 \(\bm v_1,\bm v_2,\ldots,\bm v_m\in\mathbb R^n\)，\(\lambda_1,\lambda_2,\ldots,\lambda_m\in\mathbb R\)。向量
     \[
-        \sum_{i=1}^{m}\lambda_i\bm v_i
+        \sum_{i=1}^{m}\lambda_i\bm v_i = \lambda_1\bm v_1+\lambda_2\bm v_2+\cdots+\lambda_m\bm v_m
     \]
     称为向量组 \((\bm v_1,\bm v_2,\ldots,\bm v_m)\) 的一个\textbf{线性组合}，其中 \(\lambda_1,\lambda_2,\ldots,\lambda_m\) 称为这个线性组合的\textbf{系数}。
 \end{definition}
@@ -210,15 +210,20 @@
 
 \begin{definition}[张成]
     \label{def:span}
-    向量组 \((\bm v_1,\bm v_2,\ldots,\bm v_m)\) 的所有线性组合组成的集合称为该向量组的\textbf{张成}，记作
+    向量组 \(\mathcal{V} = (\bm v_1,\bm v_2,\ldots,\bm v_m)\) 的所有线性组合组成的集合称为该向量组的\textbf{张成}，记作
     \[
-        \operatorname{span}\{\bm v_1,\bm v_2,\ldots,\bm v_m\}
+        \operatorname{span}\mathcal{V}
         =\left\{
         \sum_{i=1}^{m}\lambda_i\bm v_i
         \mathrel{\Big|}
-        \lambda_1,\ldots,\lambda_m\in\mathbb R
+        \lambda_i\in\mathbb R
         \right\}.
     \]
+    由于向量组的张成和向量组的顺序无关，是否有重复元素也无关。因此，也可以将张成记作
+    \[
+        \operatorname{span}\{\bm v_1,\bm v_2,\ldots,\bm v_m\},
+    \]
+    其中\( \{\bm v_1,\bm v_2,\ldots,\bm v_m\} \)表示由这些向量组成的集合。
 \end{definition}
 
 若一个向量\(\bm v\ne\bm 0\)，则 \(\operatorname{span}\{\bm v\}\) 是所有 \(\lambda\bm v\) 组成的集合。从几何上看，它表示一条经过原点、方向为 \(\bm v\) 的直线。若 \(\bm u\) 与 \(\bm v\) 不在同一条直线上，则 \(\operatorname{span}\{\bm u,\bm v\}\) 在 \(\mathbb R^3\) 中表示一个经过原点的平面；在 \(\mathbb R^2\) 中，它就是整个平面。两种情形如\cref{fig_span_geometry} 所示。
@@ -241,11 +246,74 @@
     \label{fig_span_geometry}
 \end{center}
 
-如果向量 \(\bm b\) 属于 \(\operatorname{span}\{\bm v_1,\ldots,\bm v_m\}\)，就称 \(\bm b\) 可以由向量组 \((\bm v_1,\ldots,\bm v_m)\) \textbf{线性表示}。从代数上来看，这意味着存在实数 \(\lambda_1,\ldots,\lambda_m\)，使得
+如果向量 \(\bm a\) 属于 \(\operatorname{span}\{\bm v_1,\ldots,\bm v_m\}\)，就称 \(\bm a\) 可以由向量组 \((\bm v_1,\ldots,\bm v_m)\) \textbf{线性表示}。从代数上来看，这意味着存在实数 \(\lambda_1,\ldots,\lambda_m\)，使得
 \[
-    \bm b=\sum_{i=1}^{m}\lambda_i\bm v_i.
+    \bm a=\sum_{i=1}^{m}\lambda_i\bm v_i.
 \]
-从几何上来看，这意味着 \(\bm b\) 落在由 \(\bm v_1,\ldots,\bm v_m\) 张成的直线、平面或更高维的超平面中。
+从几何上来看，这意味着 \(\bm a\) 落在由 \(\bm v_1,\ldots,\bm v_m\) 张成的直线、平面或更高维的超平面中。此外，可以证明，如果\( \lambda_k \neq 0 \)，则将向量\( \bm{a} \)替换向量组中的 \( \bm{v}_k \) 后，新的向量组的张成不变，具体内容见\cref{lem:replacement}。
+\begin{lemma}[替换引理]
+    \label{lem:replacement}
+    设有向量组\((\bm{v}_1, \bm{v}_2, \ldots, \bm{v}_m) \)，并且对于向量 \(\bm a \in \operatorname{span}\{\bm v_1,\ldots,\bm v_m\}\)，存在实数 \(\lambda_1,\ldots,\lambda_m\) 使得
+    \[
+        \bm a=\sum_{i=1}^{m}\lambda_i\bm v_i
+    \]
+    如 \(\lambda_k\ne0\)，则用 \(\bm a\) 替换 \(\bm v_k\) 后，向量组的张成不变，即
+    \[
+        \operatorname{span}
+        \{\bm v_1,\ldots,\bm v_m\}
+        =
+        \operatorname{span}
+        \{\bm v_1,\ldots,\bm v_{k-1},
+        \bm a,\bm v_{k+1},\ldots,\bm v_m\}.
+    \]
+\end{lemma}
+\begin{proof}
+    由于 \(\bm a\) 是 \(\bm v_1,\ldots,\bm v_m\) 的线性组合，有
+    \[
+        \operatorname{span}
+        \{\bm v_1,\ldots,\bm v_{i-1},
+        \bm a,\bm v_{i+1},\ldots,\bm v_m\}
+        \subseteq
+        \operatorname{span}
+        \{\bm v_1,\ldots,\bm v_m\}.
+    \]
+    另一方面，由于 \(\lambda_k\ne0\)，因此可以得到
+    \[
+        \bm v_k
+        =\frac{1}{\lambda_k}
+        \left(
+        \bm a-\sum_{i\ne k}\lambda_i\bm v_i
+        \right).
+    \]
+    所以，对于一个任意的向量 \(\bm b\in\operatorname{span}\{\bm v_1,\ldots,\bm v_m\}\)，有
+    \[
+        \begin{split}
+            \bm b & =\sum_{i=1}^{m}\alpha_i\bm v_i
+            =\sum_{i\ne k}\alpha_i\bm v_i+\alpha_k\bm v_k
+            =\sum_{i\ne k}\alpha_i\bm v_i+\frac{\alpha_k}{\lambda_k} \left( \bm a-\sum_{i\ne k}\lambda_i\bm v_i \right)              \\
+                  & =\frac{\alpha_k}{\lambda_k}\bm a +\sum_{i\ne k}\left(\alpha_i-\frac{\alpha_k}{\lambda_k}\lambda_i\right)\bm v_i.
+        \end{split}
+    \]
+    这说明 \(\bm b\) 也可以由向量组 \((\bm v_1,\ldots,\bm v_{k-1},\bm a,\bm v_{k+1},\ldots,\bm v_m)\) 线性表示，因此
+    \[
+        \operatorname{span}
+        \{\bm v_1,\ldots,\bm v_m\}
+        \subseteq
+        \operatorname{span}
+        \{\bm v_1,\ldots,\bm v_{k-1},
+        \bm a,\bm v_{k+1},\ldots,\bm v_m\}.
+    \]
+    综上，即可得到
+    \[
+        \operatorname{span}
+        \{\bm v_1,\ldots,\bm v_m\}
+        =
+        \operatorname{span}
+        \{\bm v_1,\ldots,\bm v_{k-1},
+        \bm a,\bm v_{k+1},\ldots,\bm v_m\}.
+    \]
+\end{proof}
+
 
 \section{线性相关与线性无关}
 \label{sec:lin_dep_indep}
@@ -275,43 +343,133 @@
 \[
     \bm v_k=-\sum_{i\ne k}\frac{\lambda_i}{\lambda_k}\bm v_i.
 \]
-这意味着，当一组向量线性相关时，其中至少有一个向量可以由其余向量线性表示。反过来，如果某个向量可以由其余向量线性表示，那么它们构成的向量组则一定线性相关。
+这意味着，当一组向量线性相关时，其中至少有一个向量可以由其余向量线性表示。反之，如果某个向量可以由其余向量线性表示，那么它们构成的向量组则一定线性相关。
 
 此外，由\cref{def:lin_dep_indep}还可以立即得到一些简单结论：含有零向量的向量组一定线性相关；含有两个相同向量的向量组一定线性相关；只含一个向量的向量组 \((\bm v)\) 线性无关，当且仅当 \(\bm v\ne\bm 0\)。此外，线性相关向量组再增加向量后仍然线性相关，而线性无关向量组的任意一部分仍然线性无关。
 
-如果向量组中的某个向量可以由其余向量线性表示，那么删去这个向量不会改变向量组的张成。例如，若
-\[
-    \bm v_m\in\operatorname{span}\{\bm v_1,\ldots,\bm v_{m-1}\},
-\]
-则
-\[
-    \operatorname{span}\{\bm v_1,\ldots,\bm v_{m-1},\bm v_m\}
-    =\operatorname{span}\{\bm v_1,\ldots,\bm v_{m-1}\}.
-\]
-因此，从一个有限向量组中不断删去能够由其余向量线性表示的向量，最终可以得到一个线性无关的向量组，同时保持原来的张成不变。这种向量组提取了原向量组中全部独立的信息。
+\begin{proposition}
+    设 \(\mathcal{V}=(\bm v_1,\ldots,\bm v_m) \)是一个有限向量组。若其中某个向量可以由其余向量线性表示，则删去该向量后，向量组的张成不变。
+\end{proposition}
+\begin{proof}
+    不妨假设\( \bm{v}_m \)可以由向量组\( \mathcal{V} \)中的其余向量线性表示，即
+    \[
+        \bm{v}_m = \sum_{i=1}^{m-1} \lambda_i \bm{v}_i.
+    \]
+    设有向量\( \bm{a} \)可以由向量组\( \mathcal{V} \)中的向量线性表示，即
+    \[
+        \bm{a} = \sum_{i=1}^{m} \alpha_i \bm{v}_i,
+    \]
+    由此可得
+    \[
+        \bm{a} = \sum_{i=1}^{m-1} \alpha_i \bm{v}_i + \alpha_m \bm{v}_m
+        = \sum_{i=1}^{m-1} \alpha_i \bm{v}_i + \alpha_m \sum_{i=1}^{m-1} \lambda_i \bm{v}_i
+        = \sum_{i=1}^{m-1} (\alpha_i + \alpha_m \lambda_i) \bm{v}_i.
+    \]
+    这意味着向量\( \bm{a} \) 同样可以由向量组 \( \mathcal{V} \) 中的前 \( m-1 \) 个向量线性表示。由于\( \bm{a} \)的选取是任意的，因此
+    \[
+        \operatorname{span}\mathcal{V} \subseteq  \operatorname{span}\{\bm v_1,\ldots,\bm v_{m-1}\}.
+    \]
+    另一方面，显然有
+    \[
+        \operatorname{span}\{\bm v_1,\ldots,\bm v_{m-1}\} \subseteq \operatorname{span}\{\bm v_1,\ldots,\bm v_m\}.
+    \]
+    综上，我们得出结论
+    \[
+        \operatorname{span}\mathcal{V} =  \operatorname{span}\{\bm v_1,\ldots,\bm v_{m-1}\}.
+    \]
+\end{proof}
+
+从有限向量组中不断删去能够由其余向量线性表示的向量，经过有限步后将得到一个线性无关组。并且，在删减过程中向量组的张成保持不变，这就引出了极大线性无关组的概念。
 
 \begin{definition}[极大线性无关组]
     \label{def:maximal_independent}
-    设
+    设\( \mathcal V=(\bm v_1,\bm v_2,\ldots,\bm v_m) \)是一个有限向量组。如果 \(\mathcal V\) 的一个部分组 \(\mathcal W\) 线性无关，并且
     \[
-        \mathcal A=(\bm v_1,\bm v_2,\ldots,\bm v_m)
+        \operatorname{span}\mathcal W
+        =\operatorname{span}\mathcal V,
     \]
-    是一个有限向量组。如果从 \(\mathcal A\) 中选出的部分向量组 \(\mathcal B\) 线性无关，并且
-    \[
-        \operatorname{span}\mathcal B
-        =\operatorname{span}\{\bm v_1,\bm v_2,\ldots,\bm v_m\},
-    \]
-    则称 \(\mathcal B\) 是向量组 \(\mathcal A\) 的一个\textbf{极大线性无关组}。
+    则称 \(\mathcal W\) 是 \(\mathcal V\) 的一个\textbf{极大线性无关组}。
 \end{definition}
 
-按照上面的删减过程，每个含有非零向量的有限向量组都可以选出极大线性无关组。一个向量组可能有不同的极大线性无关组，但它们都张成同一个线性空间。至于这些极大线性无关组是否含有相同数目的向量，需要在线性空间的维数概念建立以后才能回答。对于只含零向量的向量组，我们将在定义秩时单独约定其秩为 \(0\)。
+按照上述删减过程，每个有限向量组都可以选出极大线性无关组。特别地，只含零向量的向量组其极大线性无关组为空向量组，并且张成的空间只含零向量，即
+\[
+    \operatorname{span}\varnothing=\{\bm 0\}.
+\]
+此外，对于一个线性相关的向量组，其极大线性无关组并不唯一，但可以证明各个极大线性无关组中的向量个数相同。想要证明这一点，我们首先需要证明交换定理。
+
+\begin{theorem}[交换定理]
+    \label{thm:exchange}
+    设有向量组\( \mathcal V=(\bm v_1,\ldots,\bm v_r) \)和\( \mathcal W=(\bm w_1,\ldots,\bm w_s) \)，其中 \(\mathcal V\) 线性无关，并且\( \operatorname{span}(\mathcal{V}) \subseteq \operatorname{span}(\mathcal{W}) \)，则
+    \[
+        r\leq s.
+    \]
+    此外，可以用 \(\bm v_1,\ldots,\bm v_r\) 替换\(\mathcal W\) 中的 \(r\) 个向量，使替换后的向量组仍然与\(\mathcal W\) 具有相同的张成空间。
+\end{theorem}
+\begin{proof}
+    由于\(\operatorname{span}\mathcal V \subseteq \operatorname{span}\mathcal W\)，向量 \(\bm v_1\) 可以由 \(\bm w_1,\ldots,\bm w_s\) 线性表示，即
+    \[
+        \bm v_1
+        =\lambda_1\bm w_1+\cdots+\lambda_s\bm w_s.
+    \]
+    因为 \(\mathcal V\) 线性无关，所以 \(\bm v_1\ne\bm 0\)，并且至少有一个 \(\lambda_j\ne0\)。不妨适当调整 \(\mathcal W\) 中向量的次序，令\(\lambda_1\ne0\)。则根据\cref{lem:replacement}，用 \(\bm v_1\) 替换 \(\bm w_1\) 后，向量组\( (\bm v_1,\bm w_2,\ldots,\bm w_s) \)仍然与 \(\mathcal W\) 具有相同的张成空间。
+
+    不失一般性地，假设已经用 \(\bm v_1,\ldots,\bm v_{k-1}\) 替换了 \(\mathcal W\) 中的前 \(k-1\) 个向量，并且\((\bm v_1,\ldots,\bm v_{k-1},\bm w_k,\ldots,\bm w_s) \) 仍然与 \(\mathcal W\) 具有相同的张成空间。由于
+    \(\bm v_k\in\operatorname{span}\mathcal W\)，可以写成
+    \[
+        \bm v_k
+        =\sum_{i=1}^{k-1}\alpha_i\bm v_i
+        +\sum_{j=k}^{s}\beta_j\bm w_j.
+    \]
+    其中至少有一个 \(\beta_j\ne0\)，否则 \(\bm v_k\) 可以由\(\bm v_1,\ldots,\bm v_{k-1}\) 线性表示，这与\( \mathcal{V} \)是线性无关相悖。继续调整尚未被替换的向量的次序，令 \(\beta_k\ne0\)，则根据\cref{lem:replacement}，用 \(\bm v_k\) 替换 \(\bm w_k\) 后，向量组仍然与 \(\mathcal W\) 具有相同的张成空间。
+
+    需要注意的是，如果\( r > s \)，那么在\( k=s \)时，\( \mathcal{W} \)中所有的向量都被替换完了，对应的张成为
+    \[
+        \operatorname{span}(\bm v_1,\ldots,\bm v_s) = \operatorname{span}(\mathcal W).
+    \]
+    又因为\( \mathcal{V} \)是线性无关的，所以
+    \[
+        \operatorname{span}(\bm v_1,\ldots,\bm v_s) = \operatorname{span}(\mathcal W)\subset \operatorname{span} \mathcal{V},
+    \]
+    这与\(\operatorname{span} \mathcal{V} \subseteq \operatorname{span} \mathcal{W}\)相矛盾。因此，必须有 \(r\leq s\)。此时，依次序可以用\(\bm v_1,\ldots,\bm v_r\) 完整替换 \(\mathcal W\) 中的 \(r\) 个向量，并保持张成空间不变。
+\end{proof}
+
+
+
+
+
+\begin{proposition}
+    一个有限向量组的任意两个极大线性无关组所含向量的个数相同。
+\end{proposition}
+
+\begin{proof}
+    设
+    \[
+        \mathcal B=(\bm b_1,\ldots,\bm b_r),
+        \quad
+        \mathcal C=(\bm c_1,\ldots,\bm c_s)
+    \]
+    都是向量组 \(\mathcal A\) 的极大线性无关组。
+
+    由于 \(\mathcal C\) 张成 \(\operatorname{span}\mathcal A\)，
+    可以依次用 \(\bm b_1,\ldots,\bm b_r\) 替换
+    \(\mathcal C\) 中的向量，并保持张成空间不变。
+    每加入一个 \(\bm b_i\)，都必须替换一个尚未替换的向量，
+    因而
+    \[
+        r\leq s.
+    \]
+    交换 \(\mathcal B\) 与 \(\mathcal C\) 的地位，同理可得
+    \[
+        s\leq r.
+    \]
+    因此 \(r=s\)。
+\end{proof}
+
 
 \section{线性空间的基、维数与坐标}
 \label{sec:basis_dim_coord}
 
-到目前为止，我们主要研究了 \(\mathbb R^n\) 和 \(\mathbb C^n\) 中的向量。真正使这些向量能够进行线性运算的，并不是它们写成有序数组的形式，而是向量加法和数乘满足一组共同的规律。把这些规律抽象出来，就得到线性空间的概念。
-
-下面用 \(\mathbb F\) 表示实数域 \(\mathbb R\) 或复数域 \(\mathbb C\)。\(\mathbb F\) 中的元素称为标量。
+到目前为止，我们主要研究了 \(\mathbb R^n\) 和 \(\mathbb C^n\) 中的向量，以及对应的向量加法和数乘，以及由此衍生的张成、线性相关、线性无关等概念。实际上，这些概念并不局限于 \(\mathbb R^n\) 或 \(\mathbb C^n\)，而是可以推广到更一般的情形。把这些规律抽象出来，独立于运算的对象，就可以得到线性空间这一重要的概念。
 
 \begin{definition}[线性空间]
     \label{def:linear_space}
@@ -439,16 +597,7 @@
 
 为了定义空间的维数，还需要说明同一个有限维线性空间的不同基含有相同数目的向量。这个事实来自下面的交换定理。
 
-\begin{theorem}[交换定理]
-    \label{thm:exchange}
-    设向量组 \((\bm v_1,\ldots,\bm v_r)\) 线性无关，向量组 \((\bm w_1,\ldots,\bm w_s)\) 张成线性空间 \(V\)。如果 \(\bm v_1,\ldots,\bm v_r\in V\)，则 \(r\leq s\)。此外，可以用 \(\bm v_1,\ldots,\bm v_r\) 依次替换 \(\bm w_1,\ldots,\bm w_s\) 中的某些向量，使替换后的向量组仍然张成 \(V\)。
-\end{theorem}
 
-\begin{proof}
-    因为 \((\bm w_1,\ldots,\bm w_s)\) 张成 \(V\)，所以 \(\bm v_1\) 可以由它们线性表示。这个表示中至少有一个系数不为零，否则将有 \(\bm v_1=\bm 0\)，与线性无关矛盾。解出对应的 \(\bm w_j\)，可知用 \(\bm v_1\) 替换 \(\bm w_j\) 后，新向量组仍然张成 \(V\)。
-
-    接着用新向量组表示 \(\bm v_2\)。在这次表示中，除 \(\bm v_1\) 以外的向量至少有一个系数不为零，否则 \(\bm v_2\) 将是 \(\bm v_1\) 的线性组合，与 \(\bm v_1,\bm v_2\) 线性无关矛盾。因此还可以用 \(\bm v_2\) 替换另一个 \(\bm w_j\)，同时保持张成不变。重复这一过程，每加入一个 \(\bm v_i\) 都必须替换一个尚未被替换的 \(\bm w_j\)。所以这个过程至多进行 \(s\) 次，从而 \(r\leq s\)。
-\end{proof}
 
 如果 \(\mathcal B_1\) 和 \(\mathcal B_2\) 都是 \(V\) 的有限基，把 \(\mathcal B_1\) 看成线性无关向量组、把 \(\mathcal B_2\) 看成生成向量组，由交换定理可知 \(\mathcal B_1\) 中的向量个数不超过 \(\mathcal B_2\)；交换二者的角色又得到相反的不等式。因此，两组基所含向量的个数相同。
 
@@ -482,7 +631,7 @@
     \]
 \end{definition}
 
-因此，对于含有非零向量的向量组，它的秩就是任意一个极大线性无关组所含的向量个数；只含零向量的向量组的秩为 \(0\)。需要注意的是，向量组本身不是线性空间，所以通常不说“向量组的维数”；有维数的是它所张成的线性空间。若 \(\bm v_1,\ldots,\bm v_m\in\mathbb R^n\)，则
+因此，向量组的秩就是它的任意一个极大线性无关组所含的向量个数。特别地，只含零向量的向量组以空向量组为极大线性无关组，因而秩为 \(0\)。需要注意的是，向量组本身不是线性空间，所以通常不说“向量组的维数”；有维数的是它所张成的线性空间。若 \(\bm v_1,\ldots,\bm v_m\in\mathbb R^n\)，则
 \[
     0\leq \operatorname{rank}(\bm v_1,\ldots,\bm v_m)
     \leq \min\{m,n\}.

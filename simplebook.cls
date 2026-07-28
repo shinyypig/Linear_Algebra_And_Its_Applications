@@ -481,8 +481,58 @@
     \crefname{definition}{定义}{定义}
     \crefname{conjecture}{猜想}{猜想}
     \crefname{exam}{例}{例}
+    \crefname{exer}{练习}{练习}
+    \crefname{prob}{问题}{问题}
     \crefname{appendix}{附录}{附录}
     \crefname{algorithm}{算法}{算法}
+    \Crefname{conjecture}{猜想}{猜想}
+    \Crefname{exam}{例}{例}
+    \Crefname{exer}{练习}{练习}
+    \Crefname{prob}{问题}{问题}
+
+    % \DeclareTColorBox creates counters whose cleveref label types are
+    % tcb@cnt@<environment>, rather than simply <environment>.
+    \crefname{tcb@cnt@definition}{定义}{定义}
+    \crefname{tcb@cnt@theorem}{定理}{定理}
+    \crefname{tcb@cnt@lemma}{引理}{引理}
+    \crefname{tcb@cnt@corollary}{推论}{推论}
+    \crefname{tcb@cnt@postulate}{公设}{公设}
+    \crefname{tcb@cnt@axiom}{公理}{公理}
+    \crefname{tcb@cnt@property}{性质}{性质}
+    \crefname{tcb@cnt@remark}{注}{注}
+    \crefname{tcb@cnt@proposition}{命题}{命题}
+
+    \Crefname{tcb@cnt@definition}{定义}{定义}
+    \Crefname{tcb@cnt@theorem}{定理}{定理}
+    \Crefname{tcb@cnt@lemma}{引理}{引理}
+    \Crefname{tcb@cnt@corollary}{推论}{推论}
+    \Crefname{tcb@cnt@postulate}{公设}{公设}
+    \Crefname{tcb@cnt@axiom}{公理}{公理}
+    \Crefname{tcb@cnt@property}{性质}{性质}
+    \Crefname{tcb@cnt@remark}{注}{注}
+    \Crefname{tcb@cnt@proposition}{命题}{命题}
+
+    % Keep a non-breaking space after a single tcolorbox reference so that
+    % text can follow \cref/\Cref directly without sticking to the number.
+    \crefformat{tcb@cnt@definition}{定义~#2#1#3~}
+    \crefformat{tcb@cnt@theorem}{定理~#2#1#3~}
+    \crefformat{tcb@cnt@lemma}{引理~#2#1#3~}
+    \crefformat{tcb@cnt@corollary}{推论~#2#1#3~}
+    \crefformat{tcb@cnt@postulate}{公设~#2#1#3~}
+    \crefformat{tcb@cnt@axiom}{公理~#2#1#3~}
+    \crefformat{tcb@cnt@property}{性质~#2#1#3~}
+    \crefformat{tcb@cnt@remark}{注~#2#1#3~}
+    \crefformat{tcb@cnt@proposition}{命题~#2#1#3~}
+
+    \Crefformat{tcb@cnt@definition}{定义~#2#1#3~}
+    \Crefformat{tcb@cnt@theorem}{定理~#2#1#3~}
+    \Crefformat{tcb@cnt@lemma}{引理~#2#1#3~}
+    \Crefformat{tcb@cnt@corollary}{推论~#2#1#3~}
+    \Crefformat{tcb@cnt@postulate}{公设~#2#1#3~}
+    \Crefformat{tcb@cnt@axiom}{公理~#2#1#3~}
+    \Crefformat{tcb@cnt@property}{性质~#2#1#3~}
+    \Crefformat{tcb@cnt@remark}{注~#2#1#3~}
+    \Crefformat{tcb@cnt@proposition}{命题~#2#1#3~}
 
     \crefformat{equation}{(#2#1#3)}
     \crefmultiformat{equation}{(#2#1#3)}{~和(#2#1#3)}{，(#2#1#3)}{~和(#2#1#3)}
