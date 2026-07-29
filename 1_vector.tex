@@ -245,7 +245,7 @@
 \[
     \bm a=\sum_{i=1}^{m}\lambda_i\bm v_i.
 \]
-从几何上来看，这意味着 \(\bm a\) 落在由 \(\bm v_1,\ldots,\bm v_m\) 张成的直线、平面或更高维的超平面中。此外，可以证明，如果\( \lambda_k \neq 0 \)，则将向量\( \bm{a} \)替换向量组中的 \( \bm{v}_k \) 后，新的向量组的张成不变，具体内容见\cref{lem:replacement}。
+从几何上来看，这意味着 \(\bm a\) 落在由 \(\bm v_1,\ldots,\bm v_m\) 张成的直线、平面或更高维的几何对象中。此外，可以证明，如果\( \lambda_k \neq 0 \)，则将向量\( \bm{a} \)替换向量组中的 \( \bm{v}_k \) 后，新的向量组的张成不变，具体内容见\cref{lem:replacement}。
 \begin{lemma}[替换引理]
     \label{lem:replacement}
     设有向量组\((\bm{v}_1, \bm{v}_2, \ldots, \bm{v}_m) \)，并且对于向量 \(\bm a \in \operatorname{span}\{\bm v_1,\ldots,\bm v_m\}\)，存在实数 \(\lambda_1,\ldots,\lambda_m\) 使得
@@ -266,8 +266,8 @@
     由于 \(\bm a\) 是 \(\bm v_1,\ldots,\bm v_m\) 的线性组合，有
     \[
         \operatorname{span}
-        \{\bm v_1,\ldots,\bm v_{i-1},
-        \bm a,\bm v_{i+1},\ldots,\bm v_m\}
+        \{\bm v_1,\ldots,\bm v_{k-1},
+        \bm a,\bm v_{k+1},\ldots,\bm v_m\}
         \subseteq
         \operatorname{span}
         \{\bm v_1,\ldots,\bm v_m\}.
@@ -390,7 +390,7 @@
 \[
     \operatorname{span}\varnothing=\{\bm 0\}.
 \]
-此外，对于一个线性相关的向量组，其极大线性无关组并不唯一，但可以发现各个极大线性无关组中的向量个数相同。想要证明这一发现，我们首先需要证明交换定理。
+此外，对于一个线性相关的向量组，其极大线性无关组可能并不唯一，但可以发现各个极大线性无关组中的向量个数相同。想要证明这一发现，我们首先需要证明交换定理。
 
 \begin{theorem}[交换定理]
     \label{thm:exchange}
@@ -417,18 +417,17 @@
     \]
     其中至少有一个 \(\beta_j\ne0\)，否则 \(\bm v_k\) 可以由\(\bm v_1,\ldots,\bm v_{k-1}\) 线性表示，这与\( \mathcal{V} \)是线性无关相悖。继续调整尚未被替换的向量的次序，令 \(\beta_k\ne0\)，则根据\cref{lem:replacement}，用 \(\bm v_k\) 替换 \(\bm w_k\) 后，向量组仍然与 \(\mathcal W\) 具有相同的张成空间。
 
-    需要注意的是，如果\( r > s \)，那么在\( k=s \)时，\( \mathcal{W} \)中所有的向量都被替换完了。此时，按照上述推导，对应的张成满足
+    需要注意的是，如果 \(r>s\)，完成前 \(s\) 次替换后，\( \mathcal{W} \)中的向量全部被替换，但新的向量组的张成保持不变，即
     \[
-        \operatorname{span}(\bm v_1,\ldots,\bm v_s) = \operatorname{span}(\mathcal W).
+        \operatorname{span}(\bm v_1,\ldots,\bm v_s)
+        =\operatorname{span}\mathcal W.
     \]
-    又因为\( \mathcal{V} \)是线性无关的，所以
-    \[
-        \operatorname{span}(\bm v_1,\ldots,\bm v_s) = \operatorname{span}(\mathcal W)\subset \operatorname{span} \mathcal{V},
-    \]
-    这与\(\operatorname{span} \mathcal{V} \subseteq \operatorname{span} \mathcal{W}\)相矛盾。因此，必须有 \(r\leq s\)。此时，依次序可以用\(\bm v_1,\ldots,\bm v_r\) 完整替换 \(\mathcal W\) 中的 \(r\) 个向量，并保持张成空间不变。
+    另一方面，由于\( \bm v_{s+1}\in\operatorname{span}\mathcal V \subseteq\operatorname{span}\mathcal W \)，因此\( \bm v_{s+1}\in\operatorname{span}(\bm v_1,\ldots,\bm v_s) \)。这与 \(\mathcal V\) 线性无关矛盾，所以必须有 \(r\leq s\)。
+
+    此时，依次序可以用\(\bm v_1,\ldots,\bm v_r\) 完整替换 \(\mathcal W\) 中的 \(r\) 个向量，并保持张成空间不变。
 \end{proof}
 
-尽管对于一个线性相关的向量组，其极大线性无关组不唯一，但根据交换定理可以证明，所有极大线性无关组所含向量的个数相同。
+根据交换定理可以进一步证明，所有极大线性无关组所含向量的个数相同。
 \begin{proposition}\label{prop:maximal_independent}
     一个有限向量组的任意两个极大线性无关组所含向量的个数相同。
 \end{proposition}
@@ -529,7 +528,7 @@
     \begin{center}
         \captionsetup{type=figure}
         \includegraphics{./img/1-vector/quadratic_polynomial_coefficient_space.pdf}
-        \captionof{figure}{二次多项式系数空间中的重根曲面}
+        \captionof{figure}{判别式为零的系数曲面}
         \label{fig_quadratic_polynomial_coefficient_space}
     \end{center}
 
@@ -610,7 +609,7 @@
     \label{fig_r3_line_plane_subspace}
 \end{center}
 
-有趣的是，给定一个向量组，其张成必定是一个线性空间——要么是整个空间本身，要么是其中的一个子空间，证明并不困难，此处不再赘述。于是，反过来思考便自然产生一个问题：对于一个给定的线性空间，是否存在一个线性无关的向量组，使得其张成恰好就是这个线性空间本身？
+有趣的是，给定线性空间 \(V\) 中的一个向量组，其张成空间一定是一个线性空间：要么是\(V\)，要么是\(V\) 的一个子空间。相关证明并不困难，此处不再赘述。于是，反过来思考便自然产生一个问题：对于一个给定的线性空间，是否存在一个线性无关的向量组，使得其张成恰好就是这个线性空间本身？
 
 \begin{definition}[基]
     \label{def:basis}
@@ -618,7 +617,7 @@
     \[
         V=\operatorname{span}\{\bm b_1,\bm b_2,\ldots,\bm b_n\},
     \]
-    则称 \(\mathcal B\) 是线性空间 \(V\) 的一组\textbf{基}（Basis），其中的向量称为\textbf{基向量}（Basis Vector）。
+    则称 \(\mathcal B\) 是线性空间 \(V\) 的一组\textbf{基}（Basis）\footnote{更一般地，基也可以定义为线性无关且张成整个空间的向量集合，该集合可以是无限集合。但本书只讨论由有限个向量组成的基，后续讨论均不再额外声明。}，其中的向量称为\textbf{基向量}（Basis Vector）。
 \end{definition}
 
 例如，在 \(\mathbb R^n\) 中，令
@@ -654,16 +653,16 @@
     由于基向量线性无关，只能有 \(\lambda_i-\mu_i=0\)，即 \(\lambda_i=\mu_i\)，因此表示唯一。
 \end{proof}
 
-不同的线性空间的基向量的个数可能不同，但基于交换定理（\cref{thm:exchange}），可以证明同一个线性空间的任意两组基向量的个数相同。因此，基向量的个数对应了线性空间的一个基本不变量，它不仅反映了线性空间的``大小''，还决定了线性空间中向量组的秩的上界。
+类似于\cref{prop:maximal_independent}，可以证明同一个线性空间的任意两组基向量的个数相同。因此，基向量的个数对应了线性空间的一个基本不变量，它不仅反映了线性空间的``大小''，还决定了线性空间中向量组的秩的上界。
 \begin{definition}[维数]
     \label{def:dimension}
-    如果线性空间 \(V\) 有一组由 \(n\) 个向量组成的基，则称 \(V\) 是\textbf{有限维线性空间}\footnote{线性空间的基也可能包含无限多个向量，此时称为\textbf{无限维线性空间}。本书主要讨论有限维线性空间，若无特别说明，本书中的线性空间均指有限维线性空间}，并称 \(n\) 为 \(V\) 的\textbf{维数}（Dimension），记作
+    如果线性空间 \(V\) 有一组由 \(n\) 个向量组成的基，则称 \(V\) 是\textbf{有限维线性空间}，并称 \(n\) 为 \(V\) 的\textbf{维数}（Dimension），记作
     \[
         \dim V=n.
     \]
 \end{definition}
 
-特别需要注意的是，只含零向量的线性空间 \(\{\bm 0\}\) 可以由空向量组展开，因此其维数为 \(0\)。此外，由标准基可知，\(\dim\mathbb R^n=n\)，\(\dim\mathbb C^n=n\)。此外，多项式空间 \(\mathcal P_n\) 的一组基为
+特别需要注意的是，只含零向量的线性空间 \(\{\bm 0\}\) 可以由空向量组\(\emptyset\)张成，因此其维数为 \(0\)。此外，由标准基可知，\(\dim\mathbb R^n=n\)，而多项式空间 \(\mathcal P_n\) 的一组基为
 \[
     (1,x,x^2,\ldots,x^n),
 \]
