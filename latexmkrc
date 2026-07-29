@@ -30,6 +30,10 @@ sub asymptote_to_pdf {
     close $asy_source;
     my $transparent_render =
         $asy_text =~ /settings\.outformat\s*=\s*["']png["']/;
+    my $image_size = '5.5cm';
+    if ($asy_text =~ /\bsize\s*\(\s*([0-9]+(?:\.[0-9]+)?)\s*cm\b/) {
+        $image_size = "$1cm";
+    }
 
     chdir $figure_dir or return 1;
     my $ret = 0;
@@ -67,7 +71,9 @@ sub asymptote_to_pdf {
         }
         else {
             my $tex_input =
-                "\\def\\ImageFile{$transparent_png}\\input{$transparent_wrapper}";
+                "\\def\\ImageFile{$transparent_png}" .
+                "\\def\\ImageSize{$image_size}" .
+                "\\input{$transparent_wrapper}";
             $ret = system(
                 'pdflatex', '-interaction=batchmode', '-halt-on-error',
                 "-jobname=$figure_name", $tex_input

@@ -5,8 +5,7 @@ settings.outformat = "pdf";
 
 texpreamble("\usepackage{bm}");
 
-size(4.5cm);
-defaultpen(fontsize(9pt));
+size(4cm);
 
 real axisMax = 4.3;
 pair O = (0, 0);
@@ -17,12 +16,11 @@ pair uv = (3, 3);
 draw(O--(axisMax, 0), axisPen, axisArrow);
 draw(O--(0, axisMax), axisPen, axisArrow);
 
-pen tickPen = black + linewidth(0.35pt);
 for (int i = 1; i <= 4; ++i) {
     draw((i, -0.055)--(i, 0.055), tickPen);
     draw((-0.055, i)--(0.055, i), tickPen);
-    label(string(i), (i, -0.13), S, black + fontsize(7pt));
-    label(string(i), (-0.13, i), W, black + fontsize(7pt));
+    label(string(i), (i, -0.13), S, minorTextPen);
+    label(string(i), (-0.13, i), W, minorTextPen);
 }
 
 label("$x$", (4.06, 0.13), NW, textPen);

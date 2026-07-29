@@ -4,8 +4,7 @@ settings.tex = "xelatex";
 settings.outformat = "pdf";
 texpreamble("\usepackage{ctex}");
 
-size(14.5cm);
-defaultpen(fontsize(9pt));
+size(12.5cm);
 
 pair[] corners={(-0.78,0.78),(0.78,0.78),(0.78,-0.78),(-0.78,-0.78)};
 
@@ -16,9 +15,9 @@ void symmetrySquare(pair center, string operation, string[] digits)
     for(int i=0; i < 4; ++i) {
         pair z=center+corners[i];
         filldraw(circle(z,0.16),white,c1+linewidth(0.8pt));
-        label("\textbf{"+digits[i]+"}",z,black+fontsize(7pt));
+        label("\textbf{"+digits[i]+"}",z,minorTextPen);
     }
-    label(operation,center+(0,-1.18),black+fontsize(7pt));
+    label(operation,center+(0,-1.18),minorTextPen);
 }
 
 pair[] top={(0,2.55),(3.1,2.55),(6.2,2.55),(9.3,2.55)};

@@ -6,11 +6,15 @@ import three;
 // after importing bookstyle.
 settings.render = 8;
 
-pen textPen = black;
+pen textPen = black + fontsize(7pt);
+pen annotationTextPen = black + fontsize(7pt);
+pen minorTextPen = black + fontsize(6pt);
 pen axisPen = black + linewidth(0.6pt);
 pen helperPen = black + linewidth(0.45pt);
 pen tickPen = black + linewidth(0.35pt);
 pen dashedHelperPen = black + linewidth(0.6pt) + dashed;
+
+defaultpen(textPen);
 
 pen c1 = rgb(0, 0.4470, 0.7410);
 pen c2 = rgb(0.8500, 0.3250, 0.0980);
@@ -69,14 +73,14 @@ void drawBookAxes(real xmin, real xmax, real ymin, real ymax,
         if(abs(x-yAxisX) > 1e-8) {
             draw((x,xAxisY-xTickHalf)--(x,xAxisY+xTickHalf),tickPen);
             label("$"+string(x)+"$",(x,xAxisY-0.030*dy),S,
-                  black+fontsize(7pt));
+                  minorTextPen);
         }
     }
     for(real y : yTicks) {
         if(abs(y-xAxisY) > 1e-8) {
             draw((yAxisX-yTickHalf,y)--(yAxisX+yTickHalf,y),tickPen);
             label("$"+string(y)+"$",(yAxisX-0.030*dx,y),W,
-                  black+fontsize(7pt));
+                  minorTextPen);
         }
     }
 
@@ -95,5 +99,5 @@ void bookDot(pair z, real outerSize=3.2pt, real innerSize=2.4pt)
 void bookOrigin(pair z=(0,0))
 {
     dot(z,black+3.2pt);
-    label("$O$",z,SW,black+fontsize(7pt));
+    label("$O$",z,SW,minorTextPen);
 }

@@ -4,8 +4,7 @@ settings.tex = "xelatex";
 settings.outformat = "pdf";
 texpreamble("\usepackage{ctex}");
 
-size(5.5cm,5.5cm,IgnoreAspect);
-defaultpen(fontsize(9pt));
+size(4cm,4cm,keepAspect=false);
 
 real xmin=155, xmax=190, ymin=35, ymax=50;
 drawBookAxes(xmin,xmax,ymin,ymax,

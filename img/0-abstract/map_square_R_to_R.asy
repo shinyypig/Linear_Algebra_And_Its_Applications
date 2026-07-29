@@ -4,7 +4,6 @@ settings.tex = "xelatex";
 settings.outformat = "pdf";
 
 size(6cm,5cm,keepAspect=true);
-defaultpen(fontsize(9pt));
 
 real xmin=-2, xmax=2, ymin=-1.2, ymax=4.2;
 drawBookAxes(xmin,xmax,ymin,ymax,

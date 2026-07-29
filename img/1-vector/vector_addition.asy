@@ -4,8 +4,7 @@ settings.tex = "xelatex";
 settings.outformat = "pdf";
 texpreamble("\usepackage{bm}");
 
-size(4.5cm);
-defaultpen(fontsize(9pt));
+size(4cm);
 
 real axisMax=4.3;
 pair O=(0,0);

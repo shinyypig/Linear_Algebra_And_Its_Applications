@@ -38,7 +38,10 @@ texpreamble("\\usepackage{bm}");
   第二对象和合成结果。
 - 浅色填充使用公共混合色，如 `c2Fill10`、`c3Fill18`、`c5Fill18`，不要在
   单张图片中重复计算近似颜色。
-- 正文对象标签使用 9 pt，刻度和次要标注使用 7 pt。
+- 正文对象标签使用公共样式 `textPen`（9 pt），区域说明使用
+  `annotationTextPen`（8 pt），刻度和次要标注使用
+  `minorTextPen`（7 pt）。顶层图片不再重复调用
+  `defaultpen`；`bookstyle.asy` 已统一设置默认文字样式。
 
 ## 3. 线条与箭头
 
@@ -82,6 +85,14 @@ texpreamble("\\usepackage{bm}");
 
 - 每个 `.asy` 文件只绘制一张图，文件名沿用原有 `snake_case` 名称。
 - 数学角色和非显然的深度处理需要注释，重复样式放入 `bookstyle.asy`。
-- 正文只引用生成的 `.pdf`，不直接引用 `.asy`。
+- 正文只引用生成的 `.pdf`，不直接引用 `.asy`。PDF 必须按最终
+  物理尺寸生成，并在正文中使用不带 `width`、`height` 或
+  `scale` 的 `\includegraphics` 以 1:1 比例插入；不要在
+  LaTeX 中再次缩放，否则文字、线宽、箭头和圆点会随缩放比例改变。需要调整
+  图形占用空间时，应修改 `.asy` 中的 `size(...)`。
+- 并排图片的容器宽度只负责排版，必须大于图片的自然宽度，不用于缩放图片。
+- 三维透明图片的封装脚本会读取顶层 `.asy` 的单参数
+  `size(...)`，并将该尺寸写入 PDF；因此三维图应使用
+  `size(4.5cm)` 这类单参数形式。
 - 正常构建运行 `./build.sh`；`latexmkrc` 会按需将 `.asy` 转换为 `.pdf`，并
   删除 OpenGL 渲染产生的 `*__.ps` 临时文件。

@@ -4,8 +4,7 @@ settings.tex = "xelatex";
 settings.outformat = "pdf";
 texpreamble("\usepackage{ctex}");
 
-size(7cm,5.5cm,keepAspect=true);
-defaultpen(fontsize(9pt));
+size(4cm,keepAspect=true);
 
 real a1min=-4.5;
 real a1max=4.5;
@@ -36,19 +35,16 @@ for(int i=1; i <= samples; ++i) {
     real a1=-intersection+2*intersection*i/samples;
     discriminantCurve=discriminantCurve--discriminantPoint(a1);
 }
-draw(discriminantCurve,c2+linewidth(0.8pt));
+draw(discriminantCurve,c1+linewidth(0.8pt));
 
 real[] noTicks;
 drawBookAxes(a1min,a1max,a0min,a0max,noTicks,noTicks,"$a_1$","$a_0$");
 
-label("$\Delta_2<0$",(1,2.75),black+fontsize(9pt));
-label("没有实根",(1,2.15),black+fontsize(8pt));
+label("$\Delta_2<0$",(1.5,2.75),textPen);
 
-label("$\Delta_2>0$",(1.5,-1.05),black+fontsize(9pt));
-label("两个不同实根",(1.5,-1.65),black+fontsize(8pt));
+label("$\Delta_2>0$",(1.5,-1.05),textPen);
 
-label("重根 $\Delta_2=0$",(-2.65,2.05),
-      black+fontsize(8pt));
+label("$\Delta_2=0$",(-2.65,2.05),annotationTextPen);
 
 bookOrigin();
 shipout(bbox(currentpicture,0.5mm,p=invisible));

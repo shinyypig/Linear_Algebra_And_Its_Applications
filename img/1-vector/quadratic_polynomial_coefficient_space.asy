@@ -7,8 +7,7 @@ settings.tex = "xelatex";
 settings.outformat = "png";
 currentlight.background=(settings.user == "transparent-black;") ? black : white;
 
-size(7cm);
-defaultpen(fontsize(9pt));
+size(4cm);
 currentprojection=orthographic(4,-10,4);
 
 triple conePoint(pair t)
@@ -37,4 +36,4 @@ label("$a_0$",(2.7,0,0)+labelOffset,E,textPen);
 label("$a_1$",(0,2.7,0)+labelOffset,E,textPen);
 label("$a_2$",(0,0,2.7)+labelOffset,N,textPen);
 dot(labelOffset*0.4,black+2.4pt);
-label("$O$",labelOffset,SW,black+fontsize(7pt));
+label("$O$",labelOffset,SW,minorTextPen);

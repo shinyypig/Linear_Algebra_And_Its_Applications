@@ -1,6 +1,11 @@
 \documentclass{standalone}
 \usepackage{graphicx}
+\providecommand{\ImageSize}{5.5cm}
 
 \begin{document}
-\includegraphics{\ImageFile}
+\includegraphics[
+    width=\ImageSize,
+    height=\ImageSize,
+    keepaspectratio
+]{\ImageFile}
 \end{document}

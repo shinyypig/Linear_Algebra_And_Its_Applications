@@ -4,8 +4,7 @@ settings.tex = "xelatex";
 settings.outformat = "pdf";
 texpreamble("\usepackage{ctex}");
 
-size(7cm,5.5cm,keepAspect=true);
-defaultpen(fontsize(9pt));
+size(4cm,keepAspect=true);
 
 real pmin=-4.5;
 real pmax=4.5;
@@ -40,20 +39,16 @@ for(int i=1; i <= 2*samples; ++i) {
     real t=-tmax+2*tmax*i/(2*samples);
     discriminantCurve=discriminantCurve--cuspPoint(t);
 }
-draw(discriminantCurve,c2+linewidth(0.8pt));
+draw(discriminantCurve,c1+linewidth(0.8pt));
 
 real[] noTicks;
 drawBookAxes(pmin,pmax,qmin,qmax,noTicks,noTicks,"$p$","$q$");
 
-label("$\Delta_3>0$",(-3.1,1),black+fontsize(9pt));
-label("三个不同实根",(-3.1,0.4),black+fontsize(8pt));
+label("$\Delta_3>0$",(-3.1,1),textPen);
 
-label("$\Delta_3<0$",(1.5,-0.80),black+fontsize(9pt));
-label("一个实根",(1.5,-1.40),black+fontsize(8pt));
-label("一对共轭复根",(1.5,-2.00),black+fontsize(8pt));
+label("$\Delta_3<0$",(1.5,-0.80),textPen);
 
-label("重根 $\Delta_3=0$",(-2.65,-2.35),
-      black+fontsize(8pt));
+label("$\Delta_3=0$",(-2.65,-2.35),annotationTextPen);
 
 bookOrigin();
 shipout(bbox(currentpicture,0.5mm,p=invisible));

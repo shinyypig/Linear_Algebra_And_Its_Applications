@@ -7,8 +7,7 @@ settings.outformat = "png";
 currentlight.background=(settings.user == "transparent-black;") ? black : white;
 texpreamble("\usepackage{bm}");
 
-size(4.5cm);
-defaultpen(fontsize(9pt));
+size(4cm);
 currentprojection=orthographic(4,-4,2);
 
 triple O=(0,0,0);
@@ -29,5 +28,5 @@ draw(O+faceOffset--(1,1,1.5)+faceOffset,
      c1+linewidth(0.8pt),arrow=vectorArrow3,arrowheadlight=nolight);
 
 dot(O+faceOffset,black+2.4pt);
-label("$O$",O+labelOffset,SW,black+fontsize(7pt));
-label("$\bm{v}$",(1.08,1.08,1.62)+labelOffset,E,textPen);
+label("$O$",O+labelOffset,SW,minorTextPen);
+label("$\bm{v}$",(0.9,0.9,1.2)+labelOffset,E,textPen);

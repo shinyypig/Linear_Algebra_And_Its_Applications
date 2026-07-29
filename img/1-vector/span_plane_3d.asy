@@ -7,8 +7,7 @@ settings.outformat = "png";
 currentlight.background=(settings.user == "transparent-black;") ? black : white;
 texpreamble("\usepackage{bm}");
 
-size(4.5cm);
-defaultpen(fontsize(9pt));
+size(4cm);
 currentprojection=orthographic(4,-4,2);
 
 triple O=(0,0,0);
@@ -42,7 +41,7 @@ label("$y$",(0,2.3,0),E,textPen);
 label("$z$",(0,0,1.8),N,textPen);
 
 dot(O+faceOffset,black+2.4pt);
-label("$O$",O+labelOffset,SW,black+fontsize(7pt));
+label("$O$",O+labelOffset,SW,minorTextPen);
 
 // u=(1,0,0), v=(0,1,1).
 // Lift coplanar decorations slightly towards the camera to avoid z-fighting.
@@ -51,10 +50,8 @@ triple vEnd = (0, 0.707, 0.707);
 
 draw((O + faceOffset)--(uEnd + faceOffset), c1 + linewidth(0.8pt),
      arrow=vectorArrow3, arrowheadlight=nolight);
-label("$\bm{u}$", uEnd + labelOffset, S,
-      textPen + fontsize(9pt));
+label("$\bm{u}$", uEnd + labelOffset, S, textPen);
 
 draw((O + faceOffset)--(vEnd + faceOffset), c2 + linewidth(0.8pt),
      arrow=vectorArrow3, arrowheadlight=nolight);
-label("$\bm{v}$", vEnd + labelOffset, E,
-      textPen + fontsize(9pt));
+label("$\bm{v}$", vEnd + labelOffset, E, textPen);
