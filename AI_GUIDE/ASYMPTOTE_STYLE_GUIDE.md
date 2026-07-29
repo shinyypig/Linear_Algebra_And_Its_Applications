@@ -95,4 +95,7 @@ texpreamble("\\usepackage{bm}");
   `size(...)`，并将该尺寸写入 PDF；因此三维图应使用
   `size(4.5cm)` 这类单参数形式。
 - 正常构建运行 `./build.sh`；`latexmkrc` 会按需将 `.asy` 转换为 `.pdf`，并
-  删除 OpenGL 渲染产生的 `*__.ps` 临时文件。
+  删除 OpenGL 渲染产生的 `*__.ps` 临时文件。三维渲染命令会自动适配平台：
+  Linux 检测到 `xvfb-run` 时通过虚拟显示运行 Asymptote；macOS、Windows 以及
+  未安装 `xvfb-run` 的图形环境直接调用 `asy`，不要在图片源码中硬编码
+  `xvfb-run`。

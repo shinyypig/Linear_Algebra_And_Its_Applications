@@ -1,6 +1,20 @@
 $hash_calc_ignore_pattern{'pdf'} = '^(/CreationDate|/ModDate|/ID)';
 $hash_calc_ignore_pattern{'ps'} = '^%%CreationDate';
 
+sub asymptote_command {
+    require File::Spec;
+
+    # xvfb-run is a Linux-only compatibility layer for headless OpenGL.
+    # macOS and Windows provide their graphics context directly to Asymptote.
+    if ($^O eq 'linux') {
+        for my $directory (File::Spec->path()) {
+            my $xvfb_run = File::Spec->catfile($directory, 'xvfb-run');
+            return ('xvfb-run', '-a', 'asy') if -x $xvfb_run;
+        }
+    }
+    return ('asy');
+}
+
 # Build external Asymptote sources on demand when \includegraphics requests
 # the corresponding PDF.  Asymptote itself uses XeLaTeX for figure labels.
 # OpenGL does not export a transparent canvas.  Render against black and white,
@@ -37,11 +51,12 @@ sub asymptote_to_pdf {
 
     chdir $figure_dir or return 1;
     my $ret = 0;
+    my @asy_command = asymptote_command();
     if ($transparent_render) {
         for my $background ('black', 'white') {
             my $render_name = "$figure_name-$background";
             $ret = system(
-                'xvfb-run', '-a', 'asy',
+                @asy_command,
                 '-user', "transparent-$background",
                 '-dir', $project_dir, '-f', 'pdf',
                 '-o', $render_name, "$figure_name.asy"
@@ -58,7 +73,7 @@ sub asymptote_to_pdf {
     }
     else {
         $ret = system(
-            'xvfb-run', '-a', 'asy', '-dir', $project_dir, '-f', 'pdf',
+            @asy_command, '-dir', $project_dir, '-f', 'pdf',
             '-o', $figure_name, "$figure_name.asy"
         );
     }
