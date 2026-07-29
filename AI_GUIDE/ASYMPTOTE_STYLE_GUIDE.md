@@ -9,10 +9,11 @@
 - 三维图使用 OpenGL 深度缓冲自动处理遮挡，并以高分辨率图像嵌入 PDF。
 - 三维图必须使用透明背景：顶层文件设置 `settings.outformat = "png";`，并按
   `settings.user` 在纯黑、纯白背景之间切换。Asymptote 的离屏 OpenGL 渲染不支持
-  透明画布，因此构建脚本会渲染两次，由 `scripts/recover_asymptote_alpha.py`
+  透明画布，因此构建脚本会渲染两次，由 `scripts/recover_asymptote_alpha.lua`
   恢复前景颜色与 alpha，再通过
   `scripts/asymptote_transparent_wrapper.tex` 封装为带 PDF `SMask` 的透明 PDF。
-  该脚本依赖 Pillow。不要使用
+  恢复脚本由 TeX Live 自带的 `texlua` 执行，并使用其内置 zlib 模块，因此不需要
+  Python、Pillow 或 ImageMagick 等额外依赖。不要使用
   `currentlight.background=black+opacity(0);`，它只对 WebGL 透明背景有效，离屏
   PNG/PDF 会得到不透明黑底。
 - 公共三维渲染倍率由 `bookstyle.asy` 中的 `settings.render` 控制。

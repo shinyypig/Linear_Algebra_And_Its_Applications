@@ -33,7 +33,7 @@ sub asymptote_to_pdf {
     my $transparent_wrapper =
         "$project_dir/scripts/asymptote_transparent_wrapper.tex";
     my $alpha_recovery =
-        "$project_dir/scripts/recover_asymptote_alpha.py";
+        "$project_dir/scripts/recover_asymptote_alpha.lua";
     rdb_ensure_files_here("$project_dir/bookstyle.asy");
     rdb_ensure_files_here($transparent_wrapper);
     rdb_ensure_files_here($alpha_recovery);
@@ -65,7 +65,7 @@ sub asymptote_to_pdf {
         }
         if ($ret == 0) {
             $ret = system(
-                'python3', $alpha_recovery,
+                'texlua', $alpha_recovery,
                 "$figure_name-black.png", "$figure_name-white.png",
                 "$figure_name.png"
             );
