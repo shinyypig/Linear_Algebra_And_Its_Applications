@@ -6,16 +6,10 @@
             ylabel={鞋码},
             xmin=155, xmax=190,
             ymin=35, ymax=50,
-            ticklabel style={font=\small},
-            label style={font=\small},
+            ticklabel style={font=\scriptsize, text=black},
+            label style={font=\small, text=black},
             axis lines=middle,
-            legend cell align=left,
-            legend style={
-                    anchor=north east,
-                    font=\tiny,
-                    draw=none,
-                    fill=none
-                }
+            axis line style={black, semithick, -latex},
         ]
         \addplot[
             only marks,
@@ -23,6 +17,7 @@
             c1,
             mark size=2pt,
             fill=c1!60,
+            forget plot,
         ] coordinates {
                 (158.3,37.5) (161.2,38.0) (163.7,39.5)
                 (165.4,38.5) (167.8,40.5) (169.1,39.0)

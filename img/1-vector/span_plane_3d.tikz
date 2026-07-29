@@ -2,16 +2,19 @@
     \begin{axis}[
             view={45}{20},
             width=4.5cm,
-            % height=5.5cm,
-            xlabel=$ x $, ylabel=$ y $, zlabel=$ z $,
-            ticklabel style={font=\tiny},
+            xlabel={\(x\)},
+            ylabel={\(y\)},
+            zlabel={\(z\)},
+            ticklabel style={font=\tiny, text=black},
+            label style={font=\small, text=black},
             xmin=-2.5, xmax=2.5,
             ymin=-2.5, ymax=2.5,
             zmin=-2, zmax=2,
             axis lines=center,
+            axis line style={black, semithick, -latex},
             axis equal image,
             xtick=\empty, ytick=\empty, ztick=\empty,
-            % clip=false,
+            clip=false,
         ]
         % Large plane y=z, auto-clipped by pgfplots to the axis box
         \addplot3[
@@ -24,22 +27,24 @@
             domain=-1.2:1.2,
             y domain=-1.2:1.2,
             samples=2,
+            z buffer=sort,
+            forget plot,
         ] ({x}, {y}, {y});
 
         % Origin
-        \addplot3[only marks, mark=*, mark size=0.5pt, black]
+        \addplot3[only marks, mark=*, mark size=0.8pt, black, forget plot]
         coordinates {(0,0,0)};
-        \node[font=\scriptsize, anchor=north east]
-        at (axis cs:0,0,0) {$O$};
+        \node[font=\scriptsize, text=black, anchor=north east]
+        at (axis cs:0,0,0) {\(O\)};
 
         % Vector u = (2,0,0)
-        \addplot3[c1, thick, -latex]
+        \addplot3[c1, thick, -latex, forget plot]
         coordinates {(0,0,0) (1,0,0)};
-        \node[font=\small, text=c1, anchor=north] at (axis cs:1.1,0,0) {$\bm{u}$};
+        \node[font=\small, text=black, anchor=north] at (axis cs:1.1,0,0) {\(\bm{u}\)};
 
         % Vector v = (0,1.5,1.5)
-        \addplot3[c2, thick, -latex]
+        \addplot3[c2, thick, -latex, forget plot]
         coordinates {(0,0,0) (0,1,1)};
-        \node[font=\small, text=c2, anchor=west] at (axis cs:0,1,1) {$\bm{v}$};
+        \node[font=\small, text=black, anchor=west] at (axis cs:0,1,1) {\(\bm{v}\)};
     \end{axis}
 \end{tikzpicture}

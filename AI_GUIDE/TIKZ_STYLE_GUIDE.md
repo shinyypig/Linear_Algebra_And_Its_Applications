@@ -1,138 +1,198 @@
 # TikZ 绘图风格指南
 
-本文档根据仓库中现有的 13 个 TikZ 图形总结而成，供后续 AI 或人工新增、修改插图时参考。样本主要来自 `img/0-abstract/` 与 `img/1-vector/`，包括函数图像、集合的像与原像、二维向量、三维张成空间和有限几何变换。
+本指南规定本项目新增和修改 TikZ 插图时应遵循的统一风格。规范以
+`img/0-abstract/` 与 `img/1-vector/` 中的实际插图为基础，适用于函数图像、
+集合的像与原像、二维向量、三维空间对象和有限几何变换。
 
-## 1. 风格定位
+目标是得到简洁、克制、便于印刷的教材插图：图形负责呈现数学关系，正文和
+图注负责解释结论。
 
-本项目的插图属于**简洁、克制、强调数学关系的教材示意图**，目标不是装饰性或写实感，而是让读者快速分辨：
+## 1. 硬性规则
 
-1. 当前讨论的主要数学对象；
-2. 与它比较或共同作用的第二对象；
-3. 运算结果、选中区域或结论；
-4. 仅用于理解结构的辅助线、投影与无效区域。
+以下规则优先级最高，新图和修改后的旧图都应满足。
 
-整体视觉语言可以概括为：**白底、少量高辨识度色彩、清晰坐标结构、轻量辅助信息、标签就近放置**。一幅图通常只表达一个核心概念；成组比较时，通过相同尺寸、坐标范围和视觉编码保持一致。
+1. 所有箭头统一使用 `-latex`，不要混用 `Stealth`、`->` 或其他箭头。
+2. 所有文字和数学符号统一使用 `black`，包括对象标签、坐标轴标签、刻度、
+   原点和说明文字。
+3. 坐标轴、辅助线、中性轮廓和中性标记统一使用 `black`。
+4. 不使用 `black!xx` 灰阶，也不要通过不同深浅的黑色制造额外层级。
+5. 彩色只用于数学图元和区域，不用于文字。
+6. 每个 `.tikz` 文件只包含一个 `tikzpicture` 片段，不包含完整 LaTeX 文档。
+7. 没有实际图例时，不保留 `legend style`、`legend cell align` 等无效配置。
+
+推荐的坐标轴写法为：
+
+```tex
+axis lines=middle,
+axis line style={black, semithick, -latex},
+ticklabel style={font=\scriptsize, text=black},
+label style={font=\small, text=black},
+```
 
 ## 2. 颜色系统
 
-颜色定义位于 `simplebook.cls`。新增图形应优先复用已有颜色名，不要在单个 `.tikz` 文件内另建近似色。
+颜色定义在 `simplebook.cls` 中。新增插图只能优先复用已有颜色名，不要在单个
+`.tikz` 文件中另建近似色。
 
-| 色名 | RGB（0--255） | 十六进制 | 当前语义 |
-|---|---:|---:|---|
-| `c1` | 0, 114, 189 | `#0072BD` | 第一主色；主函数、主向量、关键轮廓、数据点 |
-| `c2` | 217, 83, 25 | `#D95319` | 第二主色；对照对象、第二向量、限制/排除区域、变换提示 |
-| `c3` | 237, 177, 32 | `#EDB120` | 面或空间对象；目前用于三维张成平面 |
-| `c4` | 126, 47, 142 | `#7E2F8E` | 调色板保留色，现有插图尚未形成固定语义 |
-| `c5` | 119, 172, 48 | `#77AC30` | 第三语义色；合成结果、选中区间、像/原像对应区域 |
-| `c6` | 77, 190, 238 | `#4DBEEE` | 调色板保留色 |
-| `c7` | 162, 20, 47 | `#A2142F` | 调色板保留色 |
+| 色名 | RGB | 主要用途 |
+|---|---:|---|
+| `c1` | 0, 114, 189 | 第一主对象：主函数、第一向量、数据点、关键轮廓 |
+| `c2` | 217, 83, 25 | 第二对象：第二向量、限制区域、几何操作、局部强调 |
+| `c3` | 237, 177, 32 | 面和曲面对象 |
+| `c5` | 119, 172, 48 | 合成结果、像或原像对应区域 |
+| `c4`、`c6`、`c7` | — | 保留色；现有语义色不足时才使用 |
 
-### 颜色使用规则
+颜色规则：
 
-- 优先按照 `c1 → c2 → c5` 的顺序分配离散对象；这与现有向量加法图一致。
-- 同一个对象的线条和标签使用同色，例如蓝色向量配蓝色 `\bm v` 标签。
-- 主对象一般使用纯色实线；辅助对象使用灰色、虚线或降低透明度，避免与主对象争夺注意力。
-- 限制域、排除域等背景区域使用 `c2` 且 `fill opacity=0.1`。
-- 集合的像、原像或被强调的连续区域使用 `c5` 且 `fill opacity=0.18`。
-- 三维平面使用非常浅的 `c3!18`，边面线可用 `c3!40`，整体透明度约 `0.65`。
-- 普通辅助线常用 `black`；轴线/刻度可用  `black`；不要用饱和黑色画大量次要结构。
-- 不要只依赖红绿差异传递含义；同时使用实线/虚线、填充/轮廓、标签或位置进行区分。
+- 离散对象通常按 `c1 → c2 → c5` 分配。
+- 文字始终是 `black`，即使文字标注的是彩色对象。
+- 主体曲线和向量使用纯色；区域通过同色透明填充表达。
+- 限制或排除区域通常使用 `c2, fill opacity=0.1`。
+- 像或原像区域通常使用 `c5, fill opacity=0.18`。
+- 三维面使用 `c3!18` 浅填充，网格可使用 `c3!40` 或 `c3!45`。
+- `c1!5`、`c3!18` 这类语义色浅填充可以使用；禁止使用 `black!xx`。
+- 不要仅依赖颜色表达差异，还要同时使用位置、线型、标记形状或直接标签。
 
 ## 3. 线条、箭头与标记
 
-### 层级
-
-| 元素 | 推荐样式 |
+| 数学角色 | 推荐样式 |
 |---|---|
 | 主函数、普通向量、主要轮廓 | `thick` + 语义色 |
-| 最关键的单一对象 | `ultra thick`，谨慎使用 |
-| 投影线、构造线、平行四边形补线 | `black!28, densely dashed, semithick` |
-| 一般对应关系虚线 | `dashed, thick` |
-| 三维面网格或旋转参考圆 | `thin` + 浅色 |
-| 数据点 | `mark=*, mark size=1.6pt` 至 `2pt` |
-| 原点 | 黑色或 `black` 实心点，约 `0.5pt` 至 `1.2pt` |
+| 强调区间或关键局部 | `very thick`；`ultra thick` 谨慎使用 |
+| 辅助线、投影线、构造线 | `black, densely dashed, semithick` |
+| 明确的数学边界或对应关系 | `black, dashed, thick` |
+| 坐标轴 | `black, semithick, -latex` |
+| 三维面网格、旋转参考圆 | `thin` |
+| 普通数据点 | `mark=*, mark size=1.6pt` 至 `2pt` |
+| 二维原点 | `black, mark size=1.2pt` |
+| 三维原点 | `black, mark size=0.8pt` |
 
-箭头整体偏紧凑，不使用夸张箭头。新增图建议统一使用 `-latex`。
+所有具有箭头的对象都直接写 `-latex`：
 
-## 4. 坐标图与版面
+```tex
+\addplot[c1, thick, -latex] coordinates {(0,0) (2,1)};
+```
 
-### 二维 `pgfplots`
+不要使用全局 `>=latex` 代替对象自身的箭头声明；显式写出箭头可以避免局部样式
+继承不清。
 
-- 函数示意图常用 `width=6cm, height=5cm`。
-- 向量示意图常用 `width=4.5cm, height=4.5cm`。
-- 数据散点图可用 `5.5cm × 5.5cm`。
-- 坐标轴穿过原点：`axis lines=middle`；需要明确正方向时增加 `axis line style=latex`。
-- 几何比例重要时使用 `axis equal image`。
-- 轴标签通常为 `font=\small`，刻度为 `\scriptsize`；空间紧张或三维图中可降为 `\tiny`。
-- 坐标范围应留出少量呼吸空间，使曲线端点、箭头和标签不贴边。
-- 只有标签确实需要越出坐标框时才使用 `clip=false`。
-- 当前图形不强调网格，默认不添加 `grid`。
-- 没有实际图例时不要保留 `legend style` 配置；优先用贴近对象的直接标签。
+## 4. 二维坐标图
 
-### 三维 `pgfplots`
+### 4.1 尺寸
 
-- 统一视角优先采用 `view={45}{20}`。
-- 常用 `width=4.5cm`、`axis lines=center`、`axis equal image`。
-- 为突出几何对象，可隐藏数值刻度：`xtick=\empty, ytick=\empty, ztick=\empty`。
-- 空间线或平面先画，原点和向量后画，保证关键对象位于上层。
-- 曲面只保留足以说明几何形状的采样，例如平面使用 `samples=2`，避免无意义的密集网格。
+- 函数示意图：`width=6cm, height=5cm`。
+- 二维向量图：`width=4.5cm, height=4.5cm`。
+- 数据散点图：`width=5.5cm, height=5.5cm`。
+- 同组对比图必须使用相同尺寸、坐标范围和字体。
 
-### 原生 TikZ 几何图
+### 4.2 坐标配置
 
-- 对重复单元先定义局部样式，再用命令与 `scope[shift=...]` 排列。
-- 成组图采用规整的行列间距和完全一致的单元尺寸。
-- 图形填充接近白色，例如 `fill=c1!5`；边界为 `black!70, thick`。
-- 变换轴或操作提示使用 `c2`，不改变承载对象本身的基础样式。
+- 坐标轴穿过原点时使用 `axis lines=middle`。
+- 坐标轴使用 `axis line style={black, semithick, -latex}`。
+- 几何比例承担数学含义时使用 `axis equal image`。
+- 刻度统一为 `\scriptsize`，轴标签统一为 `\small`。
+- 函数图可用
+  `xlabel style={anchor=west}, ylabel style={anchor=south}` 避免轴标签压线。
+- 默认不显示网格。
+- 只有标签或箭头确实需要越出坐标框时才使用 `clip=false`。
+- 坐标范围应为箭头、端点和标签保留少量空间。
 
-## 5. 标签与数学排版
+### 4.3 绘制顺序
 
-- 数学量使用数学模式；向量统一使用粗体小写字母，如 `\(\bm v\)`、`\(\bm u+\bm v\)`。
-- 原点统一标为 `\(O\)`。
-- 对象标签通常使用 `\small`，刻度、点编号和单元说明使用 `\scriptsize`。
-- 最关键的单一向量标签可以使用 `\small\bfseries`，其余标签通常不加粗。
-- 标签颜色跟随对象；说明文字、原点和刻度使用黑色或灰黑色。
-- 使用 `anchor`、`above`、`below right`、`left=2pt` 等进行小幅人工避让，使标签靠近对象且不压线。
-- 坐标值优先交给坐标轴刻度表达；只在教学意图需要时增加手工刻度或文字。
-- 图内只放短标签。完整结论、解释和图的标题放在外层 `caption` / `subcaption` 中。
+二维图从背景到前景按以下顺序组织：
 
-## 6. 信息层级与绘制顺序
-
-推荐从背景到前景按以下顺序写代码：
-
-1. 无效域、限制域等低透明度背景填充；
-2. 平面、轨迹或浅色构造区域；
-3. 辅助线、投影线和对应关系虚线；
-4. 主函数、主向量和主要图形轮廓；
+1. 限制域和低透明度背景；
+2. 连续选区或像、原像区域；
+3. 辅助线和投影线；
+4. 主函数、向量和主要轮廓；
 5. 端点、原点和关键标记；
 6. 文字标签。
 
-若填充覆盖过曲线，应在填充后重画一次主曲线。现有原像示意图采用了这一做法。
+如果填充遮住主曲线，应在填充后重新绘制一次主曲线。
 
-## 7. 构图原则
+## 5. 三维坐标图
 
-- **一图一意**：每幅图优先回答一个问题，不堆叠无关标注。
-- **关系优先**：用位置、颜色和线型直接展示关系，减少图例和长文字。
-- **系列一致**：对比图必须复用坐标范围、尺寸、字体和颜色含义，只改变要比较的变量。
-- **主次明确**：彩色实线属于数学主体；浅灰虚线只解释主体；透明填充表达集合或范围。
-- **适度留白**：标签、箭头尖端与边界之间保留空间，避免图形显得拥挤。
-- **教材尺度**：图会被缩放后嵌入正文或子图，必须在约 `0.3\textwidth` 至 `0.4\linewidth` 下仍可辨认。
-- **几何真实**：角度、方向、相对长度和坐标比例只要承担数学含义，就应准确绘制。
+### 5.1 基础配置
 
-## 8. 代码组织习惯
+- 常规三维图优先使用 `view={45}{20}`。
+- 特殊曲面的主轴在该视角下不清楚时，可以局部调整视角，但同组图必须一致。
+- 小型三维图通常使用 `width=4.5cm`。
+- 使用 `axis lines=center`、`axis equal image`。
+- 坐标轴仍使用 `black, semithick, -latex`。
+- 数值刻度通常隐藏：
 
-- 每个文件只保存 `tikzpicture` 片段，不包含 `\documentclass` 或完整文档结构。
-- 文件放在对应章节目录下，采用描述内容的英文 `snake_case` 文件名。
-- 使用 4 空格缩进；较长选项逐项换行，并保留尾逗号。
-- `axis` 配置、背景、主体、辅助结构、标签按逻辑分段。
-- 复杂或重复元素定义为局部 `.style`；重复图元封装为局部命令。
-- `\addplot` 若不应进入图例，显式写 `forget plot`。
-- 注释用于说明数学角色或非显然参数，不逐行复述代码。
-- 优先使用 `axis cs:` 放置 `pgfplots` 中的节点，避免坐标系混淆。
-- 新图应复用 `simplebook.cls` 已加载的 TikZ/PGFPlots 库和颜色，除非确有新需求。
+```tex
+xtick=\empty,
+ytick=\empty,
+ztick=\empty,
+```
+
+- 三维刻度可使用 `\tiny`，轴标签仍使用 `\small`。
+
+### 5.2 曲面采样与透明度
+
+- 平面只需 `samples=2`。
+- 参数曲面只使用足以辨认形状的采样，不追求无意义的高密度。
+- 半透明曲面使用浅色填充和较淡网格，例如：
+
+```tex
+shader=faceted,
+colormap={surfacecolor}{color=(c3!18) color=(c3!18)},
+faceted color=c3!40,
+fill opacity=0.6,
+thin,
+```
+
+### 5.3 深度排序和坐标轴遮挡
+
+`z buffer=sort` 只负责对同一个三维曲面的网格面排序，不会把坐标轴、普通节点和
+曲面放入同一个深度系统。
+
+- 曲面自身出现网格面前后顺序错误时，给曲面添加 `z buffer=sort`。
+- 不要强制把全部坐标轴覆盖在曲面前方，以免破坏三维对象的前后关系。
+- 希望表现真实的“后半轴被遮挡、前半轴可见”时，应关闭自动坐标轴，
+  使用 `axis lines=none`，再手工分段绘制：
+  1. 先画后半轴；
+  2. 再画曲面；
+  3. 最后画前半轴和标签。
+- 坐标轴若与曲面几何重合，深度排序没有唯一结果。此时必须通过绘制顺序明确
+  教材想表达的视觉优先级。
+
+## 6. 原生 TikZ 几何图
+
+- 重复单元先定义局部 `.style` 和命令，再用 `scope[shift=...]` 排列。
+- 同组单元具有完全一致的尺寸、间距、标签位置和颜色语义。
+- 普通轮廓和所有文字使用 `black`。
+- 承载对象可使用 `fill=c1!5`；几何操作可以使用 `c2`。
+- 反射轴使用虚线；旋转箭头使用 `c2, thick, -latex`。
+- 局部样式中仍显式写 `black`，不要使用 `black!xx`。
+
+## 7. 标签与数学排版
+
+- 所有标签使用 `text=black`。
+- 数学量使用 `\(...\)`，不要在同一组图中混用 `$...$`。
+- 向量使用粗体小写字母，如 `\(\bm u\)`、`\(\bm u+\bm v\)`。
+- 原点统一写作 `\(O\)`。
+- 对象标签使用 `\small`；刻度、点编号和辅助说明使用 `\scriptsize`。
+- 只有最关键的单一对象可以使用 `\bfseries`。
+- 标签应靠近对象，但通过 `anchor`、`above`、`left=2pt` 等避免压线。
+- 图内只放短标签；完整解释和标题放在正文与 `caption` 中。
+- `pgfplots` 中的节点优先使用 `axis cs:` 定位。
+
+## 8. 代码组织
+
+- 文件名使用描述性的英文 `snake_case`。
+- 使用 4 空格缩进；多行选项保留尾逗号。
+- 按“坐标配置、背景、辅助结构、主体、标记、标签”的顺序组织代码。
+- 重复图元封装为局部命令；复杂样式定义为局部 `.style`。
+- 不进入图例的 `\addplot` 显式添加 `forget plot`。
+- 注释只解释数学角色、绘制顺序或非显然参数。
+- 删除调试代码、无效图例配置、重复选项和已废弃的注释。
+- 复用 `simplebook.cls` 已加载的 TikZ/PGFPlots 库和颜色。
 
 ## 9. 推荐模板
 
-### 二维函数或向量图
+### 9.1 二维函数或向量图
 
 ```tex
 \begin{tikzpicture}
@@ -142,72 +202,100 @@
             xmin=-0.3, xmax=4.3,
             ymin=-0.3, ymax=4.3,
             axis lines=middle,
+            axis line style={black, semithick, -latex},
             axis equal image,
-            xlabel={$x$},
-            ylabel={$y$},
-            ticklabel style={font=\scriptsize},
-            label style={font=\small},
+            xlabel={\(x\)},
+            ylabel={\(y\)},
+            ticklabel style={font=\scriptsize, text=black},
+            label style={font=\small, text=black},
         ]
         % Auxiliary construction.
-        \addplot[black!28, densely dashed, semithick, forget plot]
+        \addplot[black, densely dashed, semithick, forget plot]
         coordinates {(2,1) (3,3)};
 
         % Primary object.
-        \addplot[c1, thick, -latex]
+        \addplot[c1, thick, -latex, forget plot]
         coordinates {(0,0) (2,1)};
-        \node[font=\small, text=c1, below right=1pt]
-        at (axis cs:1,.5) {$\bm u$};
+        \node[font=\small, text=black, below right=1pt]
+        at (axis cs:1,.5) {\(\bm u\)};
 
         % Origin.
-        \addplot[only marks, mark=*, mark size=1.2pt, black!65, forget plot]
+        \addplot[only marks, mark=*, mark size=1.2pt, black, forget plot]
         coordinates {(0,0)};
-        \node[font=\scriptsize, text=black!72, below left=2pt]
-        at (axis cs:0,0) {$O$};
+        \node[font=\scriptsize, text=black, below left=2pt]
+        at (axis cs:0,0) {\(O\)};
     \end{axis}
 \end{tikzpicture}
 ```
 
-### 原生 TikZ 几何示意图
+### 9.2 三维曲面图
+
+```tex
+\begin{tikzpicture}
+    \begin{axis}[
+            view={45}{20},
+            width=4.5cm,
+            axis lines=center,
+            axis line style={black, semithick, -latex},
+            axis equal image,
+            xlabel={\(x\)},
+            ylabel={\(y\)},
+            zlabel={\(z\)},
+            xtick=\empty,
+            ytick=\empty,
+            ztick=\empty,
+            ticklabel style={font=\tiny, text=black},
+            label style={font=\small, text=black},
+        ]
+        \addplot3[
+            surf,
+            shader=faceted,
+            colormap={surfacecolor}{color=(c3!18) color=(c3!18)},
+            faceted color=c3!40,
+            fill opacity=0.6,
+            thin,
+            samples=2,
+            z buffer=sort,
+            forget plot,
+        ] ({x}, {y}, {y});
+    \end{axis}
+\end{tikzpicture}
+```
+
+### 9.3 原生 TikZ 几何图
 
 ```tex
 \begin{tikzpicture}[
-        >=latex,
-        object/.style={draw=black!70, fill=c1!5, thick},
+        object/.style={draw=black, fill=c1!5, thick},
         primary/.style={c1, thick, -latex},
         secondary/.style={c2, dashed, thick},
-        guide/.style={black!28, densely dashed, semithick},
-        object label/.style={font=\small},
-        note/.style={font=\scriptsize, text=black!72},
+        guide/.style={black, densely dashed, semithick},
+        object label/.style={font=\small, text=black},
+        note/.style={font=\scriptsize, text=black},
     ]
     % Draw in the order: background, guides, objects, markers, labels.
 \end{tikzpicture}
 ```
 
-## 10. AI 生成/修改插图时的执行清单
+## 10. 提交前检查
 
-生成代码前：
+- [ ] 箭头是否全部使用 `-latex`？
+- [ ] 所有文字、坐标轴、辅助线和中性轮廓是否使用 `black`？
+- [ ] 是否完全没有 `black!xx`？
+- [ ] 彩色是否只用于数学图元和区域？
+- [ ] 同组图的尺寸、坐标范围、字体和视角是否一致？
+- [ ] 是否删除了无用图例、重复选项和调试注释？
+- [ ] 标签是否压线、越界、被裁剪或相互遮挡？
+- [ ] 三维曲面是否需要 `z buffer=sort`？
+- [ ] 坐标轴与曲面的前后关系是否符合教学意图？
+- [ ] 是否在正文实际缩放比例下完整编译并查看？
+- [ ] 数学内容是否准确，包括坐标、方向、定义域和端点开闭？
 
-- 明确这幅图唯一要表达的数学关系。
-- 查找同章节或同类型的已有图，复用其尺寸、坐标范围和语义色。
-- 判断是否需要 `pgfplots`：函数、数据、二维/三维坐标对象优先使用；无坐标的有限几何结构优先使用原生 TikZ。
+## 11. 可直接使用的简短提示词
 
-生成代码时：
-
-- 主对象首先使用 `c1`，对照对象使用 `c2`，结果或选区使用 `c5`。
-- 辅助线降为浅灰虚线，区域使用低透明度填充。
-- 直接标注对象，不为少量对象额外创建图例。
-- 维持 `\small` / `\scriptsize` 的紧凑字体层级。
-- 按背景到标签的顺序绘制，必要时重画主轮廓。
-- 与正文符号保持完全一致，尤其是向量粗体、集合名、函数名和端点开闭。
-
-提交前：
-
-- 在正文实际缩放比例下编译查看，而不只检查独立大图。
-- 检查标签是否压线、越界、被裁剪或相互遮挡。
-- 检查颜色语义是否与相邻图一致，并确认灰度打印时仍能靠线型区分。
-- 检查数学准确性，包括坐标、方向、比例、端点、定义域和图层遮挡。
-- 删除无用的 `legend style`、重复配置和调试注释。
-
-## 11. 可直接交给 AI 的简短提示词
-
-> 请为本项目生成一个独立的 `.tikz` 片段。整体采用简洁、克制的数学教材风格：白底，主对象用 `c1` 蓝色，对照或限制用 `c2` 橙色，结果或选区用 `c5` 绿色；辅助结构使用 `black!28` 的细/半粗虚线，区域只用低透明度填充。标签贴近对象，颜色与对象一致，正文数学符号保持一致；对象标签用 `\small`，辅助说明用 `\scriptsize`。函数或坐标对象使用 `pgfplots`，有限几何结构使用原生 TikZ。按背景、辅助结构、主体、标记、标签的顺序绘制，并保证图在约 `0.35\linewidth` 下仍清晰可读。只输出 `tikzpicture` 片段，不创建完整 LaTeX 文档。
+> 请为本项目生成一个独立的 `.tikz` 片段，遵循
+> `AI_GUIDE/TIKZ_STYLE_GUIDE.md`：白底教材风格；所有箭头使用 `-latex`；
+> 所有文字、坐标轴、辅助线、中性轮廓和中性标记使用 `black`，禁止
+> `black!xx`；彩色只用于数学图元和区域，优先使用 `c1`、`c2`、`c3`、`c5`；
+> 对象标签用 `\small`，辅助说明用 `\scriptsize`；按背景、辅助结构、主体、
+> 标记、标签的顺序绘制；只输出 `tikzpicture`，不创建完整 LaTeX 文档。

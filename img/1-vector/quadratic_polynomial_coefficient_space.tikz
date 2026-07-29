@@ -1,4 +1,7 @@
-\begin{tikzpicture}
+\begin{tikzpicture}[
+        back axis/.style={black, semithick, -latex},
+        front axis/.style={black, semithick},
+    ]
     \begin{axis}[
             view={20}{20},
             xmin=-2.5, xmax=2.5,
@@ -11,12 +14,12 @@
             ztick=\empty,
             clip=false,
         ]
-        % Negative half-axes drawn first so they appear behind the cone.
-        \addplot3[thin, black, -latex]
+        % Positive half-axes are behind the cone in this view.
+        \addplot3[back axis, forget plot]
         coordinates {(0,0,0) (2.5,0,0)};
-        \addplot3[thin, black, -latex]
+        \addplot3[back axis, forget plot]
         coordinates {(0,0,0) (0,2.5,0)};
-        \addplot3[thin, black, -latex]
+        \addplot3[back axis, forget plot]
         coordinates {(0,0,0) (0,0,2.5)};
         % The discriminant cone a_1^2 - 4a_0a_2 = 0.
         \addplot3[
@@ -33,21 +36,21 @@
             z buffer=sort,
         ]
         (
-        {x*(1+cos(y))/sqrt(2)},
-        {sqrt(2)*x*sin(y)},
-        {x*(1-cos(y))/sqrt(2)}
+            {x*(1+cos(y))/sqrt(2)},
+            {sqrt(2)*x*sin(y)},
+            {x*(1-cos(y))/sqrt(2)}
         );
-        % Positive half-axes drawn after so they appear in front of the cone.
-        \addplot3[thin, black, -]
+        % Negative half-axes are in front of the cone in this view.
+        \addplot3[front axis, forget plot]
         coordinates {(0,-2.5,0) (0,0,0)};
-        \addplot3[thin, black, -]
+        \addplot3[front axis, forget plot]
         coordinates {(0,0,-2.5) (0,0,0)};
-        \addplot3[thin, black, -]
+        \addplot3[front axis, forget plot]
         coordinates {(-2.5,0,0) (0,0,0)};
         % Axis labels.
-        \node[font=\small, text=black!80] at (axis cs:2.9,0,0) {\(a_0\)};
-        \node[font=\small, text=black!80] at (axis cs:0,2.9,0) {\(a_1\)};
-        \node[font=\small, text=black!80] at (axis cs:0,0,2.9) {\(a_2\)};
+        \node[font=\small, text=black] at (axis cs:2.9,0,0) {\(a_0\)};
+        \node[font=\small, text=black] at (axis cs:0,2.9,0) {\(a_1\)};
+        \node[font=\small, text=black] at (axis cs:0,0,2.9) {\(a_2\)};
         % Origin.
         \addplot3[
             only marks,

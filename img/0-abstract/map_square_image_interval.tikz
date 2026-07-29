@@ -2,13 +2,15 @@
     \begin{axis}[
             width=6cm,
             height=5cm,
-            xlabel=\(x\), ylabel=\(f(x)\),
+            xlabel={\(x\)},
+            ylabel={\(f(x)\)},
             xmin=-2.3, xmax=2.3,
             ymin=-0.5, ymax=4.5,
-            ticklabel style={font=\scriptsize},
-            label style={font=\small},
+            ticklabel style={font=\scriptsize, text=black},
+            label style={font=\small, text=black},
             axis equal image,
             axis lines=middle,
+            axis line style={black, semithick, -latex},
             xlabel style={anchor=west},
             ylabel style={anchor=south},
         ]
@@ -17,6 +19,7 @@
             thick,
             samples=100,
             domain=-2:2,
+            forget plot,
         ] {x^2};
         \addplot[
             c2,
@@ -37,7 +40,7 @@
             opacity=0.6,
             forget plot,
         ] coordinates {(0,0) (0,4)};
-        \node[black,font=\scriptsize] at (axis cs:0.55,-0.3) {\(S\)};
-        \node[black,font=\scriptsize] at (axis cs:0.35,3.25) {\(f(S)\)};
+        \node[font=\scriptsize, text=black] at (axis cs:0.55,-0.3) {\(S\)};
+        \node[font=\scriptsize, text=black] at (axis cs:0.35,3.25) {\(f(S)\)};
     \end{axis}
 \end{tikzpicture}

@@ -3,14 +3,14 @@
                 circle,
                 draw=c1,
                 fill=white,
-                text=c1!70!black,
+                text=black,
                 thick,
                 minimum size=4.2mm,
                 inner sep=0pt,
                 font=\scriptsize\bfseries,
             },
         square/.style={
-                draw=black!70,
+                draw=black,
                 fill=c1!5,
                 thick,
             },
@@ -25,7 +25,7 @@
                 -latex,
             },
         rotation guide/.style={
-                black!60,
+                black,
                 thin,
             },
         operation label/.style={
@@ -46,7 +46,7 @@
     % Four rotations.
     \begin{scope}[shift={(0,2.55)}]
         \symmetrysquare{旋转 \(0^\circ\)}{1}{2}{3}{4}
-        \node[font=\small,text=c2] at (0,0) {\(e\)};
+        \node[font=\small,text=black] at (0,0) {\(e\)};
     \end{scope}
     \begin{scope}[shift={(3.1,2.55)}]
         \symmetrysquare{旋转 \(90^\circ\)}{4}{1}{2}{3}
