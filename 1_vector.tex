@@ -454,7 +454,7 @@
 
 \begin{definition}[线性空间]
     \label{def:linear_space}
-    设 \(V\) 是一个非空集合，\( \mathbb F \)是一个域，并定义了如下运算\footnote{需要注意的是，数乘运算\( \cdot \)与标量乘法并不是同一个运算，但通常都可以省略，直接记作\( \lambda \bm{v} \)}：
+    设 \(V\) 是一个非空集合，\( \mathbb F \)是一个域，并定义了如下运算\footnote{域中的乘法 \(\mathbb F\times\mathbb F\to\mathbb F\)与标量作用于向量的数乘\(\mathbb F\times V\to V\)是两种不同的运算，尽管二者的乘号通常都可以省略。}：
     \[
         +:V\times V\to V,\quad \cdot:\mathbb F\times V\to V,
     \]
@@ -464,7 +464,7 @@
     \begin{itemize}
         \item 交换律：\(\bm u+\bm v=\bm v+\bm u\)
         \item 结合律：\((\bm u+\bm v)+\bm w=\bm u+(\bm v+\bm w)\)
-        \item 零向量：存在 \(\bm 0\in V\)，使 \(\bm v+\bm 0=\bm v\)
+        \item 零向量：存在 \(\bm 0\in V\)，使得对于任意\( \bm{v} \in V \)，有 \(\bm v+\bm 0=\bm v\)
         \item 负向量：存在 \(-\bm v\in V\)，使 \(\bm v+(-\bm v)=\bm 0\)
     \end{itemize}
     \textbf{数乘运算律}：
@@ -491,7 +491,7 @@
 唯一确定，并且对应的加法和数乘运算也保持不变。像这样的线性空间之间的对应关系称为线性空间同构，其定义如下。
 \begin{definition}
     \label{def:linear_space_isomorphism}
-    设 \(V\) 和 \(W\) 是数域 \(\mathbb F\) 上的两个线性空间。如果存在一个双射 \(\varphi:V\to W\)，使得对于任意 \(\bm u,\bm v\in V\) 和任意 \(\lambda\in\mathbb F\)，都有
+    设 \(V\) 和 \(W\) 是域 \(\mathbb F\) 上的两个线性空间。如果存在一个双射 \(\varphi:V\to W\)，使得对于任意 \(\bm u,\bm v\in V\) 和任意 \(\lambda\in\mathbb F\)，都有
     \[
         \varphi(\bm u+\bm v)=\varphi(\bm u)+\varphi(\bm v),\quad \varphi(\lambda \bm v)=\lambda \varphi(\bm v),
     \]
@@ -500,7 +500,7 @@
 
 从\cref{def:linear_space_isomorphism}可以看出，线性空间同构不仅要求两个线性空间之间的元素一一对应，还要求映射保持向量加法和数乘的运算结构。换句话说，同构的两个线性空间在代数结构上是完全相同的，只是元素的表现形式不同。
 
-此外，利用线性空间同构，我们可以将一个线性空间中的问题转化为另一个线性空间中的问题来研究。下面给出的\cref{ex:polynomial_discriminant_parameter_spaces}，则说明了如何将代数问题转化为几何对象加以研究。
+此外，利用线性空间同构，我们可以将一个线性空间中的问题转化为另一个线性空间中的问题来研究，如\cref{ex:polynomial_discriminant_parameter_spaces}所示。
 \begin{example}
     \label{ex:polynomial_discriminant_parameter_spaces}
     考虑次数不超过 \(2\) 的实系数多项式空间
@@ -520,10 +520,11 @@
     \[
         \Delta=a_1^2-4a_0a_2.
     \]
-    因而具有重根的多项式在系数空间中组成了一个椭圆锥面，其方程为
+    判别式为零的系数点构成一个椭圆锥面
     \[
         a_1^2=4a_0a_2.
     \]
+    其中，满足 \(a_2\ne0\) 的点恰好对应具有重根的二次多项式。
 
     \begin{center}
         \captionsetup{type=figure}
@@ -533,6 +534,8 @@
     \end{center}
 
     在\cref{fig_quadratic_polynomial_coefficient_space}中（不考虑\( a_2 =0 \)这个平面上的点），锥面上的点对应具有重根的二次多项式；锥面内部满足 \(\Delta<0\)，对应没有实根；锥面外部满足 \(\Delta>0\)，对应两个不同实根。
+
+    这种将代数问题转化为几何对象加以研究的思想，后来逐渐发展为数学的一个重要分支——代数几何学。
 \end{example}
 
 % \begin{example}
@@ -611,11 +614,7 @@
 
 \begin{definition}[基]
     \label{def:basis}
-    设 \(V\) 是数域 \(\mathbb F\) 上的线性空间。如果向量组
-    \[
-        \mathcal B=(\bm b_1,\bm b_2,\ldots,\bm b_n)
-    \]
-    线性无关，并且
+    设 \(V\) 是域 \(\mathbb F\) 上的线性空间，对于一个线性无关向量组\( \mathcal B=(\bm b_1,\bm b_2,\ldots,\bm b_n) \)，如果
     \[
         V=\operatorname{span}\{\bm b_1,\bm b_2,\ldots,\bm b_n\},
     \]
@@ -658,14 +657,13 @@
 不同的线性空间的基向量的个数可能不同，但基于交换定理（\cref{thm:exchange}），可以证明同一个线性空间的任意两组基向量的个数相同。因此，基向量的个数对应了线性空间的一个基本不变量，它不仅反映了线性空间的``大小''，还决定了线性空间中向量组的秩的上界。
 \begin{definition}[维数]
     \label{def:dimension}
-    如果线性空间 \(V\) 有一组由 \(n\) 个向量组成的基，则称 \(V\) 是\textbf{有限维线性空间}，并称 \(n\) 为 \(V\) 的\textbf{维数}（Dimension），记作
+    如果线性空间 \(V\) 有一组由 \(n\) 个向量组成的基，则称 \(V\) 是\textbf{有限维线性空间}\footnote{线性空间的基也可能包含无限多个向量，此时称为\textbf{无限维线性空间}。本书主要讨论有限维线性空间，若无特别说明，本书中的线性空间均指有限维线性空间}，并称 \(n\) 为 \(V\) 的\textbf{维数}（Dimension），记作
     \[
         \dim V=n.
     \]
-    只含零向量的线性空间 \(\{\bm 0\}\) 的维数规定为 \(0\)。
 \end{definition}
 
-由标准基可知，\(\dim\mathbb R^n=n\)，\(\dim\mathbb C^n=n\)。此外，多项式空间 \(\mathcal P_n\) 的一组基为
+特别需要注意的是，只含零向量的线性空间 \(\{\bm 0\}\) 可以由空向量组展开，因此其维数为 \(0\)。此外，由标准基可知，\(\dim\mathbb R^n=n\)，\(\dim\mathbb C^n=n\)。此外，多项式空间 \(\mathcal P_n\) 的一组基为
 \[
     (1,x,x^2,\ldots,x^n),
 \]
