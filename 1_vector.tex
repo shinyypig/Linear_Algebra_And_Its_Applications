@@ -491,26 +491,54 @@
     则称 \(V\) 与 \(W\) 是\textbf{同构}（Isomorphism）的，记作 \(V\simeq W\)。映射 \(\varphi\) 称为一个线性空间同构。
 \end{definition}
 
-\begin{example}[二次多项式空间与系数空间]
-    \label{ex:quadratic_polynomial_isomorphism}
-    考虑二次实系数多项式空间
-    \[
-        \mathcal P_2
-        =\{a_0+a_1x+a_2x^2\mid a_0,a_1,a_2\in\mathbb R, a_2\ne0\}.
-    \]
-    可以将其中任意一个多项式看作\( \mathbb{R}^3 \)系数空间中的一个点（除了 \(a_2=0\) 这个平面）。
+将多项式按系数参数化，可以把根的代数性质转化为参数空间中的几何划分。下面比较二次与三次多项式的两个参数空间。
 
-    这种对应还可以把多项式的代数性质转化为空间中的几何关系。对于\(a_2\ne0\) 的二次多项式，判别式
+\begin{example}
+    \label{ex:polynomial_discriminant_parameter_spaces}
+    考虑二次项系数为一的二次实系数多项式构成的参数空间
     \[
-        \Delta=a_1^2-4a_0a_2
+        \mathcal Q_2
+        =\{x^2+a_1x+a_0\mid a_0,a_1\in\mathbb R\}.
     \]
-    的零点集是系数空间中的一个椭圆锥面。锥面上的点对应有重根的多项式，锥面两侧则分别对应无实根和有两个实根的多项式，如\cref{fig_quadratic_polynomial_coefficient_space} 所示。
+    每个多项式由系数对 \((a_1,a_0)\) 唯一确定，对应二维平面上的一个点。其判别式为
+    \[
+        \Delta_2=a_1^2-4a_0,
+    \]
+    因而重根集合是抛物线
+    \[
+        a_0=\frac{a_1^2}{4}.
+    \]
+    如\cref{fig_quadratic_polynomial_parameter_space}所示，抛物线上方满足 \(\Delta_2<0\)，对应没有实根；抛物线上对应重根；抛物线下方满足 \(\Delta_2>0\)，对应两个不同实根。
+
+    作为对比，再考虑无二次项的首一三次实系数多项式
+    \[
+        \mathcal Q_3
+        =\{x^3+a_1x+a_0\mid a_0,a_1\in\mathbb R\}.
+    \]
+    其判别式为
+    \[
+        \Delta_3=-4a_1^3-27a_0^2,
+    \]
+    重根集合 \(4a_1^3+27a_0^2=0\) 是一条具有尖点的半立方抛物线。如\cref{fig_cubic_polynomial_parameter_space}所示尖点内部满足 \(\Delta_3>0\)，对应三个不同实根；曲线上存在重根；外部满足 \(\Delta_3<0\)，对应一个实根和一对共轭复根。
+
     \begin{center}
         \captionsetup{type=figure}
-        \includegraphics[width=.46\linewidth]{./img/1-vector/quadratic_polynomial_coefficient_space.pdf}
-        \captionof{figure}{二次多项式在系数空间中的根型划分（\(a_2\ne0\)）}
-        \label{fig_quadratic_polynomial_coefficient_space}
+        \begin{subfigure}[t]{.4\linewidth}
+            \centering
+            \includegraphics[width=.9\linewidth]{./img/1-vector/quadratic_polynomial_parameter_space.pdf}
+            \caption{\(x^2+a_1x+a_0\)}
+            \label{fig_quadratic_polynomial_parameter_space}
+        \end{subfigure}
+        \begin{subfigure}[t]{.4\linewidth}
+            \centering
+            \includegraphics[width=.9\linewidth]{./img/1-vector/cubic_polynomial_parameter_space.pdf}
+            \caption{\(x^3+a_1x+a_0\)}
+            \label{fig_cubic_polynomial_parameter_space}
+        \end{subfigure}
+        \captionof{figure}{二次与三次多项式参数空间中的根型划分}
+        \label{fig_polynomial_discriminant_parameter_spaces}
     \end{center}
+    这种将代数问题转化为几何对象加以研究的思想，后来逐渐发展为数学的一个重要分支——代数几何学。
 \end{example}
 
 从\cref{def:linear_space_isomorphism}可以看出，线性空间同构不仅要求两个线性空间之间的元素一一对应，还要求映射保持向量加法和数乘的运算结构。换句话说，同构的两个线性空间在代数结构上是完全相同的，只是元素的表现形式不同。
