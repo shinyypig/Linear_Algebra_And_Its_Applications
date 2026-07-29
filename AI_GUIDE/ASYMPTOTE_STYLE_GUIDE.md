@@ -57,9 +57,9 @@ texpreamble("\\usepackage{bm}");
 
 ## 4. 二维图
 
-- 二维向量图通常使用 `size(4.5cm)`；函数图使用
-  `size(6cm,5cm,keepAspect=true)`；散点图使用
-  `size(5.5cm,5.5cm,IgnoreAspect)`。
+- 二维向量图通常使用 `size(4cm)`；函数图使用
+  `size(6cm,4cm,keepAspect=true)`；散点图使用
+  `size(4cm,4cm,IgnoreAspect)`。
 - 坐标轴与刻度优先调用 `drawBookAxes`，显式提供刻度数组。
 - 若坐标系包含真实原点，应在所有曲线、向量和数据点之后调用 `bookOrigin()`；
   它使用 `2.4pt` 黑色实心圆标出原点，并在左下方标注 7 pt 的 `$O$`。不要只写
