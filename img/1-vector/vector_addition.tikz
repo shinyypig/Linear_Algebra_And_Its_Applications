@@ -7,8 +7,8 @@
             ticklabel style={font=\small},
             label style={font=\small},
             axis lines=middle,
-            xlabel={$x$},
-            ylabel={$y$},
+            xlabel={\(x\)},
+            ylabel={\(y\)},
             clip=false,
             legend cell align=left,
             legend style={
@@ -19,30 +19,30 @@
                 }
         ]
         % Parallelogram guide lines
-        \addplot[black!28, densely dashed, semithick]
+        \addplot[black, densely dashed, semithick]
         coordinates {(2,1) (3,3)};
-        \addplot[black!28, densely dashed, semithick]
+        \addplot[black, densely dashed, semithick]
         coordinates {(1,2) (3,3)};
 
         % Vector u = (2,1)
         \addplot[c1, thick, -latex]
         coordinates {(0,0) (2,1)};
-        \node[font=\small, text=c1, below right=1pt] at (axis cs:1,.5) {$\bm{u}$};
+        \node[font=\small, text=c1, below right=1pt] at (axis cs:1,.5) {\(\bm{u}\)};
 
         % Vector v = (1,2)
         \addplot[c2, thick, -latex]
         coordinates {(0,0) (1,2)};
-        \node[font=\small, text=c2, left=3pt] at (axis cs:.5,1) {$\bm{v}$};
+        \node[font=\small, text=c2, left=3pt] at (axis cs:.5,1) {\(\bm{v}\)};
 
         % Vector u+v = (3,3)
         \addplot[c5, thick, -latex]
         coordinates {(0,0) (3,3)};
-        \node[font=\small, text=c5, left=2pt] at (axis cs:1.85,2.35) {$\bm{u}+\bm{v}$};
+        \node[font=\small, text=c5, left=2pt] at (axis cs:1.85,2.4) {\(\bm{u}+\bm{v}\)};
 
         % Origin dot and label
-        \addplot[only marks, mark=*, mark size=1.2pt, black!65]
+        \addplot[only marks, mark=*, mark size=1.2pt, black]
         coordinates {(0,0)};
-        \node[font=\scriptsize, below left=2pt, text=black!72]
-        at (axis cs:0,0) {$O$};
+        \node[font=\scriptsize, below left=2pt, text=black]
+        at (axis cs:0,0) {\(O\)};
     \end{axis}
 \end{tikzpicture}

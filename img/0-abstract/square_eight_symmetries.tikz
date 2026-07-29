@@ -22,7 +22,7 @@
         rotation arrow/.style={
                 c2,
                 thick,
-                -{Stealth[length=3pt,width=3pt]},
+                -latex,
             },
         rotation guide/.style={
                 black!60,

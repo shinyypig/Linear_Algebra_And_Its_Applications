@@ -2,14 +2,13 @@
     \begin{axis}[
             width=6cm,
             height=5cm,
-            xlabel=$x$, ylabel=$f(x)$,
+            xlabel=\(x\), ylabel=\(f(x)\),
             xmin=-2, xmax=2,
             ymin=-1.2, ymax=4.2,
             ticklabel style={font=\scriptsize},
             label style={font=\scriptsize},
             axis equal image,
             axis lines=middle,
-            axis line style={-Stealth},
             label style={font=\small},
         ]
         \addplot[
@@ -34,7 +33,7 @@
         ] {x^2};
         \addplot[
             c1,
-            thick,  
+            thick,
             only marks,
             mark=*,
             fill=c1!60,

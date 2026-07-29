@@ -1,47 +1,47 @@
 \begin{tikzpicture}[
-        >=Stealth,
-        axis/.style={black!58, thick, -{Stealth[length=4pt,width=4pt]}},
-        rotated axis/.style={c2!88!black, thick, -{Stealth[length=4pt,width=4pt]}},
-        vector/.style={c1, ultra thick, -{Stealth[length=5pt,width=5pt]}},
-        projection/.style={black!32, densely dashed, semithick},
-        tick/.style={black!55, semithick},
-        coordinate card/.style={
-                draw=black!15,
-                fill=black!1,
-                rounded corners=2pt,
-                semithick,
-                inner xsep=10pt,
-                inner ysep=7pt,
-                text width=3.35cm,
-                align=left,
-            },
-    ]
-    % Standard Cartesian coordinate system.
-    \draw[axis] (-2,0) -- (2,0)
-    node[below right=-1pt, text=black!72] {$x$};
-    \draw[axis] (0,-2) -- (0,2) node[above, text=black!72] {$y$};
+                >=latex,
+                axis/.style={black, thick, -latex},
+                rotated axis/.style={c2!88!black, thick, -latex},
+                vector/.style={c1, ultra thick, -latex},
+                projection/.style={black, densely dashed, semithick},
+                tick/.style={black!55, semithick},
+                coordinate card/.style={
+                                draw=black,
+                                fill=black,
+                                rounded corners=2pt,
+                                semithick,
+                                inner xsep=10pt,
+                                inner ysep=7pt,
+                                text width=3.35cm,
+                                align=left,
+                        },
+        ]
+        % Standard Cartesian coordinate system.
+        \draw[axis] (-2,0) -- (2,0)
+        node[below right=-1pt, text=black] {\(x\)};
+        \draw[axis] (0,-2) -- (0,2) node[above, text=black] {\(y\)};
 
-    % Coordinate system obtained by rotating the standard axes by 45 degrees.
-    \draw[rotated axis] (-2/1.414,-2/1.414) -- (2/1.414,2/1.414)
-    node[above=2pt, text=c2!88!black] {$x'$};
-    \draw[rotated axis] (2/1.414,-2/1.414) -- (-2/1.414,2/1.414)
-    node[above left=-1pt, text=c2!88!black] {$y'$};
+        % Coordinate system obtained by rotating the standard axes by 45 degrees.
+        \draw[rotated axis] (-2/1.414,-2/1.414) -- (2/1.414,2/1.414)
+        node[above=2pt, text=c2!88!black] {\(x'\)};
+        \draw[rotated axis] (2/1.414,-2/1.414) -- (-2/1.414,2/1.414)
+        node[above left=-1pt, text=c2!88!black] {\(y'\)};
 
-    % The same geometric vector and its projections in the standard basis.
-    \draw[projection] (1,0) -- (1,1) -- (0,1);
-    \draw[tick] (1,-.045) -- (1,.045);
-    \draw[tick] (-.045,1) -- (.045,1);
-    \node[font=\scriptsize, text=black!65, below=2pt] at (1,0) {$1$};
-    \node[font=\scriptsize, text=black!65, left=2pt] at (0,1) {$1$};
+        % The same geometric vector and its projections in the standard basis.
+        \draw[projection] (1,0) -- (1,1) -- (0,1);
+        \draw[tick] (1,-.045) -- (1,.045);
+        \draw[tick] (-.045,1) -- (.045,1);
+        \node[font=\scriptsize, text=black, below=2pt] at (1,0) {\(1\)};
+        \node[font=\scriptsize, text=black, left=2pt] at (0,1) {\(1\)};
 
-    \draw[vector] (0,0) -- (1,1);
-    % \fill[c1] (1,1) circle (1.25pt);
-    \node[font=\small\bfseries, text=c1] at (1.18,.83) {$\bm v$};
+        \draw[vector] (0,0) -- (1,1);
+        % \fill[c1] (1,1) circle (1.25pt);
+        \node[font=\small\bfseries, text=c1] at (1.18,.83) {\(\bm v\)};
 
-    % Rotation angle and the x'-coordinate of the vector.
-    \draw[c2!70!black, semithick]
-    (.39,0) arc[start angle=0,end angle=45,radius=.39];
+        % Rotation angle and the x'-coordinate of the vector.
+        \draw[c2!70!black, semithick]
+        (.39,0) arc[start angle=0,end angle=45,radius=.39];
 
-    \fill[black] (0,0) circle (1pt);
-    \node[font=\scriptsize, below left=2pt, text=black] at (0,0) {$O$};
+        \fill[black] (0,0) circle (1pt);
+        \node[font=\scriptsize, below left=2pt, text=black] at (0,0) {\(O\)};
 \end{tikzpicture}

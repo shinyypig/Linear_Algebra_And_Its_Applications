@@ -35,7 +35,7 @@
 - 限制域、排除域等背景区域使用 `c2` 且 `fill opacity=0.1`。
 - 集合的像、原像或被强调的连续区域使用 `c5` 且 `fill opacity=0.18`。
 - 三维平面使用非常浅的 `c3!18`，边面线可用 `c3!40`，整体透明度约 `0.65`。
-- 普通辅助线常用 `black!28`；轴线/刻度可用 `black!55` 至 `black!72`；不要用饱和黑色画大量次要结构。
+- 普通辅助线常用 `black`；轴线/刻度可用  `black`；不要用饱和黑色画大量次要结构。
 - 不要只依赖红绿差异传递含义；同时使用实线/虚线、填充/轮廓、标签或位置进行区分。
 
 ## 3. 线条、箭头与标记
@@ -50,9 +50,9 @@
 | 一般对应关系虚线 | `dashed, thick` |
 | 三维面网格或旋转参考圆 | `thin` + 浅色 |
 | 数据点 | `mark=*, mark size=1.6pt` 至 `2pt` |
-| 原点 | 黑色或 `black!65` 实心点，约 `0.5pt` 至 `1.2pt` |
+| 原点 | 黑色或 `black` 实心点，约 `0.5pt` 至 `1.2pt` |
 
-箭头整体偏紧凑，不使用夸张箭头。现有文件同时出现 `-latex` 与 `Stealth`；新增图建议统一使用 `-{Stealth[length=4pt,width=4pt]}`。小型旋转箭头可缩至 `3pt`，强调向量可放大至 `5pt`。
+箭头整体偏紧凑，不使用夸张箭头。新增图建议统一使用 `-latex`。
 
 ## 4. 坐标图与版面
 
@@ -61,7 +61,7 @@
 - 函数示意图常用 `width=6cm, height=5cm`。
 - 向量示意图常用 `width=4.5cm, height=4.5cm`。
 - 数据散点图可用 `5.5cm × 5.5cm`。
-- 坐标轴穿过原点：`axis lines=middle`；需要明确正方向时增加 `axis line style={-Stealth}`。
+- 坐标轴穿过原点：`axis lines=middle`；需要明确正方向时增加 `axis line style=latex`。
 - 几何比例重要时使用 `axis equal image`。
 - 轴标签通常为 `font=\small`，刻度为 `\scriptsize`；空间紧张或三维图中可降为 `\tiny`。
 - 坐标范围应留出少量呼吸空间，使曲线端点、箭头和标签不贴边。
@@ -142,7 +142,6 @@
             xmin=-0.3, xmax=4.3,
             ymin=-0.3, ymax=4.3,
             axis lines=middle,
-            axis line style={-Stealth},
             axis equal image,
             xlabel={$x$},
             ylabel={$y$},
@@ -154,7 +153,7 @@
         coordinates {(2,1) (3,3)};
 
         % Primary object.
-        \addplot[c1, thick, -{Stealth[length=4pt,width=4pt]}]
+        \addplot[c1, thick, -latex]
         coordinates {(0,0) (2,1)};
         \node[font=\small, text=c1, below right=1pt]
         at (axis cs:1,.5) {$\bm u$};
@@ -172,9 +171,9 @@
 
 ```tex
 \begin{tikzpicture}[
-        >=Stealth,
+        >=latex,
         object/.style={draw=black!70, fill=c1!5, thick},
-        primary/.style={c1, thick, -{Stealth[length=4pt,width=4pt]}},
+        primary/.style={c1, thick, -latex},
         secondary/.style={c2, dashed, thick},
         guide/.style={black!28, densely dashed, semithick},
         object label/.style={font=\small},
@@ -212,15 +211,3 @@
 ## 11. 可直接交给 AI 的简短提示词
 
 > 请为本项目生成一个独立的 `.tikz` 片段。整体采用简洁、克制的数学教材风格：白底，主对象用 `c1` 蓝色，对照或限制用 `c2` 橙色，结果或选区用 `c5` 绿色；辅助结构使用 `black!28` 的细/半粗虚线，区域只用低透明度填充。标签贴近对象，颜色与对象一致，正文数学符号保持一致；对象标签用 `\small`，辅助说明用 `\scriptsize`。函数或坐标对象使用 `pgfplots`，有限几何结构使用原生 TikZ。按背景、辅助结构、主体、标记、标签的顺序绘制，并保证图在约 `0.35\linewidth` 下仍清晰可读。只输出 `tikzpicture` 片段，不创建完整 LaTeX 文档。
-
-## 12. 当前样本中的差异与后续统一方向
-
-现有图总体风格一致，但仍保留少量历史差异。后续新增图建议按本指南统一，修改旧图时则只在任务涉及的范围内调整：
-
-- 箭头端点同时存在 `-latex` 和 `Stealth`；新增图统一为可显式控制尺寸的 `Stealth`。
-- 有些 `axis` 保留了未使用的图例配置；新增图不复制无效配置。
-- 个别文件存在重复的 `label style` 或已经注释掉的参数；新增图保持配置单一、干净。
-- 普通虚线有 `dashed, thick` 与 `densely dashed, semithick` 两种用法；前者用于明确的数学对应边界，后者用于退居背景的几何构造线。
-- 现有代码注释以英文为主；为延续仓库习惯，新增 TikZ 源码可继续使用简短英文注释，面向读者的图中文字仍与正文语言一致。
-
-随着图形样本增多，可继续在本文档中补充矩阵变换、投影、特征向量、分解流程和数据可视化等专项模板。

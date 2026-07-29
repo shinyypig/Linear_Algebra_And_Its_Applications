@@ -1,22 +1,23 @@
 \begin{tikzpicture}
     \begin{axis}[
-        view={20}{20},
-        xlabel={\(a_0\)},
-        ylabel={\(a_1\)},
-        zlabel={\(a_2\)},
-        label style={font=\small},
-        ticklabel style={font=\tiny},
-        xmin=-3, xmax=3,
-        ymin=-3, ymax=3,
-        zmin=-3, zmax=3,
-        axis lines=center,
-        axis line style={-{Stealth[length=4pt,width=4pt]}, black!65},
-        axis equal image,
-        xtick=\empty,
-        ytick=\empty,
-        ztick=\empty,
-        clip=false,
+            view={20}{20},
+            xmin=-2.5, xmax=2.5,
+            ymin=-2.5, ymax=2.5,
+            zmin=-2.5, zmax=2.5,
+            axis lines=none,
+            axis equal image,
+            xtick=\empty,
+            ytick=\empty,
+            ztick=\empty,
+            clip=false,
         ]
+        % Negative half-axes drawn first so they appear behind the cone.
+        \addplot3[thin, black, -latex]
+        coordinates {(0,0,0) (2.5,0,0)};
+        \addplot3[thin, black, -latex]
+        coordinates {(0,0,0) (0,2.5,0)};
+        \addplot3[thin, black, -latex]
+        coordinates {(0,0,0) (0,0,2.5)};
         % The discriminant cone a_1^2 - 4a_0a_2 = 0.
         \addplot3[
             surf,
@@ -36,15 +37,26 @@
         {sqrt(2)*x*sin(y)},
         {x*(1-cos(y))/sqrt(2)}
         );
+        % Positive half-axes drawn after so they appear in front of the cone.
+        \addplot3[thin, black, -]
+        coordinates {(0,-2.5,0) (0,0,0)};
+        \addplot3[thin, black, -]
+        coordinates {(0,0,-2.5) (0,0,0)};
+        \addplot3[thin, black, -]
+        coordinates {(-2.5,0,0) (0,0,0)};
+        % Axis labels.
+        \node[font=\small, text=black!80] at (axis cs:2.9,0,0) {\(a_0\)};
+        \node[font=\small, text=black!80] at (axis cs:0,2.9,0) {\(a_1\)};
+        \node[font=\small, text=black!80] at (axis cs:0,0,2.9) {\(a_2\)};
         % Origin.
         \addplot3[
             only marks,
             mark=*,
             mark size=0.8pt,
-            black!65,
+            black,
             forget plot,
         ] coordinates {(0,0,0)};
-        \node[font=\scriptsize, text=black!72, anchor=north east]
+        \node[font=\scriptsize, text=black, anchor=north east]
         at (axis cs:0,0,0) {\(O\)};
     \end{axis}
 \end{tikzpicture}

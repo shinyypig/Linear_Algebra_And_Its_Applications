@@ -2,14 +2,13 @@
     \begin{axis}[
             width=6cm,
             height=5cm,
-            xlabel=$x$, ylabel=$f(x)$,
+            xlabel=\(x\), ylabel=\(f(x)\),
             xmin=-2.3, xmax=2.3,
             ymin=-0.5, ymax=4.5,
             ticklabel style={font=\scriptsize},
             label style={font=\small},
             axis equal image,
             axis lines=middle,
-            axis line style={-Stealth},
             xlabel style={anchor=west},
             ylabel style={anchor=south},
         ]
