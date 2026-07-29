@@ -30,10 +30,6 @@
 \DeclareVoidOption{nocolor}{\ekv{color=none}}
 
 
-\DeclareStringOption[false]{external}
-\DeclareVoidOption{true}{\ekv{external=true}}
-\DeclareVoidOption{false}{\ekv{external=false}}
-
 \DeclareVoidOption{chinese}{\ekv{scheme=chinese}}
 
 \DeclareStringOption[ctexfont]{chinesefont}
@@ -976,15 +972,11 @@
 
 \graphicspath{{./figure/}{./figures/}{./image/}{./images/}{./graphics/}{./graphic/}{./pictures/}{./picture/}}
 
-\RequirePackage{tikz} %% load tikz without tikz
-\usetikzlibrary{backgrounds,calc,shadows,positioning,fit}
-\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
-        \node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
-%    https://tex.stackexchange.com/questions/7032/good-way-to-make-textcircled-numbers
+\newcommand*\circled[1]{\textcircled{\raisebox{-.1ex}{#1}}}
 
-\newcommand*{\eitemi}{\tikz \draw [baseline, ball color=structurecolor,draw=none] circle (2pt);}
-\newcommand*{\eitemii}{\tikz \draw [baseline, fill=structurecolor,draw=none,circular drop shadow] circle (2pt);}
-\newcommand*{\eitemiii}{\tikz \draw [baseline, fill=structurecolor,draw=none] circle (2pt);}
+\newcommand*{\eitemi}{\textcolor{structurecolor}{\large\textbullet}}
+\newcommand*{\eitemii}{\textcolor{structurecolor}{\textbullet}}
+\newcommand*{\eitemiii}{\textcolor{structurecolor}{\small\textbullet}}
 \setlist[enumerate,1]{label=\color{structurecolor}\arabic*.}
 \setlist[enumerate,2]{label=\color{structurecolor}(\alph*).}
 \setlist[enumerate,3]{label=\color{structurecolor}\Roman*.}
@@ -1124,7 +1116,6 @@
     \tcbset{
         simplethm/.style={
                 enhanced,
-                shield externalize,
                 breakable,
                 frame hidden,
                 boxrule=0pt,
@@ -1238,7 +1229,6 @@
     \refstepcounter{exam}
     \begin{tcolorbox}[
             enhanced,
-            shield externalize,
             breakable,
             frame hidden,
             boxrule=0pt,
@@ -1546,51 +1536,6 @@
 
 % restore the tt default family to lmodern tt family
 \renewcommand\ttdefault{lmtt}
-
-\RequirePackage{tikz,tikz-3dplot}
-\RequirePackage{tikzscale}
-\RequirePackage{csvsimple}
-\RequirePackage{pgfplots}
-\usepgfplotslibrary{groupplots}
-\usepgfplotslibrary{patchplots}
-\usetikzlibrary{arrows.meta,angles,quotes,calc}
-\usetikzlibrary{decorations.markings}
-\usepgfplotslibrary{fillbetween}
-\pgfplotsset{compat=newest}
-\pgfplotsset{set layers}
-\usetikzlibrary{matrix,calc}
-\RequirePackage{pgfplotstable}
-
-\ifdefstring{\SIMPLE@external}{true}{
-    \usetikzlibrary{external}
-    \tikzexternalize[
-        prefix=tmp/,
-        mode=list and make,
-    ]
-}{}
-
-\definecolor{c1}{rgb}{0, 0.4470, 0.7410}  % blue
-\definecolor{c2}{rgb}{0.8500, 0.3250, 0.0980} % red
-\definecolor{c3}{rgb}{0.9290, 0.6940, 0.1250} % yellow
-\definecolor{c4}{rgb}{0.4940, 0.1840, 0.5560} % purple
-\definecolor{c5}{rgb}{0.4660, 0.6740, 0.1880} % green
-\definecolor{c6}{rgb}{0.3010, 0.7450, 0.9330} % cyan
-\definecolor{c7}{rgb}{0.6350, 0.0780, 0.1840} % dark red
-\definecolor{c8}{RGB}{99,200,166}
-\definecolor{c9}{RGB}{72,107,135}
-\definecolor{c10}{RGB}{248,148,125}
-
-\pgfplotsset{
-    colormap={matlab}{
-            color(0cm)=(c1)
-            color(1cm)=(c2)
-            color(2cm)=(c3)
-            color(3cm)=(c4)
-            color(4cm)=(c5)
-            color(5cm)=(c6)
-            color(6cm)=(c7)
-        },
-}
 
 \makeatletter
 \renewcommand{\ALG@name}{算法}

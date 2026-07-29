@@ -1,6 +1,6 @@
 # Asymptote 绘图风格指南
 
-本指南总结本项目从 TikZ/PGFPlots 迁移到 Asymptote 后采用的统一绘图约定。
+本指南规定本项目统一采用的 Asymptote 绘图约定。
 公共颜色、线宽、箭头和辅助函数定义在项目根目录的 `bookstyle.asy` 中。
 
 ## 1. 输出策略

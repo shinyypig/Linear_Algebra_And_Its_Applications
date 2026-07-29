@@ -9,7 +9,7 @@ currentlight.background=(settings.user == "transparent-black;") ? black : white;
 
 size(7cm);
 defaultpen(fontsize(9pt));
-currentprojection=orthographic(4,-1.5,1.5);
+currentprojection=orthographic(4,-10,4);
 
 triple conePoint(pair t)
 {
