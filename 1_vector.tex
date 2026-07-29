@@ -495,60 +495,93 @@
     \[
         \varphi(\bm u+\bm v)=\varphi(\bm u)+\varphi(\bm v),\quad \varphi(\lambda \bm v)=\lambda \varphi(\bm v),
     \]
-    则称 \(V\) 与 \(W\) 是\textbf{同构}（Isomorphism）的，记作 \(V\simeq W\)。与此同时，映射 \(\varphi\) 称为一个\textbf{线性空间同构}。
+    则称 \(V\) 与 \(W\) 是同构的（Isomorphic），记作 \(V\simeq W\)。与此同时，映射 \(\varphi\) 称为一个\textbf{线性空间同构}。
 \end{definition}
 
 从\cref{def:linear_space_isomorphism}可以看出，线性空间同构不仅要求两个线性空间之间的元素一一对应，还要求映射保持向量加法和数乘的运算结构。换句话说，同构的两个线性空间在代数结构上是完全相同的，只是元素的表现形式不同。
 
 此外，利用线性空间同构，我们可以将一个线性空间中的问题转化为另一个线性空间中的问题来研究。下面给出的\cref{ex:polynomial_discriminant_parameter_spaces}，则说明了如何将代数问题转化为几何对象加以研究。
-
 \begin{example}
     \label{ex:polynomial_discriminant_parameter_spaces}
-    考虑二次项系数为一的二次实系数多项式构成的参数空间
+    考虑次数不超过 \(2\) 的实系数多项式空间
     \[
-        \mathcal Q_2
-        =\{x^2+a_1x+a_0\mid a_0,a_1\in\mathbb R\}.
+        \mathcal P_2
+        =\{a_0+a_1x+a_2x^2\mid a_0,a_1,a_2\in\mathbb R\}.
     \]
-    每个多项式由系数对 \((a_1,a_0)\) 唯一确定，对应二维平面上的一个点。其判别式为
+    定义映射
     \[
-        \Delta_2=a_1^2-4a_0,
+        \varphi:\mathcal P_2\to\mathbb R^3,\quad
+        a_0+a_1x+a_2x^2\longmapsto(a_0,a_1,a_2).
     \]
-    因而重根集合是抛物线
-    \[
-        a_0=\frac{a_1^2}{4}.
-    \]
-    如\cref{fig_quadratic_polynomial_parameter_space}所示，抛物线上方满足 \(\Delta_2<0\)，对应没有实根；抛物线上对应重根；抛物线下方满足 \(\Delta_2>0\)，对应两个不同实根。
+    该映射是线性空间同构。因此，可以把每个多项式看作三维系数空间中的一个点，而多项式的加法和数乘分别对应
+    向量的加法和数乘。
 
-    作为对比，再考虑无二次项的首一三次实系数多项式
+    对于 \(a_2\ne0\) 的二次多项式，其判别式为
     \[
-        \mathcal Q_3
-        =\{x^3+a_1x+a_0\mid a_0,a_1\in\mathbb R\}.
+        \Delta=a_1^2-4a_0a_2.
     \]
-    其判别式为
+    因而具有重根的多项式在系数空间中组成了一个椭圆锥面，其方程为
     \[
-        \Delta_3=-4a_1^3-27a_0^2,
+        a_1^2=4a_0a_2.
     \]
-    重根集合 \(4a_1^3+27a_0^2=0\) 是一条具有尖点的半立方抛物线。如\cref{fig_cubic_polynomial_parameter_space}所示尖点内部满足 \(\Delta_3>0\)，对应三个不同实根；曲线上存在重根；外部满足 \(\Delta_3<0\)，对应一个实根和一对共轭复根。
 
     \begin{center}
         \captionsetup{type=figure}
-        \begin{subfigure}[t]{.4\linewidth}
-            \centering
-            \includegraphics{./img/1-vector/quadratic_polynomial_parameter_space.pdf}
-            \caption{\(x^2+a_1x+a_0\)}
-            \label{fig_quadratic_polynomial_parameter_space}
-        \end{subfigure}
-        \begin{subfigure}[t]{.4\linewidth}
-            \centering
-            \includegraphics{./img/1-vector/cubic_polynomial_parameter_space.pdf}
-            \caption{\(x^3+a_1x+a_0\)}
-            \label{fig_cubic_polynomial_parameter_space}
-        \end{subfigure}
-        \captionof{figure}{二次与三次多项式参数空间中的根型划分}
-        \label{fig_polynomial_discriminant_parameter_spaces}
+        \includegraphics{./img/1-vector/quadratic_polynomial_coefficient_space.pdf}
+        \captionof{figure}{二次多项式系数空间中的重根曲面}
+        \label{fig_quadratic_polynomial_coefficient_space}
     \end{center}
-    这种将代数问题转化为几何对象加以研究的思想，后来逐渐发展为数学的一个重要分支——代数几何学。
+
+    在\cref{fig_quadratic_polynomial_coefficient_space}中（不考虑\( a_2 =0 \)这个平面上的点），锥面上的点对应具有重根的二次多项式；锥面内部满足 \(\Delta<0\)，对应没有实根；锥面外部满足 \(\Delta>0\)，对应两个不同实根。
 \end{example}
+
+% \begin{example}
+%     \label{ex:polynomial_discriminant_parameter_spaces}
+%     考虑二次项系数为一的二次实系数多项式构成的参数空间
+%     \[
+%         \mathcal Q_2
+%         =\{x^2+a_1x+a_0\mid a_0,a_1\in\mathbb R\}.
+%     \]
+%     每个多项式由系数对 \((a_1,a_0)\) 唯一确定，对应二维平面上的一个点。其判别式为
+%     \[
+%         \Delta_2=a_1^2-4a_0,
+%     \]
+%     因而重根集合是抛物线
+%     \[
+%         a_0=\frac{a_1^2}{4}.
+%     \]
+%     如\cref{fig_quadratic_polynomial_parameter_space}所示，抛物线上方满足 \(\Delta_2<0\)，对应没有实根；抛物线上对应重根；抛物线下方满足 \(\Delta_2>0\)，对应两个不同实根。
+
+%     作为对比，再考虑无二次项的首一三次实系数多项式
+%     \[
+%         \mathcal Q_3
+%         =\{x^3+a_1x+a_0\mid a_0,a_1\in\mathbb R\}.
+%     \]
+%     其判别式为
+%     \[
+%         \Delta_3=-4a_1^3-27a_0^2,
+%     \]
+%     重根集合 \(4a_1^3+27a_0^2=0\) 是一条具有尖点的半立方抛物线。如\cref{fig_cubic_polynomial_parameter_space}所示尖点内部满足 \(\Delta_3>0\)，对应三个不同实根；曲线上存在重根；外部满足 \(\Delta_3<0\)，对应一个实根和一对共轭复根。
+
+%     \begin{center}
+%         \captionsetup{type=figure}
+%         \begin{subfigure}[t]{.4\linewidth}
+%             \centering
+%             \includegraphics{./img/1-vector/quadratic_polynomial_parameter_space.pdf}
+%             \caption{\(x^2+a_1x+a_0\)}
+%             \label{fig_quadratic_polynomial_parameter_space}
+%         \end{subfigure}
+%         \begin{subfigure}[t]{.4\linewidth}
+%             \centering
+%             \includegraphics{./img/1-vector/cubic_polynomial_parameter_space.pdf}
+%             \caption{\(x^3+a_1x+a_0\)}
+%             \label{fig_cubic_polynomial_parameter_space}
+%         \end{subfigure}
+%         \captionof{figure}{二次与三次多项式参数空间中的根型划分}
+%         \label{fig_polynomial_discriminant_parameter_spaces}
+%     \end{center}
+%     这种将代数问题转化为几何对象加以研究的思想，后来逐渐发展为数学的一个重要分支——代数几何学。
+% \end{example}
 
 类似于子群的概念，一个线性空间的子集也有可能仍然构成线性空间，这样的子集被称为\textbf{线性子空间}，简称\textbf{子空间}。对于一个线性空间的子集，直接逐条验证八条运算律通常没有必要。由于结合律、交换律和分配律等性质已经由 \(V\) 继承下来，只需检查运算结果是否仍然留在 \(U\) 中即可。下方的判定定理给出了一个更简便的判定方法。
 
@@ -574,7 +607,7 @@
     \label{fig_r3_line_plane_subspace}
 \end{center}
 
-有趣的是，给定一个向量组，其张成一定是一个线性空间，该线性空间要么是完整的线性空间，要么是一个子空间。证明非常简单，这里不在赘述。因此，当我们反向思考时，我们不禁想，对于一个给定的线性空间，是否存在一个线性无关的向量组，使得其的张成正好是这个线性空间呢？答案是肯定的，像这样的向量组被称为基，其定义如下。
+有趣的是，给定一个向量组，其张成必定是一个线性空间——要么是整个空间本身，要么是其中的一个子空间，证明并不困难，此处不再赘述。于是，反过来思考便自然产生一个问题：对于一个给定的线性空间，是否存在一个线性无关的向量组，使得其张成恰好就是这个线性空间本身？
 
 \begin{definition}[基]
     \label{def:basis}
@@ -622,7 +655,7 @@
     由于基向量线性无关，只能有 \(\lambda_i-\mu_i=0\)，即 \(\lambda_i=\mu_i\)，因此表示唯一。
 \end{proof}
 
-不同的线性空间的基向量的个数可能不同，这对应了一个线性空间的一个重要性质——维数。维数是线性空间的一个基本不变量，它不仅反映了线性空间的大小，还决定了线性空间中向量组的秩的上界。
+不同的线性空间的基向量的个数可能不同，但基于交换定理（\cref{thm:exchange}），可以证明同一个线性空间的任意两组基向量的个数相同。因此，基向量的个数对应了线性空间的一个基本不变量，它不仅反映了线性空间的``大小''，还决定了线性空间中向量组的秩的上界。
 \begin{definition}[维数]
     \label{def:dimension}
     如果线性空间 \(V\) 有一组由 \(n\) 个向量组成的基，则称 \(V\) 是\textbf{有限维线性空间}，并称 \(n\) 为 \(V\) 的\textbf{维数}（Dimension），记作
