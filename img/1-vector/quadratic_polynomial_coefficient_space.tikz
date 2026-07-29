@@ -1,0 +1,50 @@
+\begin{tikzpicture}
+    \begin{axis}[
+        view={20}{20},
+        xlabel={\(a_0\)},
+        ylabel={\(a_1\)},
+        zlabel={\(a_2\)},
+        label style={font=\small},
+        ticklabel style={font=\tiny},
+        xmin=-3, xmax=3,
+        ymin=-3, ymax=3,
+        zmin=-3, zmax=3,
+        axis lines=center,
+        axis line style={-{Stealth[length=4pt,width=4pt]}, black!65},
+        axis equal image,
+        xtick=\empty,
+        ytick=\empty,
+        ztick=\empty,
+        clip=false,
+        ]
+        % The discriminant cone a_1^2 - 4a_0a_2 = 0.
+        \addplot3[
+            surf,
+            shader=faceted,
+            colormap={conecolor}{color=(c3!18) color=(c3!18)},
+            faceted color=c3!45,
+            fill opacity=0.48,
+            thin,
+            domain=-1.55:1.55,
+            y domain=0:360,
+            samples=19,
+            samples y=37,
+            z buffer=sort,
+        ]
+        (
+        {x*(1+cos(y))/sqrt(2)},
+        {sqrt(2)*x*sin(y)},
+        {x*(1-cos(y))/sqrt(2)}
+        );
+        % Origin.
+        \addplot3[
+            only marks,
+            mark=*,
+            mark size=0.8pt,
+            black!65,
+            forget plot,
+        ] coordinates {(0,0,0)};
+        \node[font=\scriptsize, text=black!72, anchor=north east]
+        at (axis cs:0,0,0) {\(O\)};
+    \end{axis}
+\end{tikzpicture}

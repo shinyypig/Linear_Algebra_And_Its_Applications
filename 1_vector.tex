@@ -493,6 +493,29 @@
     \]
     则称 \(V\) 与 \(W\) 是\textbf{同构}（Isomorphism）的，记作 \(V\simeq W\)。映射 \(\varphi\) 称为一个线性空间同构。
 \end{definition}
+
+\begin{example}[二次多项式空间与系数空间]
+    \label{ex:quadratic_polynomial_isomorphism}
+    考虑二次实系数多项式空间
+    \[
+        \mathcal P_2
+        =\{a_0+a_1x+a_2x^2\mid a_0,a_1,a_2\in\mathbb R, a_2\ne0\}.
+    \]
+    可以将其中任意一个多项式看作\( \mathbb{R}^3 \)系数空间中的一个点（除了 \(a_2=0\) 这个平面）。
+
+    这种对应还可以把多项式的代数性质转化为空间中的几何关系。对于\(a_2\ne0\) 的二次多项式，判别式
+    \[
+        \Delta=a_1^2-4a_0a_2
+    \]
+    的零点集是系数空间中的一个椭圆锥面。锥面上的点对应有重根的多项式，锥面两侧则分别对应无实根和有两个实根的多项式，如\cref{fig_quadratic_polynomial_coefficient_space} 所示。
+    \begin{center}
+        \captionsetup{type=figure}
+        \includegraphics[width=.46\linewidth]{./img/1-vector/quadratic_polynomial_coefficient_space.tikz}
+        \captionof{figure}{二次多项式在系数空间中的根型划分（\(a_2\ne0\)）}
+        \label{fig_quadratic_polynomial_coefficient_space}
+    \end{center}
+\end{example}
+
 从\cref{def:linear_space_isomorphism}可以看出，线性空间同构不仅要求两个线性空间之间的元素一一对应，还要求映射保持向量加法和数乘的运算结构。换句话说，同构的两个线性空间在代数结构上是完全相同的，只是元素的表现形式不同。
 
 一个线性空间中常常包含一些较小的集合，它们在原来的加法和数乘下仍然构成线性空间。
