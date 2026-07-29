@@ -431,7 +431,7 @@
 \end{proof}
 
 尽管对于一个线性相关的向量组，其极大线性无关组不唯一，但根据交换定理可以证明，所有极大线性无关组所含向量的个数相同。
-\begin{proposition}
+\begin{proposition}\label{prop:maximal_independent}
     一个有限向量组的任意两个极大线性无关组所含向量的个数相同。
 \end{proposition}
 
@@ -439,11 +439,21 @@
     设\( \mathcal V=(\bm v_1,\ldots,\bm v_r) \)和\( \mathcal W=(\bm w_1,\ldots,\bm w_s) \)是同一个有限向量组的两个极大线性无关组。由于，\( \operatorname{span}(\mathcal{V}) \subseteq \operatorname{span}(\mathcal{W}) \) 且 \(\mathcal V\) 线性无关，根据\cref{thm:exchange}，有 \(r\leq s\)。同理，由于 \( \operatorname{span}(\mathcal{W}) \subseteq \operatorname{span}(\mathcal{V}) \) 且 \(\mathcal W\) 线性无关，也有 \(s\leq r\)。因此，\(r=s\)，即两个极大线性无关组所含向量的个数相同。
 \end{proof}
 
+\cref{prop:maximal_independent}表明对于一个向量组，其极大线性无关组的向量个数是关键的不变量，由此可以定义秩的概念。
+\begin{definition}[秩]
+    设 \(\mathcal V\) 是一个有限向量组，其极大线性无关组所含向量的个数称为 \(\mathcal V\) 的\textbf{秩}，记作 \(\operatorname{rank}\mathcal V\)。
+\end{definition}
+对于一个具有\( m \)个向量的向量组 \(\mathcal V\)，显然有
+\[
+    \operatorname{rank}\mathcal V\leq m.
+\]
+
+至此，我们围绕 \(\mathbb R^n\) 和 \(\mathbb C^n\) 中的向量，依次讨论了线性组合、张成、线性相关与线性无关，以及极大线性无关组和秩等概念。这些概念虽然是在具体的向量空间中引入的，但其定义和推导过程实际上只依赖于向量加法和数乘这两种运算及其基本规律，而并不依赖于向量本身的具体形式。这提示我们，可以将这些运算规律抽象出来，脱离\(\mathbb R^n\) 和 \(\mathbb C^n\) 的具体背景，建立更一般的理论框架，这就是下面要引入的线性空间。
 
 \section{线性空间的概念与性质}
 \label{sec:basis_dim_coord}
 
-到目前为止，我们主要研究了 \(\mathbb R^n\) 和 \(\mathbb C^n\) 中的向量，包括向量加法与数乘，以及由此衍生的张成、线性相关与线性无关等概念。这些概念并不依赖于 \(\mathbb R^n\) 或 \(\mathbb C^n\) 的具体形式，而是可以推广到更一般的情形。将这些运算所满足的基本规律抽象出来，便可以得到线性空间这一重要概念。
+将向量加法与数乘所满足的基本规律抽象出来，便可以得到线性空间这一重要概念，其具体定义如下。
 
 \begin{definition}[线性空间]
     \label{def:linear_space}
