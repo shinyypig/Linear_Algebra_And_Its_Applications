@@ -245,7 +245,7 @@
 \[
     \bm a=\sum_{i=1}^{m}\lambda_i\bm v_i.
 \]
-从几何上来看，这意味着 \(\bm a\) 落在由 \(\bm v_1,\ldots,\bm v_m\) 张成的直线、平面或更高维的几何对象中。此外，可以证明，如果\( \lambda_k \neq 0 \)，则将向量\( \bm{a} \)替换向量组中的 \( \bm{v}_k \) 后，新的向量组的张成不变，具体内容见\cref{lem:replacement}。
+从几何上来看，这意味着 \(\bm a\) 落在由 \(\bm v_1,\ldots,\bm v_m\) 张成的几何空间中。此外，可以证明，如果\( \lambda_k \neq 0 \)，则将向量\( \bm{a} \)替换向量组中的 \( \bm{v}_k \) 后，新的向量组的张成不变，具体内容见\cref{lem:replacement}。
 \begin{lemma}[替换引理]
     \label{lem:replacement}
     设有向量组\((\bm{v}_1, \bm{v}_2, \ldots, \bm{v}_m) \)，并且对于向量 \(\bm a \in \operatorname{span}\{\bm v_1,\ldots,\bm v_m\}\)，存在实数 \(\lambda_1,\ldots,\lambda_m\) 使得
@@ -589,7 +589,7 @@
 
 \begin{theorem}[子空间判定定理]
     \label{thm:subspace_criterion}
-    设 \(U\) 是线性空间 \(V\) 的非空子集。则 \(U\) 是 \(V\) 的子空间，当且仅当对于任意 \(\bm u,\bm v\in U\) 和任意 \(\lambda,\mu\in\mathbb F\)，都有
+    设有线性空间 \(V\) 的非空子集 \(U \subseteq V\)。则 \(U\) 是 \(V\) 的子空间，当且仅当对于任意 \(\bm u,\bm v\in U\) 和任意 \(\lambda,\mu\in\mathbb F\)，都有
     \[
         \lambda\bm u+\mu\bm v\in U.
     \]
@@ -609,7 +609,7 @@
     \label{fig_r3_line_plane_subspace}
 \end{center}
 
-有趣的是，给定线性空间 \(V\) 中的一个向量组，其张成空间一定是一个线性空间：要么是\(V\)，要么是\(V\) 的一个子空间。相关证明并不困难，此处不再赘述。于是，反过来思考便自然产生一个问题：对于一个给定的线性空间，是否存在一个线性无关的向量组，使得其张成恰好就是这个线性空间本身？
+有趣的是，给定线性空间 \(V\) 中的一个向量组，其张成空间一定是\( V \)的一个线性子空间。相关证明并不困难，此处不再赘述。反向思考，自然产生一个问题：对于一个给定的线性空间，是否存在一个线性无关的向量组，使得其张成恰好就是这个线性空间本身？
 
 \begin{definition}[基]
     \label{def:basis}
