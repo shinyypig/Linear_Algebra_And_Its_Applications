@@ -73,7 +73,7 @@
 \[
     \bm u=\bm v
     \iff
-    u_i=v_i,\qquad i=1,2,\ldots,n.
+    u_i=v_i,\quad i=1,2,\ldots,n.
 \]
 
 所有分量都等于零的向量称为\textbf{零向量}，记作
@@ -116,7 +116,7 @@
     设
     \[
         \bm u=(u_1,u_2,\ldots,u_n),
-        \qquad
+        \quad
         \bm v=(v_1,v_2,\ldots,v_n)
     \]
     是 \(\mathbb R^n\) 中的两个向量，定义它们的和为
@@ -128,7 +128,7 @@
 
 例如，对于二维向量
 \[
-    \bm u=(2,1),\qquad \bm v=(1,2),
+    \bm u=(2,1),\quad \bm v=(1,2),
 \]
 有
 \[
@@ -163,8 +163,8 @@
 
 数乘也有直接的几何意义。当 \(\lambda>0\) 时，\(\lambda\bm v\) 与 \(\bm v\) 的方向相同；当 \(\lambda<0\) 时，二者方向相反。\(\lvert\lambda\rvert\) 决定向量长度被放大或缩小的倍数。特别地，
 \[
-    1\bm v=\bm v,\qquad
-    (-1)\bm v=-\bm v,\qquad
+    1\bm v=\bm v,\quad
+    (-1)\bm v=-\bm v,\quad
     0\bm v=\bm 0.
 \]
 
@@ -667,3 +667,191 @@
     (1,x,x^2,\ldots,x^n),
 \]
 所以 \(\dim\mathcal P_n=n+1\)。交换定理（\cref{thm:exchange}）还说明，在 \(n\) 维线性空间中，任何含有多于 \(n\) 个向量的向量组都线性相关，任何含有少于 \(n\) 个向量的向量组都不能张成整个空间。
+
+\section{小结}
+\label{sec:vector_summary}
+
+本章从平面和空间中的几何向量出发，首先利用坐标将向量表示为有序数组，并在此基础上定义向量的加法与数乘。随后，我们从具体的实向量和复向量逐步过渡到抽象的线性空间，讨论了向量组及线性空间的基本结构。本章主要介绍了以下内容：
+
+\begin{enumerate}
+    \item 向量的坐标表示、向量加法、数乘以及线性组合与张成；
+    \item 线性相关与线性无关、极大线性无关组、向量组的秩以及交换定理；
+    \item 线性空间、线性空间同构与线性子空间的基本概念；
+    \item 基、坐标与维数，以及它们与线性相关性和张成之间的关系。
+\end{enumerate}
+
+这些内容揭示了具体向量运算背后的共同结构，也为后续研究矩阵、线性方程组和线性映射奠定了基础。
+
+\section{习题}
+\label{sec:vector_exercises}
+
+\begin{exercise}
+    \label{exer:vector_1}
+    设 \(\bm u=(1,-2,3)\)，\(\bm v=(2,1,-1)\)。计算 \(\bm u+\bm v\)、\(\bm u-\bm v\) 和 \(2\bm u-3\bm v\)。
+\end{exercise}
+
+\begin{exercise}
+    \label{exer:vector_2}
+    设 \(\bm v_1=(1,0,1)\)，\(\bm v_2=(0,1,1)\)。分别判断向量 \(\bm a=(3,1,4)\) 和 \(\bm b=(1,2,0)\) 能否由 \(\bm v_1,\bm v_2\) 线性表示；若能，求出相应的系数。
+\end{exercise}
+
+\begin{exercise}
+    \label{exer:vector_3}
+    证明
+    \[
+        \operatorname{span}\{(1,0,1),(0,1,1)\}
+        =\{(x,y,z)\in\mathbb R^3\mid z=x+y\}.
+    \]
+\end{exercise}
+
+\begin{exercise}
+    \label{exer:vector_4}
+    设 \(\bm u,\bm v\in\mathbb R^n\)。证明
+    \[
+        \operatorname{span}\{\bm u,\bm v\}
+        =\operatorname{span}\{\bm u+\bm v,\bm u-\bm v\}.
+    \]
+\end{exercise}
+
+\begin{exercise}
+    \label{exer:vector_5}
+    分别判断下列向量组是否线性相关，并说明理由：
+    \begin{enumerate}
+        \item \(((1,0),(0,1))\)；
+        \item \(((1,2),(2,4))\)；
+        \item \(((1,0,0),(0,1,0),(1,1,0))\)；
+        \item \(((1,1,0),(1,0,1),(0,1,1))\)。
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    \label{exer:vector_6}
+    设向量组 \((\bm v_1,\ldots,\bm v_m)\) 线性无关。证明：向量组
+    \[
+        (\bm v_1,\ldots,\bm v_m,\bm a)
+    \]
+    线性相关，当且仅当
+    \[
+        \bm a\in\operatorname{span}\{\bm v_1,\ldots,\bm v_m\}.
+    \]
+\end{exercise}
+
+\begin{exercise}
+    \label{exer:vector_7}
+    设向量组
+    \[
+        \mathcal V=((1,0,1),(0,1,1),(1,1,2),(1,-1,0)).
+    \]
+    求 \(\mathcal V\) 的一个极大线性无关组，并求 \(\operatorname{rank}\mathcal V\)。
+\end{exercise}
+
+\begin{exercise}
+    \label{exer:vector_8}
+    判断下列集合是否为 \(\mathbb R^3\) 的子空间，并说明理由：
+    \begin{enumerate}
+        \item \(U=\{(x,y,z)\in\mathbb R^3\mid x+y+z=0\}\)；
+        \item \(W=\{(x,y,z)\in\mathbb R^3\mid x+y+z=1\}\)；
+        \item \(S=\{(x,y,z)\in\mathbb R^3\mid x=y=z\}\)。
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    \label{exer:vector_9}
+    在 \(\mathcal P_2\) 中定义集合
+    \[
+        U=\{p(x)\in\mathcal P_2\mid p(1)=0\},\quad
+        W=\{p(x)\in\mathcal P_2\mid p(1)=1\}.
+    \]
+    分别判断 \(U\) 和 \(W\) 是否为 \(\mathcal P_2\) 的子空间，并说明理由。
+\end{exercise}
+
+\begin{exercise}
+    \label{exer:vector_10}
+    设 \(U\) 和 \(W\) 是线性空间 \(V\) 的两个有限维子空间。
+    \begin{enumerate}
+        \item 证明 \(U\cap W\) 也是 \(V\) 的子空间；
+        \item 证明
+              \[
+                  \dim(U\cap W)\leq\min\{\dim U,\dim W\};
+              \]
+        \item 证明 \(\dim(U\cap W)=\dim U\) 当且仅当 \(U\subseteq W\)。
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    \label{exer:vector_11}
+    设 \(U\) 和 \(W\) 是有限维线性空间 \(V\) 的两个子空间，定义
+    \[
+        U+W=\{\bm u+\bm w\mid \bm u\in U,\ \bm w\in W\}.
+    \]
+    证明 \(U+W\) 是 \(V\) 的子空间，并证明维数公式
+    \[
+        \dim(U+W)=\dim U+\dim W-\dim(U\cap W).
+    \]
+\end{exercise}
+
+\begin{exercise}
+    \label{exer:vector_12}
+    设 \(\mathcal F\) 是所有实函数 \(f:\mathbb R\to\mathbb R\) 组成的集合。定义
+    \[
+        (f+g)(x)=f(x)+g(x),\quad
+        (\lambda f)(x)=\lambda f(x).
+    \]
+    证明 \(\mathcal F\) 关于上述运算构成实数域上的线性空间。
+\end{exercise}
+
+\begin{exercise}
+    \label{exer:vector_13}
+    证明映射
+    \[
+        \varphi:\mathcal P_n\to\mathbb R^{n+1},\quad
+        a_0+a_1x+\cdots+a_nx^n\longmapsto(a_0,a_1,\ldots,a_n)
+    \]
+    是一个线性空间同构。
+\end{exercise}
+
+\begin{exercise}
+    \label{exer:vector_14}
+    分别判断下列向量组是否为相应线性空间的一组基，并说明理由：
+    \begin{enumerate}
+        \item \(((1,0),(1,1))\) 与 \(\mathbb R^2\)；
+        \item \(((1,2),(2,4))\) 与 \(\mathbb R^2\)；
+        \item \(((1,0,1),(0,1,1),(1,1,0))\) 与 \(\mathbb R^3\)；
+        \item \((1,x,x^2)\) 与 \(\mathcal P_2\)。
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    \label{exer:vector_15}
+    设 \(\mathcal B=((1,1),(1,-1))\) 是 \(\mathbb R^2\) 的一组基。
+    \begin{enumerate}
+        \item 求向量 \((4,2)\) 在基 \(\mathcal B\) 下的坐标；
+        \item 求任意向量 \((x,y)\) 在基 \(\mathcal B\) 下的坐标。
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    \label{exer:vector_16}
+    在 \(\mathbb R^3\) 中定义集合
+    \[
+        U=\{(x,y,z)\in\mathbb R^3\mid x+y+z=0\}.
+    \]
+    求 \(U\) 的一组基及其维数，并求向量 \((2,-1,-1)\) 在所选基下的坐标。
+\end{exercise}
+
+\begin{exercise}
+    \label{exer:vector_17}
+    设 \(V\) 是一个 \(n\) 维线性空间。证明：
+    \begin{enumerate}
+        \item \(V\) 中任意含有 \(n\) 个向量的线性无关组都是 \(V\) 的一组基；
+        \item \(V\) 中任意含有 \(n\) 个向量且张成 \(V\) 的向量组都是 \(V\) 的一组基。
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    \label{exer:vector_18}
+    设 \(V\) 和 \(W\) 是域 \(\mathbb F\) 上的两个有限维线性空间。证明：\(V\) 与 \(W\) 同构，当且仅当
+    \[
+        \dim V=\dim W.
+    \]
+\end{exercise}
