@@ -4,7 +4,7 @@ settings.tex = "xelatex";
 settings.outformat = "pdf";
 texpreamble("\usepackage{ctex}");
 
-size(12.5cm);
+size(10cm);
 
 pair[] corners={(-0.78,0.78),(0.78,0.78),(0.78,-0.78),(-0.78,-0.78)};
 
