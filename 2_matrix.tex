@@ -40,14 +40,42 @@
 这意味着，只要知道前面得到的 \(n^2\) 个系数，对于任意向量 \(\bm v\in V\)，就可以通过上述公式计算出 \(\varphi(\bm v)\) 在基 \(\mathcal B\) 下的坐标。并且，对于这\( n^2 \)个系数，我们可以将其分为\( n \)组。因此，我们希望以二维的形式来记录这些系数，将\(\varphi(\bm a_j)\) 在基 \( \mathcal{B} \) 下的坐标排在第 \(j\) 列，得到
 \[
     \mathbf{X}=
-    \begin{pmatrix}
+    \begin{bmatrix}
         x_{11} & x_{12} & \cdots & x_{1n} \\
         x_{21} & x_{22} & \cdots & x_{2n} \\
         \vdots & \vdots & \ddots & \vdots \\
         x_{n1} & x_{n2} & \cdots & x_{nn}
-    \end{pmatrix}.
+    \end{bmatrix}.
 \]
 这个二维数组完整记录了同构 \(\varphi\) 在所选基下的作用。
+
+\begin{example}
+    \label{ex:linear_map_matrix}
+    设 \(V=W=\mathbb R^2\)，并且都选取标准基
+    \[
+        \mathcal A=\mathcal B=\left(\bm{e}_1, \bm{e}_2\right).
+    \]
+    对于\( V \)上一个向量\( \bm{v} \)，其在基 \(\mathcal A\) 下的坐标为 \((\alpha_1, \alpha_2)\)，即
+    \[
+        \bm v = \alpha_1\bm e_1 + \alpha_2\bm e_2.
+    \]
+    该向量在线性空间同构 \(\varphi\) 下的像为\( \varphi(\bm{v}) \)，该像在基 \(\mathcal B\) 下的坐标为 \((\beta_1, \beta_2)\)，并且有如下关系：
+    \[
+        \begin{cases}
+            \beta_1 = \alpha_1 + \alpha_2, \\
+            \beta_2 = \alpha_2.
+        \end{cases}
+    \]
+    可以发现，该线性空间同构可以用一个 \(2 \times 2\) 的矩阵表示：
+    \[
+        \mathbf{X}=
+        \begin{bmatrix}
+            1 & 1 \\
+            0 & 1
+        \end{bmatrix}.
+    \]
+
+\end{example}
 
 注意到，上述推导中的线性空间 \(V\) 与 \(W\) 维数相同，因此得到的是一个方形数组。但上述推导实际只使用了映射保持向量加法和数乘，并没有使用它是双射这一条件。因此，可以令定义域的维数为 \(n\)，陪域的维数为 \(m\)，推导过程同样成立。最终得到 \(mn\) 个系数，并将它们排列为 \(m\) 行 \(n\) 列。基于这一观察，可以给出一般矩阵的定义。
 
@@ -56,12 +84,12 @@
     设 \(m,n\) 是非负整数，\(\mathbb F\) 是一个域。由 \(mn\) 个属于 \(\mathbb F\) 的元素按照 \(m\) 行 \(n\) 列排列成的矩形数组
     \[
         \mathbf{X}=
-        \begin{pmatrix}
+        \begin{bmatrix}
             x_{11} & x_{12} & \cdots & x_{1n} \\
             x_{21} & x_{22} & \cdots & x_{2n} \\
             \vdots & \vdots & \ddots & \vdots \\
             x_{m1} & x_{m2} & \cdots & x_{mn}
-        \end{pmatrix}
+        \end{bmatrix}
     \]
     称为一个 \(m\times n\) \textbf{矩阵}（Matrix），使用加粗整体字母表示。其中，\(x_{ij}\) 称为矩阵 \(\mathbf{X}\) 的第 \(i\) 行第 \(j\) 列元素。所有 \(\mathbb F\) 上的 \(m\times n\) 矩阵组成的集合记作 \(\mathbb{F}^{m \times n}\)。
 \end{definition}
@@ -109,16 +137,16 @@
 
 例如，
 \[
-    \begin{pmatrix}
+    \begin{bmatrix}
         1 & 2 & 3 \\
         4 & 5 & 6
-    \end{pmatrix}^{\mathsf T}
+    \end{bmatrix}^{\mathsf T}
     =
-    \begin{pmatrix}
+    \begin{bmatrix}
         1 & 4 \\
         2 & 5 \\
         3 & 6
-    \end{pmatrix}.
+    \end{bmatrix}.
 \]
 根据定义可以验证
 \[
@@ -142,12 +170,12 @@
 \[
     A\bm x
     =
-    \begin{pmatrix}
+    \begin{bmatrix}
         \displaystyle\sum_{j=1}^{n}a_{1j}x_j \\
         \displaystyle\sum_{j=1}^{n}a_{2j}x_j \\
         \vdots                               \\
         \displaystyle\sum_{j=1}^{n}a_{mj}x_j
-    \end{pmatrix}.
+    \end{bmatrix}.
 \]
 矩阵 \(A\) 有 \(n\) 列，而 \(\bm x\) 有 \(n\) 个分量，这一条件保证上述线性组合有意义；乘积 \(A\bm x\) 则是 \(\mathbb F^m\) 中的向量。
 
@@ -156,39 +184,39 @@
     对于
     \[
         A=
-        \begin{pmatrix}
+        \begin{bmatrix}
             1 & 2 & -1 \\
             0 & 3 & 2
-        \end{pmatrix},
+        \end{bmatrix},
         \quad
         \bm x=
-        \begin{pmatrix}
+        \begin{bmatrix}
             2  \\
             -1 \\
             3
-        \end{pmatrix},
+        \end{bmatrix},
     \]
     有
     \[
         A\bm x
         =
         2
-        \begin{pmatrix}
+        \begin{bmatrix}
             1 \\0
-        \end{pmatrix}
+        \end{bmatrix}
         -
-        \begin{pmatrix}
+        \begin{bmatrix}
             2 \\3
-        \end{pmatrix}
+        \end{bmatrix}
         +
         3
-        \begin{pmatrix}
+        \begin{bmatrix}
             -1 \\2
-        \end{pmatrix}
+        \end{bmatrix}
         =
-        \begin{pmatrix}
+        \begin{bmatrix}
             -3 \\3
-        \end{pmatrix}.
+        \end{bmatrix}.
     \]
 \end{example}
 
@@ -316,11 +344,11 @@
     \[
         [\bm v]_{\mathcal B}
         =
-        \begin{pmatrix}
+        \begin{bmatrix}
             x_1    \\
             \vdots \\
             x_n
-        \end{pmatrix}
+        \end{bmatrix}
         \in\mathbb F^n
     \]
     为 \(\bm v\) 在基 \(\mathcal B\) 下的\textbf{坐标向量}。
@@ -329,7 +357,7 @@
 根据基表示的唯一性（\cref{thm:basis_unique}），坐标向量是良定义的。由坐标的运算规律还可得到
 \[
     [\bm u+\bm v]_{\mathcal B}
-        =[\bm u]_{\mathcal B}+[\bm v]_{\mathcal B},
+    =[\bm u]_{\mathcal B}+[\bm v]_{\mathcal B},
     \quad
     [\lambda\bm v]_{\mathcal B}
     =\lambda[\bm v]_{\mathcal B}.
@@ -353,13 +381,13 @@
     \[
         [T]_{\mathcal C\leftarrow\mathcal B}
         =
-        \begin{pmatrix}
+        \begin{bmatrix}
             [T(\bm b_1)]_{\mathcal C}
              &
             \cdots
              &
             [T(\bm b_n)]_{\mathcal C}
-        \end{pmatrix}.
+        \end{bmatrix}.
     \]
 \end{definition}
 
@@ -370,9 +398,9 @@
     在\cref{def:representation_matrix}的条件下，对于任意 \(\bm v\in V\)，都有
     \[
         [T(\bm v)]_{\mathcal C}
-            =
-            [T]_{\mathcal C\leftarrow\mathcal B}
-            [\bm v]_{\mathcal B}.
+        =
+        [T]_{\mathcal C\leftarrow\mathcal B}
+        [\bm v]_{\mathcal B}.
     \]
 \end{theorem}
 
@@ -381,11 +409,11 @@
     \[
         [\bm v]_{\mathcal B}
         =
-        \begin{pmatrix}
+        \begin{bmatrix}
             x_1    \\
             \vdots \\
             x_n
-        \end{pmatrix},
+        \end{bmatrix},
     \]
     则 \(\bm v=x_1\bm b_1+\cdots+x_n\bm b_n\)。由 \(T\) 的线性性，
     \[
@@ -427,26 +455,26 @@
     \[
         [D]_{\mathcal C\leftarrow\mathcal B}
         =
-        \begin{pmatrix}
+        \begin{bmatrix}
             0 & 1 & 0 \\
             0 & 0 & 2
-        \end{pmatrix}.
+        \end{bmatrix}.
     \]
     对于 \(p(x)=a+bx+cx^2\)，有
     \[
         [D(p)]_{\mathcal C}
         =
-        \begin{pmatrix}
+        \begin{bmatrix}
             0 & 1 & 0 \\
             0 & 0 & 2
-        \end{pmatrix}
-        \begin{pmatrix}
+        \end{bmatrix}
+        \begin{bmatrix}
             a \\b\\c
-        \end{pmatrix}
+        \end{bmatrix}
         =
-        \begin{pmatrix}
+        \begin{bmatrix}
             b \\2c
-        \end{pmatrix},
+        \end{bmatrix},
     \]
     这正是多项式 \(b+2cx\) 在基 \(\mathcal C\) 下的坐标向量。
 \end{example}
@@ -517,9 +545,9 @@
 矩阵乘法也可以从列向量的角度理解。若把 \(B\) 的各列记作 \(\bm b_1,\ldots,\bm b_p\)，则
 \[
     AB=
-    \begin{pmatrix}
+    \begin{bmatrix}
         A\bm b_1 & \cdots & A\bm b_p
-    \end{pmatrix}.
+    \end{bmatrix}.
 \]
 也就是说，\(AB\) 的每一列都是 \(A\) 作用于 \(B\) 相应列向量的结果。
 
@@ -528,37 +556,37 @@
     设
     \[
         A=
-        \begin{pmatrix}
+        \begin{bmatrix}
             1 & 2  \\
             0 & -1
-        \end{pmatrix},
+        \end{bmatrix},
         \quad
         B=
-        \begin{pmatrix}
+        \begin{bmatrix}
             3 & 1 \\
             2 & 4
-        \end{pmatrix}.
+        \end{bmatrix}.
     \]
     则
     \[
         AB=
-        \begin{pmatrix}
+        \begin{bmatrix}
             1\cdot3+2\cdot2    & 1\cdot1+2\cdot4    \\
             0\cdot3+(-1)\cdot2 & 0\cdot1+(-1)\cdot4
-        \end{pmatrix}
+        \end{bmatrix}
         =
-        \begin{pmatrix}
+        \begin{bmatrix}
             7  & 9  \\
             -2 & -4
-        \end{pmatrix}.
+        \end{bmatrix}.
     \]
     另一方面，
     \[
         BA=
-        \begin{pmatrix}
+        \begin{bmatrix}
             3 & 5 \\
             2 & 0
-        \end{pmatrix},
+        \end{bmatrix},
     \]
     因此一般情况下 \(AB\ne BA\)。矩阵乘法不满足交换律。
 \end{example}
@@ -583,11 +611,11 @@
 在 \(n\) 阶方阵中，对角线元素均为 \(1\)、其余元素均为 \(0\) 的矩阵称为 \(n\) 阶\textbf{单位矩阵}，记作
 \[
     I_n=
-    \begin{pmatrix}
+    \begin{bmatrix}
         1 &        & 0 \\
           & \ddots &   \\
         0 &        & 1
-    \end{pmatrix}.
+    \end{bmatrix}.
 \]
 对于任意 \(A\in M_{m\times n}(\mathbb F)\)，都有
 \[
@@ -603,7 +631,7 @@
         [S\circ T]_{\mathcal D\leftarrow\mathcal B}
         =
         [S]_{\mathcal D\leftarrow\mathcal C}
-            [T]_{\mathcal C\leftarrow\mathcal B}.
+        [T]_{\mathcal C\leftarrow\mathcal B}.
     \]
 \end{theorem}
 
@@ -905,13 +933,13 @@
         P_{\mathcal B\leftarrow\mathcal B'}
         =[I_V]_{\mathcal B\leftarrow\mathcal B'}
         =
-        \begin{pmatrix}
+        \begin{bmatrix}
             [\bm b'_1]_{\mathcal B}
              &
             \cdots
              &
             [\bm b'_n]_{\mathcal B}
-        \end{pmatrix}
+        \end{bmatrix}
     \]
     称为从基 \(\mathcal B'\) 到基 \(\mathcal B\) 的\textbf{过渡矩阵}。
 \end{definition}
@@ -976,7 +1004,7 @@
             [T(\bm v)]_{\mathcal C'}
              & =Q^{-1}[T(\bm v)]_{\mathcal C}              \\
              & =Q^{-1}[T]_{\mathcal C\leftarrow\mathcal B}
-            [\bm v]_{\mathcal B}                           \\
+                    [\bm v]_{\mathcal B}  \\
              & =Q^{-1}[T]_{\mathcal C\leftarrow\mathcal B}
             P[\bm v]_{\mathcal B'}.
         \end{aligned}
@@ -1011,16 +1039,16 @@
     从 \(\mathcal B'\) 到 \(\mathcal B\) 的过渡矩阵为
     \[
         P=
-        \begin{pmatrix}
+        \begin{bmatrix}
             1 & 1 \\
             0 & 1
-        \end{pmatrix},
+        \end{bmatrix},
         \quad
         P^{-1}=
-        \begin{pmatrix}
+        \begin{bmatrix}
             1 & -1 \\
             0 & 1
-        \end{pmatrix}.
+        \end{bmatrix}.
     \]
     定义线性变换
     \[
@@ -1029,20 +1057,20 @@
     它在标准基下的表示矩阵为
     \[
         A=
-        \begin{pmatrix}
+        \begin{bmatrix}
             2 & 0 \\
             0 & 1
-        \end{pmatrix}.
+        \end{bmatrix}.
     \]
     因此，它在基 \(\mathcal B'\) 下的表示矩阵为
     \[
         A'
         =P^{-1}AP
         =
-        \begin{pmatrix}
+        \begin{bmatrix}
             2 & 1 \\
             0 & 1
-        \end{pmatrix}.
+        \end{bmatrix}.
     \]
     直接计算也可得到
     \[
@@ -1079,16 +1107,16 @@
     对于矩阵
     \[
         A=
-        \begin{pmatrix}
+        \begin{bmatrix}
             1 & -2 \\
             3 & 0
-        \end{pmatrix},
+        \end{bmatrix},
         \quad
         B=
-        \begin{pmatrix}
+        \begin{bmatrix}
             2  & 1 \\
             -1 & 4
-        \end{pmatrix},
+        \end{bmatrix},
     \]
     计算 \(A+B\)、\(2A-B\)、\(A^{\mathsf T}\)、\(AB\) 和 \(BA\)。
 \end{exercise}
@@ -1098,15 +1126,15 @@
     对于
     \[
         A=
-        \begin{pmatrix}
+        \begin{bmatrix}
             1  & 0 & 2 \\
             -1 & 3 & 1
-        \end{pmatrix},
+        \end{bmatrix},
         \quad
         \bm x=
-        \begin{pmatrix}
+        \begin{bmatrix}
             2 \\1\\-1
-        \end{pmatrix},
+        \end{bmatrix},
     \]
     计算 \(A\bm x\)，并将结果写成 \(A\) 的列向量的线性组合。
 \end{exercise}
