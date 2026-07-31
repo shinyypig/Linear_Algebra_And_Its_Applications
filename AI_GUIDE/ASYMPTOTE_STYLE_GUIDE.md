@@ -86,17 +86,31 @@ texpreamble("\\usepackage{bm}");
 
 - 每个 `.asy` 文件只绘制一张图，文件名沿用原有 `snake_case` 名称。
 - 数学角色和非显然的深度处理需要注释，重复样式放入 `bookstyle.asy`。
-- 正文只引用生成的 `.pdf`，不直接引用 `.asy`。PDF 必须按最终
-  物理尺寸生成，并在正文中使用不带 `width`、`height` 或
-  `scale` 的 `\includegraphics` 以 1:1 比例插入；不要在
-  LaTeX 中再次缩放，否则文字、线宽、箭头和圆点会随缩放比例改变。需要调整
-  图形占用空间时，应修改 `.asy` 中的 `size(...)`。
+- `img/` 只保存并提交 `.asy` 源文件，不保存生成的 PDF。构建时在
+  `tmp/img/` 下按源目录结构生成同名 `.pdf` 和内容指纹文件；`tmp/` 已被
+  Git 忽略。删除 `tmp/` 等价于清理全部构建产物，下一次构建会重新生成所有
+  Asymptote 图片。
+- 正文以 `img/<chapter>/<name>.asy` 的源码路径引用图片；`simplebook.cls` 会将
+  `\includegraphics` 收到的 `.asy` 后缀转换为 `.pdf`，再通过图片搜索路径从
+  `tmp/img/...pdf` 读取实际产物。PNG、JPG、PDF 等普通图片引用不受影响。
+- PDF 必须按最终物理尺寸生成，并在正文中使用不带 `width`、`height` 或
+  `scale` 的 `\includegraphics` 以 1:1 比例插入；不要在 LaTeX 中再次缩放，
+  否则文字、线宽、箭头和圆点会随缩放比例改变。需要调整图形占用空间时，
+  应修改 `.asy` 中的 `size(...)`。
 - 并排图片的容器宽度只负责排版，必须大于图片的自然宽度，不用于缩放图片。
 - 三维透明图片的封装脚本会读取顶层 `.asy` 的单参数
   `size(...)`，并将该尺寸写入 PDF；因此三维图应使用
   `size(4.5cm)` 这类单参数形式。
-- 正常构建运行 `./build.sh`；`latexmkrc` 会按需将 `.asy` 转换为 `.pdf`，并
-  删除 OpenGL 渲染产生的 `*__.ps` 临时文件。三维渲染命令会自动适配平台：
+- 正常构建运行 `./build.sh`；`latexmkrc` 会先调用
+  `scripts/build_asymptote_figures.pl`，按源码、公共样式和三维透明处理脚本的
+  内容指纹增量生成 PDF，并删除 OpenGL 渲染产生的 `*__.ps` 临时文件。待更新的
+  图片默认使用 4 个并行任务编译；并发数由 `latexmkrc` 顶层的
+  `$asymptote_jobs` 设置，改为 `1` 时串行编译。Windows 当前固定回退为串行，
+  以避免 Perl `fork` 模拟层带来的不稳定性。
+  三维渲染命令会自动适配平台：
   Linux 检测到 `xvfb-run` 时通过虚拟显示运行 Asymptote；macOS、Windows 以及
-  未安装 `xvfb-run` 的图形环境直接调用 `asy`，不要在图片源码中硬编码
-  `xvfb-run`。
+  未安装 `xvfb-run` 的图形环境直接调用 `asy`。构建器会关闭 Asymptote 的查看
+  功能，将 batch OpenGL 渲染窗口设为最小化，并以 quiet 模式在子进程中运行；
+  子命令输出仅在失败时回放。不要在图片源码中硬编码 `xvfb-run` 或主动打开
+  查看窗口。macOS 的原生 GLUT 渲染器仍可能在 Dock 中短暂显示通用 `exec`
+  图标。

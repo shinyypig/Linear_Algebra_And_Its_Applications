@@ -970,7 +970,24 @@
 }{\relax}
 
 
-\graphicspath{{./figure/}{./figures/}{./image/}{./images/}{./graphics/}{./graphic/}{./pictures/}{./picture/}}
+\graphicspath{{./tmp/}{./figure/}{./figures/}{./image/}{./images/}{./graphics/}{./graphic/}{./pictures/}{./picture/}}
+
+% Keep Asymptote source paths in the manuscript while loading their generated
+% PDF counterparts from tmp/ through \graphicspath.
+\let\simplebook@original@includegraphics\includegraphics
+\RenewDocumentCommand{\includegraphics}{s O{} m}{%
+    \begingroup
+    \filename@parse{#3}%
+    \def\simplebook@graphicsfile{#3}%
+    \def\simplebook@asyextension{asy}%
+    \ifx\filename@ext\simplebook@asyextension
+        \edef\simplebook@graphicsfile{\filename@area\filename@base.pdf}%
+    \fi
+    \IfBooleanTF{#1}
+        {\simplebook@original@includegraphics*[#2]{\simplebook@graphicsfile}}
+        {\simplebook@original@includegraphics[#2]{\simplebook@graphicsfile}}%
+    \endgroup
+}
 
 \newcommand*\circled[1]{\textcircled{\raisebox{-.1ex}{#1}}}
 
