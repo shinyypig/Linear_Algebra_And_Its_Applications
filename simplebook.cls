@@ -1020,6 +1020,13 @@
 \RequirePackage{pifont,manfnt,bbding}
 \RequirePackage[many]{tcolorbox}
 \RequirePackage{footnotehyper}
+% Breakable tcolorbox environments reset \@mpfn to the local mpfootnote
+% counter after footnotehyper has installed its savenotes hooks.  Restore the
+% document footnote counter inside boxed content so ordinary \footnote commands
+% keep the same Arabic numbering as the surrounding text.
+\newcommand{\SIMPLE@globalfootnotes}{%
+    \def\@mpfn{footnote}%
+    \let\thempfn\thefootnote}
 % \newlength{\normalparindent}
 % \setlength{\normalparindent}{\parindent}
 \ifdefstring{\SIMPLE@mode}{fancy}{
@@ -1036,6 +1043,7 @@
                 breakable,
                 top=8pt,
                 before skip=8pt,
+                before upper app={\SIMPLE@globalfootnotes},
                 attach boxed title to top left={
                         yshift=-0.11in,
                         xshift=0.15in},
@@ -1131,6 +1139,7 @@
                 coltitle=black,
                 detach title,
                 before upper={\noindent\tcbtitle\par\smallskip},
+                before upper app={\SIMPLE@globalfootnotes},
                 separator sign={.},
             },
         simpleboxcolor/.style={
@@ -1247,6 +1256,7 @@
             fonttitle=\bfseries,
             detach title,
             before upper={\noindent\tcbtitle\par\smallskip},
+            before upper app={\SIMPLE@globalfootnotes},
             title={\examplename~\theexam\ifstrempty{#1}{}{~#1}},
         ]\rmfamily}{
     \end{tcolorbox}\ignorespacesafterend}

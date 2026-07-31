@@ -51,31 +51,40 @@
 
 \begin{example}
     \label{ex:linear_map_matrix}
-    设 \(V=W=\mathbb R^2\)，并且都选取标准基
+    如\cref{fig_linear_map_square_shear} 所示，有一线性同构\(\varphi\) 可以将 \(V\) 中的单位正方形映成 \(W\) 中的一个平行四边形。
+
+    \begin{center}
+        \captionsetup{type=figure}
+        \includegraphics{./img/2-matrix/linear_map_square_shear.pdf}
+        \captionof{figure}{矩阵 \(\mathbf X\) 所表示的线性空间同构对单位正方形的作用}
+        \label{fig_linear_map_square_shear}
+    \end{center}
+
+    对于映射前后的两个线性空间 \(V=W=\mathbb R^2\)，不妨都选取标准基
     \[
-        \mathcal A=\mathcal B=\left(\bm{e}_1, \bm{e}_2\right).
+        \mathcal A=\mathcal B=\left(\bm e_1,\bm e_2\right).
     \]
-    对于\( V \)上一个向量\( \bm{v} \)，其在基 \(\mathcal A\) 下的坐标为 \((\alpha_1, \alpha_2)\)，即
-    \[
-        \bm v = \alpha_1\bm e_1 + \alpha_2\bm e_2.
-    \]
-    该向量在线性空间同构 \(\varphi\) 下的像为\( \varphi(\bm{v}) \)，该像在基 \(\mathcal B\) 下的坐标为 \((\beta_1, \beta_2)\)，并且有如下关系：
+
+    那么，对于 \(V\) 中的任意向量 \(\bm v\)，设它在基 \(\mathcal A\) 下的坐标为
+    \((\alpha_1,\alpha_2)\)。通过观察图形，可以发现映射后的向量 \(\varphi(\bm v)\)，在
+    \(\mathcal B\) 下的坐标为 \((\beta_1,\beta_2)\)，并且满足
     \[
         \begin{cases}
-            \beta_1 = \alpha_1 + \alpha_2, \\
-            \beta_2 = \alpha_2.
+            \beta_1=\alpha_1+\alpha_2, \\
+            \beta_2=\alpha_2,
         \end{cases}
     \]
-    可以发现，该线性空间同构可以用一个 \(2 \times 2\) 的矩阵表示：
+    因此，这一同构可以用如下矩阵表示
     \[
-        \mathbf{X}=
+        \mathbf X=
         \begin{bmatrix}
             1 & 1 \\
             0 & 1
         \end{bmatrix}.
     \]
-
+    几何上，像这样的变换被称作剪切变换，对应的矩阵称为剪切矩阵。
 \end{example}
+
 
 注意到，上述推导中的线性空间 \(V\) 与 \(W\) 维数相同，因此得到的是一个方形数组。但上述推导实际只使用了映射保持向量加法和数乘，并没有使用它是双射这一条件。因此，可以令定义域的维数为 \(n\)，陪域的维数为 \(m\)，推导过程同样成立。最终得到 \(mn\) 个系数，并将它们排列为 \(m\) 行 \(n\) 列。基于这一观察，可以给出一般矩阵的定义。
 
@@ -89,53 +98,48 @@
             x_{21} & x_{22} & \cdots & x_{2n} \\
             \vdots & \vdots & \ddots & \vdots \\
             x_{m1} & x_{m2} & \cdots & x_{mn}
-        \end{bmatrix}
+        \end{bmatrix} = [x_{ij}]_{m \times n}
     \]
-    称为一个 \(m\times n\) \textbf{矩阵}（Matrix），使用加粗整体字母表示。其中，\(x_{ij}\) 称为矩阵 \(\mathbf{X}\) 的第 \(i\) 行第 \(j\) 列元素。所有 \(\mathbb F\) 上的 \(m\times n\) 矩阵组成的集合记作 \(\mathbb{F}^{m \times n}\)。
+    称为一个 \(m\times n\) \textbf{矩阵}（Matrix），通常使用加粗正体字母表示\footnote{如果矩阵大小已知，那么\( [x_{ij}]_{m \times n} \)可以简记为\( [x_{ij}] \)。}。其中，\(x_{ij}\) 称为矩阵 \(\mathbf{X}\) 的第 \(i\) 行第 \(j\) 列元素。所有 \(\mathbb F\) 上的 \(m\times n\) 矩阵组成的集合记作 \(\mathbb{F}^{m \times n}\)。
 \end{definition}
 
-有了矩阵之后，向量乃至标量都可以表示为一个矩阵。比如一个标量可以看作是一个\( 1 \times 1 \)的矩阵，而向量即可以看作是一个 \(n \times 1\) 的列矩阵（列向量）\footnote{在本书中，除非特别说明，向量默认表示为列向量。}，也可以看作是一个 \(1 \times n\) 的行矩阵（行向量）。
+有了矩阵之后，标量乃至向量都可以表示为一个矩阵。比如一个标量可以看作是一个\( 1 \times 1 \)的矩阵，而向量即可以看作是一个 \(n \times 1\) 的列矩阵（列向量）\footnote{在本书中，除非特别说明，向量默认表示为列向量。}，也可以看作是一个 \(1 \times n\) 的行矩阵（行向量）。
 
+进一步地，向量组同样可以使用矩阵表示。按照列向量的默认约定，对于一个\( m \times n \)的矩阵，其可以看作是 \(n\) 个 \(m\) 维列向量组成的向量组。因此，向量组的一些概念，比如张成、秩等，都可以直接用矩阵来表示。比如，\( \operatorname{span}(\mathbf{X}) \)和\( \operatorname{rank}(\mathbf{X}) \)分别表示由矩阵 \(\mathbf{X}\) 的列向量构成的向量组的张成和秩。
 
-
-\section{矩阵的基本运算}
-\label{sec:matrix_operations}
-
-两个矩阵相等，当且仅当它们的行数和列数分别相同，并且对应位置的元素都相等。所有元素均为 \(0\) 的 \(m\times n\) 矩阵称为\textbf{零矩阵}，记作 \(O_{m\times n}\)；矩阵大小明确时也简记为 \(O\)。
-
-矩阵的加法和数乘都按照对应位置的元素进行。
+类似于向量，两个矩阵相等，当且仅当它们的行数和列数分别相同，并且对应位置的元素都相等。所有元素均为 \(0\) 的 \(m\times n\) 矩阵称为\textbf{零矩阵}，记作 \(\mathbf{0}\)。并且，矩阵的加法和数乘都按照对应位置的元素进行。
 
 \begin{definition}[矩阵加法与数乘]
     \label{def:matrix_add_scalar}
-    设 \(A=(a_{ij}),B=(b_{ij})\in M_{m\times n}(\mathbb F)\)，\(\lambda\in\mathbb F\)，定义
+    设 \(\mathbf{A}=(a_{ij}),\mathbf{B}=(b_{ij})\in \mathbb{F}^{m \times n}\)，\(\lambda\in\mathbb F\)，定义
     \[
-        A+B=(a_{ij}+b_{ij}),
+        \mathbf{A}+\mathbf{B}=(a_{ij}+b_{ij}),
         \quad
-        \lambda A=(\lambda a_{ij}).
+        \lambda \mathbf{A}=(\lambda a_{ij}).
     \]
 \end{definition}
 
-由域中加法和乘法的运算律可以直接验证，\(M_{m\times n}(\mathbb F)\) 在上述运算下构成 \(\mathbb F\) 上的线性空间。为了描述它的一组基，对于 \(1\leq i\leq m\) 和 \(1\leq j\leq n\)，记 \(E_{ij}\) 为第 \(i\) 行第 \(j\) 列元素等于 \(1\)、其余元素均等于 \(0\) 的 \(m\times n\) 矩阵。任意矩阵 \(A=(a_{ij})\) 都可以唯一写成
+由域中加法和乘法的运算律可以直接验证：\(\mathbb{F}^{m \times n}\) 在上述运算下构成 \(\mathbb F\) 上的线性空间。既然\( \mathbb{F}^{m \times n} \)是一个线性空间，自然也可以选取一组基。最简单的一组基由\( \mathbf{E}_{ij} \)这样的矩阵组成，其中第 \(i\) 行第 \(j\) 列元素为 \(1\)，其余元素均为 \(0\)。在这组基下，任意矩阵 \(\mathbf{X}=(x_{ij})\) 都可以唯一写成
 \[
-    A=\sum_{i=1}^{m}\sum_{j=1}^{n}a_{ij}E_{ij}.
+    \mathbf{X}=\sum_{i=1}^{m}\sum_{j=1}^{n}x_{ij}\mathbf{E}_{ij}.
 \]
-因此，所有 \(E_{ij}\) 组成 \(M_{m\times n}(\mathbb F)\) 的一组基，从而
+因此，该线性空间的维数为 \(mn\)，即
 \[
-    \dim M_{m\times n}(\mathbb F)=mn.
+    \dim \mathbb{F}^{m \times n}=mn.
 \]
 
-交换矩阵的行与列可以得到另一个常用矩阵。
+转置同样是矩阵的一个基本运算。它将矩阵的行与列互换，得到一个新的矩阵。
 
 \begin{definition}[转置]
     \label{def:matrix_transpose}
-    设 \(A=(a_{ij})\in M_{m\times n}(\mathbb F)\)。由
+    设 \(\mathbf{X}=(a_{ij})\in \mathbb{F}^{m \times n}\)。由
     \[
-        (A^{\mathsf T})_{ij}=a_{ji}
+        (\mathbf{X}^{\mathsf T})_{ij}=x_{ji}
     \]
-    定义的 \(n\times m\) 矩阵 \(A^{\mathsf T}\) 称为 \(A\) 的\textbf{转置矩阵}（Transpose）。
+    定义的 \(n\times m\) 矩阵 \(\mathbf{X}^{\mathsf T}\) 称为 \(\mathbf{X}\) 的\textbf{转置矩阵}（Transpose）。
 \end{definition}
 
-例如，
+例如，下方的\( 2 \times 3 \)的矩阵的转置为一个 \(3 \times 2\) 的矩阵：
 \[
     \begin{bmatrix}
         1 & 2 & 3 \\
@@ -148,87 +152,22 @@
         3 & 6
     \end{bmatrix}.
 \]
-根据定义可以验证
+此外，根据定义可以验证
 \[
-    (A+B)^{\mathsf T}=A^{\mathsf T}+B^{\mathsf T},
+    (\mathbf{X}+\mathbf{Y})^{\mathsf T}=\mathbf{X}^{\mathsf T}+\mathbf{Y}^{\mathsf T},
     \quad
-    (\lambda A)^{\mathsf T}=\lambda A^{\mathsf T},
+    (\lambda \mathbf{X})^{\mathsf T}=\lambda \mathbf{X}^{\mathsf T},
     \quad
-    (A^{\mathsf T})^{\mathsf T}=A.
+    (\mathbf{X}^{\mathsf T})^{\mathsf T}=\mathbf{X}.
 \]
 
-除了对矩阵本身进行加法、数乘和转置，还可以让矩阵作用于向量。设 \(A\in M_{m\times n}(\mathbb F)\)，把 \(A\) 的各列依次记作
+对于转置后的矩阵，\( \operatorname{span}(\mathbf{X}^{\mathsf{T}}) \)和\( \operatorname{rank}(\mathbf{X}^{\mathsf{T}}) \)分别表示由矩阵 \(\mathbf{X}\) 的行向量构成的向量组的张成和秩。尽管其几何意义与\( \operatorname{span}(\mathbf{X}) \)和\( \operatorname{rank}(\mathbf{X}) \)完全不同，但结果却不一定不同。事实上，矩阵的行秩与列秩总是相等的，即
 \[
-    \bm a_1,\bm a_2,\ldots,\bm a_n\in\mathbb F^m.
+    \operatorname{rank}(\mathbf{X})=\operatorname{rank}(\mathbf{X}^{\mathsf{T}}).
 \]
-对于 \(\bm x=(x_1,\ldots,x_n)\in\mathbb F^n\)，定义
-\[
-    A\bm x
-    =x_1\bm a_1+x_2\bm a_2+\cdots+x_n\bm a_n.
-\]
-换成分量形式，即
-\[
-    A\bm x
-    =
-    \begin{bmatrix}
-        \displaystyle\sum_{j=1}^{n}a_{1j}x_j \\
-        \displaystyle\sum_{j=1}^{n}a_{2j}x_j \\
-        \vdots                               \\
-        \displaystyle\sum_{j=1}^{n}a_{mj}x_j
-    \end{bmatrix}.
-\]
-矩阵 \(A\) 有 \(n\) 列，而 \(\bm x\) 有 \(n\) 个分量，这一条件保证上述线性组合有意义；乘积 \(A\bm x\) 则是 \(\mathbb F^m\) 中的向量。
+在后面的章节中，我们将给出对应的证明。
 
-\begin{example}
-    \label{ex:matrix_vector_product}
-    对于
-    \[
-        A=
-        \begin{bmatrix}
-            1 & 2 & -1 \\
-            0 & 3 & 2
-        \end{bmatrix},
-        \quad
-        \bm x=
-        \begin{bmatrix}
-            2  \\
-            -1 \\
-            3
-        \end{bmatrix},
-    \]
-    有
-    \[
-        A\bm x
-        =
-        2
-        \begin{bmatrix}
-            1 \\0
-        \end{bmatrix}
-        -
-        \begin{bmatrix}
-            2 \\3
-        \end{bmatrix}
-        +
-        3
-        \begin{bmatrix}
-            -1 \\2
-        \end{bmatrix}
-        =
-        \begin{bmatrix}
-            -3 \\3
-        \end{bmatrix}.
-    \]
-\end{example}
-
-矩阵对向量的作用保持向量加法和数乘。对于任意 \(\bm x,\bm y\in\mathbb F^n\) 和 \(\lambda\in\mathbb F\)，都有
-\[
-    A(\bm x+\bm y)=A\bm x+A\bm y,
-    \quad
-    A(\lambda\bm x)=\lambda(A\bm x).
-\]
-这两条性质正是下一节所要抽象出的共同结构。
-
-\section{线性映射}
+\section{线性映射与矩阵乘法}
 \label{sec:linear_map}
 
 线性空间中的向量可能具有不同的表现形式，但向量加法和数乘是它们共同的基本运算。若一个映射与这两种运算相容，就可以把定义域中的线性关系完整地传递到陪域中。
