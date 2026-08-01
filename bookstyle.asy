@@ -26,12 +26,20 @@ pen c7 = rgb(0.6350, 0.0780, 0.1840);
 
 // Exact xcolor-style mixtures on a white background.
 pen c1Fill05 = rgb(0.95000, 0.97235, 0.98705);
+pen c1Fill50 = rgb(0.50000, 0.72350, 0.87050);
 pen c1Fill60 = rgb(0.40000, 0.66820, 0.84460);
 pen c2Fill10 = rgb(0.98500, 0.93250, 0.90980);
+pen c2Fill50 = rgb(0.92500, 0.66250, 0.54900);
 pen c3Fill18 = rgb(0.98722, 0.94492, 0.84250);
+pen c3Fill50 = rgb(0.96450, 0.84700, 0.56250);
 pen c3Line40 = rgb(0.97160, 0.87760, 0.65000);
 pen c3Line45 = rgb(0.96805, 0.86230, 0.60625);
+pen c4Fill18 = rgb(0.90892, 0.85312, 0.92008);
+pen c4Fill50 = rgb(0.74700, 0.59200, 0.77800);
 pen c5Fill18 = rgb(0.90388, 0.94132, 0.85384);
+pen c5Fill50 = rgb(0.73300, 0.83700, 0.59400);
+pen c6Fill18 = rgb(0.87418, 0.95410, 0.98794);
+pen c6Fill50 = rgb(0.65050, 0.87250, 0.96650);
 
 arrowbar axisArrow = Arrow(DefaultHead, size=6pt, filltype=Fill);
 arrowbar vectorArrow = Arrow(DefaultHead, size=6pt, filltype=Fill);

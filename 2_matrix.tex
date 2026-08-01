@@ -510,6 +510,41 @@
         \bm a^{\mathsf T}_m\bm b_1 & \ldots & \bm a^{\mathsf T}_m\bm b_n
     \end{bmatrix}.
 \]
-观察可以发现，矩阵\( \mathbf{A} \)和\( \mathbf{B} \)的乘积的第\( i \)行第\( j \)列元素就是矩阵\( \mathbf{A} \)的第\( i \)行与矩阵\( \mathbf{B} \)的第\( j \)列的乘积\( \bm{a}_i^{\mathsf{T}}\bm b_j \)。
+观察可以发现，矩阵\( \mathbf{A} \)和\( \mathbf{B} \)的乘积的第\( i \)行第\( j \)列元素就是矩阵\( \mathbf{A} \)的第\( i \)行与矩阵\( \mathbf{B} \)的第\( j \)列的乘积\( \bm{a}_i^{\mathsf{T}}\bm b_j \)，如\cref{fig_matrix_multiplication_inner_products}所示。
+
+如果将矩阵\( \mathbf{A} \)按照列向量拆分为 \( \mathbf{A} = [\bm{a}_1, \ldots, \bm{a}_p] \)，将矩阵\( \mathbf{B} \)按照行向量拆分为 \( \mathbf{B} = [\bm{b}_1^{\mathsf{T}}, \ldots, \bm{b}_p^{\mathsf{T}}]^{\mathsf{T}} \)，则有
+\[
+    \mathbf{A}\mathbf{B} =
+    \begin{bmatrix}
+        \bm a_1 & \ldots & \bm a_p
+    \end{bmatrix}
+    \begin{bmatrix}
+        \bm b_1^{\mathsf T} \\
+        \vdots              \\
+        \bm b_p^{\mathsf T}
+    \end{bmatrix} =
+    \sum_{k=1}^{p} \bm a_k \bm b_k^{\mathsf T}.
+\]
+此时，\( \bm{a}_k \bm{b}_k^{\mathsf T} \) 是一个 \( m \times n \) 的矩阵，而最终的矩阵乘积的结果则是这一系列矩阵的和，如\cref{fig_matrix_multiplication_outer_products}所示。
+
+\begin{figure}[htb!]
+    \centering
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics{img/2-matrix/matrix_multiplication_inner_products.asy}
+        \caption{逐元素计算}
+        \label{fig_matrix_multiplication_inner_products}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics{img/2-matrix/matrix_multiplication_outer_products.asy}
+        \caption{整体计算}
+        \label{fig_matrix_multiplication_outer_products}
+    \end{subfigure}
+    \caption{矩阵乘法的两种计算方式}
+    \label{fig_matrix_multiplication_two_views}
+\end{figure}
+
+这两种计算方式对应了对矩阵乘法的两种不同理解，在后续的章节中，我们将会看到它们在不同的场景下有着不同的应用。
 
 \section{矩阵乘法的基本性质}
