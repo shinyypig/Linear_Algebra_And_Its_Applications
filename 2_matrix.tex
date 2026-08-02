@@ -545,6 +545,97 @@
     \label{fig_matrix_multiplication_two_views}
 \end{figure}
 
-这两种计算方式对应了对矩阵乘法的两种不同理解，在后续的章节中，我们将会看到它们在不同的场景下有着不同的应用。
+这两种计算方式对应了对矩阵乘法的两种不同理解，在后续的章节中，我们将会看到它们在不同的场景下有着不同的应用。此外，为了记号的简便，在后文中，当提及一个向量时，我们默认该向量为其在标准基下的坐标表示；类似地，当提及一个矩阵时，我们默认该矩阵为其在两个线性空间均选取标准基时对应的表示矩阵。
+
+如此一来，矩阵和向量的乘法就可以看作是在一个线性空间中对一个向量进行变换，而矩阵乘法则可以看作是在这个空间中连续进行两次变换。如\cref{fig:matrix_vector_and_composition}所示，向量 \(\bm v=[1, 1]^{\mathsf T}\) 经过矩阵\( \mathbf{A} \)的作用变为
+\[
+    \mathbf{A} \bm{v} = \begin{bmatrix}
+        1 & 0 \\
+        1 & 1
+    \end{bmatrix} \begin{bmatrix}
+        1 \\ 1
+    \end{bmatrix} = \begin{bmatrix}
+        1 \\ 2
+    \end{bmatrix},
+\]
+再经过矩阵 \(\mathbf B\) 的作用变为
+\[
+    \mathbf{B} \mathbf{A} \bm{v} = \begin{bmatrix}
+        3 & 0 \\
+        0 & 1
+    \end{bmatrix} \begin{bmatrix}
+        1 & 0 \\
+        1 & 1
+    \end{bmatrix} \begin{bmatrix}
+        1 \\ 1
+    \end{bmatrix} = \begin{bmatrix}
+        3 & 0 \\
+        1 & 1
+    \end{bmatrix} \begin{bmatrix}
+        1 \\ 1
+    \end{bmatrix} = \begin{bmatrix}
+        3 \\ 2
+    \end{bmatrix}.
+\]
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics{img/2-matrix/matrix_composition.asy}
+    \caption{矩阵作用于向量以及连续进行两次线性变换}
+    \label{fig:matrix_vector_and_composition}
+\end{figure}
 
 \section{矩阵乘法的基本性质}
+
+在本小节，我们将给出矩阵乘法的一些基本性质。首先，需要明确的是，给定两个矩阵，这两个矩阵的维数必须满足一定的条件，才能进行矩阵乘法。设有矩阵 \(\mathbf{A}\in\mathbb{F}^{m\times n}\) 和 \(\mathbf{B}\in\mathbb{F}^{p\times q}\)，只有当 \(n=p\) 时，矩阵 \(\mathbf{A}\) 与 \(\mathbf{B}\) 才可以进行乘法运算，并且其结果是一个 \(m\times q\) 的矩阵。
+
+这也意味着，矩阵乘法并不满足交换律，一方面，由于\( m \)不一定等于\( q \)，所以\( \mathbf{B} \mathbf{A} \) 可能根本无法定义；另一方面，即使这两个矩阵\( \mathbf{A} \) 和 \( \mathbf{B} \) 都是\( n \times n \)的方阵，通常也有 \( \mathbf{A}\mathbf{B} \neq \mathbf{B}\mathbf{A} \)。比如，下方的两个矩阵的乘积就不满足交换律：
+\[
+    \begin{bmatrix}
+        1 & 2 \\
+        3 & 4
+    \end{bmatrix}
+    \begin{bmatrix}
+        5 & 6 \\
+        7 & 8
+    \end{bmatrix}=
+    \begin{bmatrix}
+        19 & 22 \\
+        43 & 50
+    \end{bmatrix}
+    \neq
+    \begin{bmatrix}
+        5 & 6 \\
+        7 & 8
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 & 2 \\
+        3 & 4
+    \end{bmatrix}=
+    \begin{bmatrix}
+        23 & 34 \\
+        31 & 46
+    \end{bmatrix}.
+\]
+
+除此以外，矩阵乘法满足的一些基本性质如下：
+\begin{property}
+    \label{thm:matrix_mult_basic_properties}
+    设 \(\mathbf{A}\in\mathbb{F}^{m\times n}\)，\(\mathbf{B}\in\mathbb{F}^{n\times p}\)，\(\mathbf{C}\in\mathbb{F}^{p\times q}\)。
+    则有以下性质：
+    \begin{enumerate}
+        \item \textbf{结合律}：\((\mathbf{A}\mathbf{B})\mathbf{C}=\mathbf{A}(\mathbf{B}\mathbf{C})\)；
+        \item \textbf{分配律}：\((\mathbf{A}+\mathbf{B})\mathbf{C}=\mathbf{A}\mathbf{C}+\mathbf{B}\mathbf{C}\)，\(\mathbf{A}(\mathbf{B}+\mathbf{C})=\mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}\)；
+        \item \textbf{数乘结合律}：\((\lambda\mathbf A)\mathbf B=\lambda(\mathbf A\mathbf B)=\mathbf A(\lambda\mathbf B)\)，其中 \(\lambda\in\mathbb F\)。
+    \end{enumerate}
+\end{property}
+对于零矩阵、单位矩阵以及转置，矩阵乘法还满足如下性质：
+\begin{property}
+    \label{thm:zero_identity_matrix_properties}
+    设 \(\mathbf{A}\in\mathbb{F}^{m\times n}\)，\(\mathbf{0}_m\in\mathbb{F}^{m\times m}\)，\(\mathbf{0}_n\in\mathbb{F}^{n\times n}\)，\(\mathbf{I}_m\in\mathbb{F}^{m\times m}\)，\(\mathbf{I}_n\in\mathbb{F}^{n\times n}\)。则有以下性质：
+    \begin{enumerate}
+        \item \(\mathbf{0}_m\mathbf{A}=\mathbf{0}_m\)，\(\mathbf{A}\mathbf{0}_n=\mathbf{0}_n\)；
+        \item \(\mathbf{I}_m\mathbf{A}=\mathbf{A}\)，\(\mathbf{A}\mathbf{I}_n=\mathbf{A}\)。
+        \item \((\mathbf{A}\mathbf{B})^{\mathsf T}=\mathbf{B}^{\mathsf T}\mathbf{A}^{\mathsf T}\)。
+    \end{enumerate}
+\end{property}

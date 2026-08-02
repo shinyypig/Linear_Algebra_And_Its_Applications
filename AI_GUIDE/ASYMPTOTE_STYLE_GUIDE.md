@@ -90,7 +90,10 @@ texpreamble("\\usepackage{bm}");
   `tmp/img/` 下按源目录结构生成同名 `.pdf` 和内容指纹文件；`tmp/` 已被
   Git 忽略。删除 `tmp/` 等价于清理全部构建产物，下一次构建会重新生成所有
   Asymptote 图片。
-- 正文以 `img/<chapter>/<name>.asy` 的源码路径引用图片；`simplebook.cls` 会将
+- 正文以 `img/<chapter>/<name>.asy` 的源码路径引用图片，路径前不要添加 `./`。
+  例如，应写
+  `\includegraphics{img/2-matrix/matrix_composition.asy}`，不要写
+  `\includegraphics{./img/2-matrix/matrix_composition.asy}`。`simplebook.cls` 会将
   `\includegraphics` 收到的 `.asy` 后缀转换为 `.pdf`，再通过图片搜索路径从
   `tmp/img/...pdf` 读取实际产物。PNG、JPG、PDF 等普通图片引用不受影响。
 - PDF 必须按最终物理尺寸生成，并在正文中使用不带 `width`、`height` 或
