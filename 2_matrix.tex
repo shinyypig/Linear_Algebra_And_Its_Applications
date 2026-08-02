@@ -589,34 +589,55 @@
 
 在本小节，我们将给出矩阵乘法的一些基本性质。首先，需要明确的是，给定两个矩阵，这两个矩阵的维数必须满足一定的条件，才能进行矩阵乘法。设有矩阵 \(\mathbf{A}\in\mathbb{F}^{m\times n}\) 和 \(\mathbf{B}\in\mathbb{F}^{p\times q}\)，只有当 \(n=p\) 时，矩阵 \(\mathbf{A}\) 与 \(\mathbf{B}\) 才可以进行乘法运算，并且其结果是一个 \(m\times q\) 的矩阵。
 
-这也意味着，矩阵乘法并不满足交换律，一方面，由于\( m \)不一定等于\( q \)，所以\( \mathbf{B} \mathbf{A} \) 可能根本无法定义；另一方面，即使这两个矩阵\( \mathbf{A} \) 和 \( \mathbf{B} \) 都是\( n \times n \)的方阵，通常也有 \( \mathbf{A}\mathbf{B} \neq \mathbf{B}\mathbf{A} \)。比如，下方的两个矩阵的乘积就不满足交换律：
+这也意味着，矩阵乘法并不满足交换律。一方面，由于 \(m\) 不一定等于 \(q\)，所以 \(\mathbf{B}\mathbf{A}\) 可能根本无法定义；另一方面，即使 \(\mathbf{A}\) 和 \(\mathbf{B}\) 都是 \(n\times n\) 方阵，通常也有 \(\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}\)。
+
+例如，令
 \[
+    \mathbf A=
     \begin{bmatrix}
-        1 & 2 \\
-        3 & 4
-    \end{bmatrix}
+        2 & 0 \\
+        0 & 1
+    \end{bmatrix},
+    \quad
+    \mathbf B=
     \begin{bmatrix}
-        5 & 6 \\
-        7 & 8
-    \end{bmatrix}=
+        0 & -1 \\
+        1 & 0
+    \end{bmatrix}.
+\]
+矩阵 \(\mathbf A\) 表示沿 \(x\) 轴方向拉伸为原来的 \(2\) 倍，矩阵 \(\mathbf B\) 表示绕原点逆时针旋转 \(90^\circ\)。两种乘法次序分别给出
+\[
+    \mathbf A\mathbf B=
     \begin{bmatrix}
-        19 & 22 \\
-        43 & 50
+        0 & -2 \\
+        1 & 0
     \end{bmatrix}
     \neq
     \begin{bmatrix}
-        5 & 6 \\
-        7 & 8
+        0 & -1 \\
+        2 & 0
     \end{bmatrix}
-    \begin{bmatrix}
-        1 & 2 \\
-        3 & 4
-    \end{bmatrix}=
-    \begin{bmatrix}
-        23 & 34 \\
-        31 & 46
-    \end{bmatrix}.
+    =\mathbf B\mathbf A.
 \]
+如\cref{fig_matrix_noncommutative_orders}所示，\(\mathbf A\mathbf B\) 表示先旋转再拉伸，最终得到横向矩形；\(\mathbf B\mathbf A\) 表示先拉伸再旋转，最终得到纵向矩形。因此，这两个矩阵乘积表示的线性变换并不相同。
+
+\begin{figure}[htb!]
+    \centering
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics{img/2-matrix/rotate_then_stretch_square.asy}
+        \caption{先旋转，再沿 \(x\) 轴方向拉伸}
+        \label{fig_rotate_then_stretch_square}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics{img/2-matrix/stretch_then_rotate_square.asy}
+        \caption{先沿 \(x\) 轴方向拉伸，再旋转}
+        \label{fig_stretch_then_rotate_square}
+    \end{subfigure}
+    \caption{矩阵乘法次序不同所产生的几何变换}
+    \label{fig_matrix_noncommutative_orders}
+\end{figure}
 
 除此以外，矩阵乘法满足的一些基本性质如下：
 \begin{property}
