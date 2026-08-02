@@ -1,17 +1,17 @@
 \chapter{向量与线性空间}
-\label{chap:vector}
+\label{chap_vector}
 
 向量作为线性代数的基本概念之一，在数学、物理、工程等领域中有着广泛的应用。向量不仅可以表示空间中的点和方向，还可以用于描述物理量，如速度、力和电场等。在本章中，我们将系统地介绍向量的定义、运算以及线性空间的基本性质。
 
 \section{向量的概念与表示}
-\label{sec:vector_concept}
+\label{sec_vector_concept}
 
 在生活中，温度、质量、时间等都可以用一个数来描述，像这样的量称为\textbf{标量}（Scalar）。而像速度、力、电场等物理量不仅有大小，还有方向，这样的量称为\textbf{向量}（Vector）。在线性代数中，我们通常使用加粗的小写字母表示向量，例如 \(\bm v\)。
 
 在平面或空间中，向量通常画成一条有向线段。对于这样的几何向量，我们关心的是它的大小和方向，而不关心它的起点位于何处，因此可以在保持大小和方向不变的情况下对它进行平移。将向量的起点平移到原点 \(O\) 后，它的终点 \(P\) 便可以唯一确定这个向量；反过来，这个向量也唯一确定点 \(P\)。正是在这个意义下，向量既可以画成从原点出发的有向线段，也可以只用它的终点来表示。
 
 \begin{example}
-    \label{ex:vector_interpretations}
+    \label{ex_vector_interpretations}
     如\cref{fig_vector_interpretations} 所示，当向量表示位移、速度等具有方向的量时，将它画成有向线段更为直观；当一个对象需要由多个数共同描述时，则常将这些数组成的向量画成坐标空间中的一个点。例如，一个人的身高和鞋码可以组成一组二维数据，并在平面上对应一个点。
 
     \begin{center}
@@ -36,7 +36,7 @@
 上述几何图形可以帮助我们直观地理解向量，但这种直观主要局限于二维和三维空间。在线性代数中，我们还需要把任意有限个数作为一个整体来研究，因此将向量定义为有序数组。
 
 \begin{definition}[实向量]
-    \label{def:real_vector}
+    \label{def_real_vector}
     由 \(n\) 个实数组成的有序数组称为一个 \(n\) 维\textbf{实向量}，记作
     \[
         \bm v=(v_1,v_2,\ldots,v_n).
@@ -85,7 +85,7 @@
 坐标表示将向量这一抽象的几何对象转换为具有具体数值的有序数组，使得我们可以对向量进行运算。接下来，我们将基于此讨论向量的加法和数乘。
 
 \section{向量的运算与线性组合}
-\label{sec:vector_ops_lincomb}
+\label{sec_vector_ops_lincomb}
 
 从几何上看，向量可以表示具有大小和方向的量，因此我们首先希望能够将两个向量所表示的变化合并起来。例如，一个物体先沿向量 \(\bm u\) 移动，再沿向量 \(\bm v\) 移动，那么这两次移动的总效果仍然可以用一个向量表示，这个向量称为 \(\bm u\) 与 \(\bm v\) 的和，记作 \(\bm u+\bm v\)。
 
@@ -112,7 +112,7 @@
 将这一几何直观翻译为代数语言，便得到 \(\mathbb R^n\) 中向量加法的定义。
 
 \begin{definition}[向量加法]
-    \label{def:vector_addition}
+    \label{def_vector_addition}
     设
     \[
         \bm u=(u_1,u_2,\ldots,u_n),
@@ -153,7 +153,7 @@
 除了将两个向量相加以外，我们还可以用一个数改变向量的大小和方向。设 \(\lambda\in\mathbb R\)，将向量 \(\bm v\) 的每个分量都乘以 \(\lambda\)，便得到向量 \(\lambda\bm v\)。这种运算称为向量的\textbf{数乘}。
 
 \begin{definition}[向量的数乘]
-    \label{def:scalar_mult}
+    \label{def_scalar_mult}
     设 \(\lambda\in\mathbb R\)，\(\bm v=(v_1,v_2,\ldots,v_n)\in\mathbb R^n\)，定义
     \[
         \lambda\bm v
@@ -170,7 +170,7 @@
 
 向量加法和数乘继承了实数加法与乘法的基本规律，具体如下。
 \begin{property}[向量运算律]
-    \label{prop:vector_ops}
+    \label{prop_vector_ops}
     对于任意 \(\bm u,\bm v,\bm w\in\mathbb R^n\) 以及 \(\lambda,\mu\in\mathbb R\)，有
     \begin{enumerate}
         \item \textbf{加法交换律}：\(\bm u+\bm v=\bm v+\bm u\)；
@@ -193,7 +193,7 @@
 称为一个\textbf{向量组}。对向量组中的每个向量分别进行数乘，再将所得向量相加，就得到这个向量组的一个线性组合，其定义如下。
 
 \begin{definition}[线性组合]
-    \label{def:linear_combination}
+    \label{def_linear_combination}
     设 \(\bm v_1,\bm v_2,\ldots,\bm v_m\in\mathbb R^n\)，\(\lambda_1,\lambda_2,\ldots,\lambda_m\in\mathbb R\)。向量
     \[
         \sum_{i=1}^{m}\lambda_i\bm v_i = \lambda_1\bm v_1+\lambda_2\bm v_2+\cdots+\lambda_m\bm v_m
@@ -204,7 +204,7 @@
 一个向量组通常可以产生许多不同的线性组合，而所有线性组合所得的向量构成的集合则称为这个向量组的\textbf{张成}，其定义如下。
 
 \begin{definition}[张成]
-    \label{def:span}
+    \label{def_span}
     向量组 \(\mathcal{V} = (\bm v_1,\bm v_2,\ldots,\bm v_m)\) 的所有线性组合组成的集合称为该向量组的\textbf{张成}，记作
     \[
         \operatorname{span}\mathcal{V}
@@ -245,9 +245,9 @@
 \[
     \bm a=\sum_{i=1}^{m}\lambda_i\bm v_i.
 \]
-从几何上来看，这意味着 \(\bm a\) 落在由 \(\bm v_1,\ldots,\bm v_m\) 张成的几何空间中。此外，如\cref{lem:replacement}所示，如果\( \lambda_k \neq 0 \)，则将向量\( \bm{a} \)替换向量组中的 \( \bm{v}_k \) 后，新的向量组的张成不变。
+从几何上来看，这意味着 \(\bm a\) 落在由 \(\bm v_1,\ldots,\bm v_m\) 张成的几何空间中。此外，如\cref{lem_replacement}所示，如果\( \lambda_k \neq 0 \)，则将向量\( \bm{a} \)替换向量组中的 \( \bm{v}_k \) 后，新的向量组的张成不变。
 \begin{lemma}[替换引理]
-    \label{lem:replacement}
+    \label{lem_replacement}
     设有向量组\((\bm{v}_1, \bm{v}_2, \ldots, \bm{v}_m) \)，向量 \(\bm a \in \operatorname{span}\{\bm v_1,\ldots,\bm v_m\}\)，并且存在实数 \(\lambda_1,\ldots,\lambda_m\) 使得
     \[
         \bm a=\sum_{i=1}^{m}\lambda_i\bm v_i
@@ -311,7 +311,7 @@
 
 
 \section{线性相关与线性无关}
-\label{sec:lin_dep_indep}
+\label{sec_lin_dep_indep}
 
 一般情况下，两个向量可以张成一个平面，而三个向量可以张成一个三维空间。然而，当两个向量共线或者三个向量共面时，它们张成的空间维数就会降低。像这样的向量组称为\textbf{线性相关}，反之则称为\textbf{线性无关}。
 
@@ -322,7 +322,7 @@
 显然，无论向量组如何选取，令所有系数都等于零总能使等式成立，这组系数称为\textbf{平凡解}。关键在于，这个等式是否还存在不全为零的系数。
 
 \begin{definition}[线性相关与线性无关]
-    \label{def:lin_dep_indep}
+    \label{def_lin_dep_indep}
     设 \(\bm v_1,\bm v_2,\ldots,\bm v_m\in\mathbb R^n\)。如果存在不全为零的实数 \(\lambda_1,\lambda_2,\ldots,\lambda_m\)，使得
     \[
         \sum_{i=1}^{m}\lambda_i\bm v_i=\bm 0,
@@ -340,7 +340,7 @@
 \]
 这意味着，当一组向量线性相关时，其中至少有一个向量可以由其余向量线性表示。反之，如果某个向量可以由其余向量线性表示，那么它们构成的向量组则一定线性相关。
 
-此外，由\cref{def:lin_dep_indep}还可以立即得到一些简单结论：含有零向量的向量组一定线性相关；含有两个相同向量的向量组一定线性相关；只含一个向量的向量组 \((\bm v)\) 线性无关，当且仅当 \(\bm v\ne\bm 0\)。线性相关向量组再增加向量后仍然线性相关，而线性无关向量组的任意一部分仍然线性无关。
+此外，由\cref{def_lin_dep_indep}还可以立即得到一些简单结论：含有零向量的向量组一定线性相关；含有两个相同向量的向量组一定线性相关；只含一个向量的向量组 \((\bm v)\) 线性无关，当且仅当 \(\bm v\ne\bm 0\)。线性相关向量组再增加向量后仍然线性相关，而线性无关向量组的任意一部分仍然线性无关。
 
 \begin{proposition}
     设 \(\mathcal{V}=(\bm v_1,\ldots,\bm v_m) \)是一个有限向量组。若其中某个向量可以由其余向量线性表示，则删去该向量后，向量组的张成不变。
@@ -377,7 +377,7 @@
 从有限向量组中不断删去能够由其余向量线性表示的向量，经过有限步后将得到一个线性无关组。在删减过程中，向量组的张成保持不变，这就引出了极大线性无关组的概念。
 
 \begin{definition}[极大线性无关组]
-    \label{def:maximal_independent}
+    \label{def_maximal_independent}
     设\( \mathcal V=(\bm v_1,\bm v_2,\ldots,\bm v_m) \)是一个有限向量组。如果 \(\mathcal V\) 的一个部分组 \(\mathcal W\) 线性无关，并且
     \[
         \operatorname{span}\mathcal W
@@ -393,7 +393,7 @@
 此外，一个线性相关向量组的极大线性无关组可能并不唯一，但可以证明各个极大线性无关组所含向量的个数相同。为了证明这一结论，我们首先需要证明交换定理。
 
 \begin{theorem}[交换定理]
-    \label{thm:exchange}
+    \label{thm_exchange}
     设有向量组\( \mathcal V=(\bm v_1,\ldots,\bm v_r) \)和\( \mathcal W=(\bm w_1,\ldots,\bm w_s) \)，其中 \(\mathcal V\) 线性无关，并且\( \operatorname{span}(\mathcal{V}) \subseteq \operatorname{span}(\mathcal{W}) \)，则
     \[
         r\leq s.
@@ -406,7 +406,7 @@
         \bm v_1
         =\lambda_1\bm w_1+\cdots+\lambda_s\bm w_s.
     \]
-    因为 \(\mathcal V\) 线性无关，所以 \(\bm v_1\ne\bm 0\)，并且至少有一个 \(\lambda_j\ne0\)。不妨适当调整 \(\mathcal W\) 中向量的次序，令\(\lambda_1\ne0\)。则根据\cref{lem:replacement}，用 \(\bm v_1\) 替换 \(\bm w_1\) 后，向量组\( (\bm v_1,\bm w_2,\ldots,\bm w_s) \)仍然与 \(\mathcal W\) 具有相同的张成空间。
+    因为 \(\mathcal V\) 线性无关，所以 \(\bm v_1\ne\bm 0\)，并且至少有一个 \(\lambda_j\ne0\)。不妨适当调整 \(\mathcal W\) 中向量的次序，令\(\lambda_1\ne0\)。则根据\cref{lem_replacement}，用 \(\bm v_1\) 替换 \(\bm w_1\) 后，向量组\( (\bm v_1,\bm w_2,\ldots,\bm w_s) \)仍然与 \(\mathcal W\) 具有相同的张成空间。
 
     不妨假设，通过调整顺序，已经用 \(\bm v_1,\ldots,\bm v_{k-1}\) 替换了 \(\mathcal W\) 中的前 \(k-1\) 个向量，并且\((\bm v_1,\ldots,\bm v_{k-1},\bm w_k,\ldots,\bm w_s) \) 仍然与 \(\mathcal W\) 具有相同的张成空间。由于
     \(\bm v_k\in\operatorname{span}\mathcal W\)，可以写成
@@ -415,7 +415,7 @@
         =\sum_{i=1}^{k-1}\alpha_i\bm v_i
         +\sum_{j=k}^{s}\beta_j\bm w_j.
     \]
-    其中至少有一个 \(\beta_j\ne0\)，否则 \(\bm v_k\) 可以由\(\bm v_1,\ldots,\bm v_{k-1}\) 线性表示，这与 \(\mathcal V\) 线性无关相矛盾。继续调整尚未被替换的向量的次序，令 \(\beta_k\ne0\)，则根据\cref{lem:replacement}，用 \(\bm v_k\) 替换 \(\bm w_k\) 后，向量组仍然与 \(\mathcal W\) 具有相同的张成空间。
+    其中至少有一个 \(\beta_j\ne0\)，否则 \(\bm v_k\) 可以由\(\bm v_1,\ldots,\bm v_{k-1}\) 线性表示，这与 \(\mathcal V\) 线性无关相矛盾。继续调整尚未被替换的向量的次序，令 \(\beta_k\ne0\)，则根据\cref{lem_replacement}，用 \(\bm v_k\) 替换 \(\bm w_k\) 后，向量组仍然与 \(\mathcal W\) 具有相同的张成空间。
 
     需要注意的是，如果 \(r>s\)，完成前 \(s\) 次替换后，\( \mathcal{W} \)中的向量全部被替换，但新的向量组的张成保持不变，即
     \[
@@ -428,15 +428,15 @@
 \end{proof}
 
 根据交换定理可以进一步证明，所有极大线性无关组所含向量的个数相同。
-\begin{proposition}\label{prop:maximal_independent}
+\begin{proposition}\label{prop_maximal_independent}
     一个有限向量组的任意两个极大线性无关组所含向量的个数相同。
 \end{proposition}
 
 \begin{proof}
-    设\( \mathcal V=(\bm v_1,\ldots,\bm v_r) \)和\( \mathcal W=(\bm w_1,\ldots,\bm w_s) \)是同一个有限向量组的两个极大线性无关组。由于 \( \operatorname{span}(\mathcal{V}) \subseteq \operatorname{span}(\mathcal{W}) \) 且 \(\mathcal V\) 线性无关，根据\cref{thm:exchange}，有 \(r\leq s\)。同理，由于 \( \operatorname{span}(\mathcal{W}) \subseteq \operatorname{span}(\mathcal{V}) \) 且 \(\mathcal W\) 线性无关，也有 \(s\leq r\)。因此，\(r=s\)，即两个极大线性无关组所含向量的个数相同。
+    设\( \mathcal V=(\bm v_1,\ldots,\bm v_r) \)和\( \mathcal W=(\bm w_1,\ldots,\bm w_s) \)是同一个有限向量组的两个极大线性无关组。由于 \( \operatorname{span}(\mathcal{V}) \subseteq \operatorname{span}(\mathcal{W}) \) 且 \(\mathcal V\) 线性无关，根据\cref{thm_exchange}，有 \(r\leq s\)。同理，由于 \( \operatorname{span}(\mathcal{W}) \subseteq \operatorname{span}(\mathcal{V}) \) 且 \(\mathcal W\) 线性无关，也有 \(s\leq r\)。因此，\(r=s\)，即两个极大线性无关组所含向量的个数相同。
 \end{proof}
 
-\cref{prop:maximal_independent}表明，向量组的极大线性无关组所含向量数是一个关键的不变量，由此可以定义秩的概念。
+\cref{prop_maximal_independent}表明，向量组的极大线性无关组所含向量数是一个关键的不变量，由此可以定义秩的概念。
 \begin{definition}[秩]
     设 \(\mathcal V\) 是一个由\( m \)个向量构成的向量组，其极大线性无关组所含向量的个数称为 \(\mathcal V\) 的\textbf{秩}，记作 \(\operatorname{rank}\mathcal V\)，并且显然有
     \[
@@ -447,12 +447,12 @@
 至此，我们围绕 \(\mathbb R^n\) 和 \(\mathbb C^n\) 中的向量，依次讨论了线性组合、张成、线性相关与线性无关，以及极大线性无关组和秩等概念。这些概念虽然是在具体的几何空间中引入的，但其定义和推导过程实际上只依赖于向量加法和数乘这两种运算及其基本规律，而并不依赖于向量本身的具体形式。这提示我们，可以将这些运算规律抽象出来，脱离\(\mathbb R^n\) 和 \(\mathbb C^n\) 的具体背景，建立更一般的理论框架，这就是下面要引入的线性空间。
 
 \section{线性空间}
-\label{sec:basis_dim_coord}
+\label{sec_basis_dim_coord}
 
 将向量加法与数乘所满足的基本规律抽象出来，便可以得到线性空间这一重要概念，其具体定义如下。
 
 \begin{definition}[线性空间]
-    \label{def:linear_space}
+    \label{def_linear_space}
     设 \(V\) 是一个非空集合，\( \mathbb F \)是一个域，并定义了如下运算\footnote{域中的乘法 \(\mathbb F\times\mathbb F\to\mathbb F\)与标量作用于向量的数乘\(\mathbb F\times V\to V\)是两种不同的运算，尽管二者的乘号通常都可以省略。}：
     \[
         +:V\times V\to V,\quad \cdot:\mathbb F\times V\to V,
@@ -489,7 +489,7 @@
 \]
 唯一确定，并且对应的加法和数乘运算也保持不变。像这样的线性空间之间的对应关系称为线性空间同构，其定义如下。
 \begin{definition}
-    \label{def:linear_space_isomorphism}
+    \label{def_linear_space_isomorphism}
     设 \(V\) 和 \(W\) 是域 \(\mathbb F\) 上的两个线性空间。如果存在一个双射 \(\varphi:V\to W\)，使得对于任意 \(\bm u,\bm v\in V\) 和任意 \(\lambda\in\mathbb F\)，都有
     \[
         \varphi(\bm u+\bm v)=\varphi(\bm u)+\varphi(\bm v),\quad \varphi(\lambda \bm v)=\lambda \varphi(\bm v),
@@ -497,11 +497,11 @@
     则称 \(V\) 与 \(W\) 是同构的（Isomorphic），记作 \(V\simeq W\)。映射 \(\varphi\) 则称为一个\textbf{线性空间同构}。
 \end{definition}
 
-从\cref{def:linear_space_isomorphism}可以看出，线性空间同构不仅要求两个线性空间之间的元素一一对应，还要求映射保持向量加法和数乘的运算结构。换句话说，同构的两个线性空间在代数结构上是完全相同的，只是元素的表现形式不同。
+从\cref{def_linear_space_isomorphism}可以看出，线性空间同构不仅要求两个线性空间之间的元素一一对应，还要求映射保持向量加法和数乘的运算结构。换句话说，同构的两个线性空间在代数结构上是完全相同的，只是元素的表现形式不同。
 
-此外，利用线性空间同构，我们可以将一个线性空间中的问题转化为另一个线性空间中的问题来研究，如\cref{ex:polynomial_discriminant_parameter_spaces}所示。
+此外，利用线性空间同构，我们可以将一个线性空间中的问题转化为另一个线性空间中的问题来研究，如\cref{ex_polynomial_discriminant_parameter_spaces}所示。
 \begin{example}
-    \label{ex:polynomial_discriminant_parameter_spaces}
+    \label{ex_polynomial_discriminant_parameter_spaces}
     考虑次数不超过 \(2\) 的实系数多项式空间
     \[
         \mathcal P_2
@@ -538,7 +538,7 @@
 \end{example}
 
 % \begin{example}
-%     \label{ex:polynomial_discriminant_parameter_spaces}
+%     \label{ex_polynomial_discriminant_parameter_spaces}
 %     考虑二次项系数为一的二次实系数多项式构成的参数空间
 %     \[
 %         \mathcal Q_2
@@ -588,7 +588,7 @@
 类似于子群，线性空间的某些子集在继承原有运算后仍然构成线性空间，这样的子集被称为\textbf{线性子空间}，简称\textbf{子空间}。对于一个线性空间的子集，直接逐条验证八条运算律通常没有必要。由于结合律、交换律和分配律等性质已经由 \(V\) 继承下来，只需检查运算结果是否仍然留在 \(U\) 中即可。下方的判定定理给出了一个更简便的判定方法。
 
 \begin{theorem}[子空间判定定理]
-    \label{thm:subspace_criterion}
+    \label{thm_subspace_criterion}
     设 \(U\) 是线性空间 \(V\) 的非空子集。则 \(U\) 是 \(V\) 的子空间，当且仅当对于任意 \(\bm u,\bm v\in U\) 和任意 \(\lambda,\mu\in\mathbb F\)，都有
     \[
         \lambda\bm u+\mu\bm v\in U.
@@ -612,7 +612,7 @@
 有趣的是，给定线性空间 \(V\) 中的一个向量组，其张成空间一定是 \(V\) 的一个线性子空间。相关证明并不困难，此处不再赘述。反过来思考，自然产生一个问题：对于给定的线性空间，是否存在一个线性无关的向量组，使其张成恰好就是这个线性空间本身？
 
 \begin{definition}[基]
-    \label{def:basis}
+    \label{def_basis}
     设 \(V\) 是域 \(\mathbb F\) 上的线性空间，\( \mathcal B=(\bm b_1,\bm b_2,\ldots,\bm b_n) \) 是一个线性无关向量组。如果
     \[
         V=\operatorname{span}\{\bm b_1,\bm b_2,\ldots,\bm b_n\},
@@ -634,7 +634,7 @@
 
 基的关键作用不仅在于能够表示空间中的每个向量，还在于这种表示是唯一的。
 \begin{theorem}[基表示的唯一性]
-    \label{thm:basis_unique}
+    \label{thm_basis_unique}
     设 \(\mathcal B=(\bm b_1,\ldots,\bm b_n)\) 是线性空间 \(V\) 的一组基。则对于任意 \(\bm v\in V\)，存在唯一的一组标量 \(\lambda_1,\ldots,\lambda_n\)，使得
     \[
         \bm v=\lambda_1\bm b_1+\lambda_2\bm b_2+\cdots+\lambda_n\bm b_n,
@@ -653,9 +653,9 @@
     由于基向量线性无关，只能有 \(\lambda_i-\mu_i=0\)，即 \(\lambda_i=\mu_i\)，因此表示唯一。
 \end{proof}
 
-类似于\cref{prop:maximal_independent}，可以证明同一个线性空间的任意两组有限基所含向量的个数相同。因此，一组基所含向量的个数对应了线性空间的一个基本不变量，它不仅反映了线性空间的``大小''，还决定了线性空间中向量组的秩的上界。
+类似于\cref{prop_maximal_independent}，可以证明同一个线性空间的任意两组有限基所含向量的个数相同。因此，一组基所含向量的个数对应了线性空间的一个基本不变量，它不仅反映了线性空间的``大小''，还决定了线性空间中向量组的秩的上界。
 \begin{definition}[维数]
-    \label{def:dimension}
+    \label{def_dimension}
     如果线性空间 \(V\) 有一组由 \(n\) 个向量组成的基，则称 \(V\) 是\textbf{有限维线性空间}，并称 \(n\) 为 \(V\) 的\textbf{维数}（Dimension），记作
     \[
         \dim V=n.
@@ -666,10 +666,10 @@
 \[
     (1,x,x^2,\ldots,x^n),
 \]
-所以 \(\dim\mathcal P_n=n+1\)。交换定理（\cref{thm:exchange}）还说明，在 \(n\) 维线性空间中，任何含有多于 \(n\) 个向量的向量组都线性相关，任何含有少于 \(n\) 个向量的向量组都不能张成整个空间。
+所以 \(\dim\mathcal P_n=n+1\)。交换定理（\cref{thm_exchange}）还说明，在 \(n\) 维线性空间中，任何含有多于 \(n\) 个向量的向量组都线性相关，任何含有少于 \(n\) 个向量的向量组都不能张成整个空间。
 
 \section{小结}
-\label{sec:vector_summary}
+\label{sec_vector_summary}
 
 本章从平面和空间中的几何向量出发，首先利用坐标将向量表示为有序数组，并在此基础上定义向量的加法与数乘。随后，我们从具体的实向量和复向量逐步过渡到抽象的线性空间，讨论了向量组及线性空间的基本结构。本章主要介绍了以下内容：
 
@@ -683,20 +683,20 @@
 这些内容揭示了具体向量运算背后的共同结构，也为后续研究矩阵、线性方程组和线性映射奠定了基础。
 
 \section{习题}
-\label{sec:vector_exercises}
+\label{sec_vector_exercises}
 
 \begin{exercise}
-    \label{exer:vector_1}
+    \label{exer_vector_1}
     设 \(\bm u=(1,-2,3)\)，\(\bm v=(2,1,-1)\)。计算 \(\bm u+\bm v\)、\(\bm u-\bm v\) 和 \(2\bm u-3\bm v\)。
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:vector_2}
+    \label{exer_vector_2}
     设 \(\bm v_1=(1,0,1)\)，\(\bm v_2=(0,1,1)\)。分别判断向量 \(\bm a=(3,1,4)\) 和 \(\bm b=(1,2,0)\) 能否由 \(\bm v_1,\bm v_2\) 线性表示；若能，求出相应的系数。
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:vector_3}
+    \label{exer_vector_3}
     证明
     \[
         \operatorname{span}\{(1,0,1),(0,1,1)\}
@@ -705,7 +705,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:vector_4}
+    \label{exer_vector_4}
     设 \(\bm u,\bm v\in\mathbb R^n\)。证明
     \[
         \operatorname{span}\{\bm u,\bm v\}
@@ -714,7 +714,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:vector_5}
+    \label{exer_vector_5}
     分别判断下列向量组是否线性相关，并说明理由：
     \begin{enumerate}
         \item \(((1,0),(0,1))\)；
@@ -725,7 +725,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:vector_6}
+    \label{exer_vector_6}
     设向量组 \((\bm v_1,\ldots,\bm v_m)\) 线性无关。证明：向量组
     \[
         (\bm v_1,\ldots,\bm v_m,\bm a)
@@ -737,7 +737,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:vector_7}
+    \label{exer_vector_7}
     设向量组
     \[
         \mathcal V=((1,0,1),(0,1,1),(1,1,2),(1,-1,0)).
@@ -746,7 +746,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:vector_8}
+    \label{exer_vector_8}
     判断下列集合是否为 \(\mathbb R^3\) 的子空间，并说明理由：
     \begin{enumerate}
         \item \(U=\{(x,y,z)\in\mathbb R^3\mid x+y+z=0\}\)；
@@ -756,7 +756,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:vector_9}
+    \label{exer_vector_9}
     在 \(\mathcal P_2\) 中定义集合
     \[
         U=\{p(x)\in\mathcal P_2\mid p(1)=0\},\quad
@@ -766,7 +766,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:vector_10}
+    \label{exer_vector_10}
     设 \(U\) 和 \(W\) 是线性空间 \(V\) 的两个有限维子空间。
     \begin{enumerate}
         \item 证明 \(U\cap W\) 也是 \(V\) 的子空间；
@@ -779,7 +779,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:vector_11}
+    \label{exer_vector_11}
     设 \(U\) 和 \(W\) 是有限维线性空间 \(V\) 的两个子空间，定义
     \[
         U+W=\{\bm u+\bm w\mid \bm u\in U,\ \bm w\in W\}.
@@ -791,7 +791,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:vector_12}
+    \label{exer_vector_12}
     设 \(\mathcal F\) 是所有实函数 \(f:\mathbb R\to\mathbb R\) 组成的集合。定义
     \[
         (f+g)(x)=f(x)+g(x),\quad
@@ -801,7 +801,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:vector_13}
+    \label{exer_vector_13}
     证明映射
     \[
         \varphi:\mathcal P_n\to\mathbb R^{n+1},\quad
@@ -811,7 +811,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:vector_14}
+    \label{exer_vector_14}
     分别判断下列向量组是否为相应线性空间的一组基，并说明理由：
     \begin{enumerate}
         \item \(((1,0),(1,1))\) 与 \(\mathbb R^2\)；
@@ -822,7 +822,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:vector_15}
+    \label{exer_vector_15}
     设 \(\mathcal B=((1,1),(1,-1))\) 是 \(\mathbb R^2\) 的一组基。
     \begin{enumerate}
         \item 求向量 \((4,2)\) 在基 \(\mathcal B\) 下的坐标；
@@ -831,7 +831,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:vector_16}
+    \label{exer_vector_16}
     在 \(\mathbb R^3\) 中定义集合
     \[
         U=\{(x,y,z)\in\mathbb R^3\mid x+y+z=0\}.
@@ -840,7 +840,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:vector_17}
+    \label{exer_vector_17}
     设 \(V\) 是一个 \(n\) 维线性空间。证明：
     \begin{enumerate}
         \item \(V\) 中任意含有 \(n\) 个向量的线性无关组都是 \(V\) 的一组基；
@@ -849,7 +849,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:vector_18}
+    \label{exer_vector_18}
     设 \(V\) 和 \(W\) 是域 \(\mathbb F\) 上的两个有限维线性空间。证明：\(V\) 与 \(W\) 同构，当且仅当
     \[
         \dim V=\dim W.

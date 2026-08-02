@@ -1,10 +1,10 @@
 \chapter{矩阵与线性映射}
-\label{chap:matrix}
+\label{chap_matrix}
 
 上一章讨论了线性空间、线性空间同构以及基与坐标。选定基后，每个向量都可以由有限个坐标唯一表示；进一步地，线性空间同构对所有向量的作用，也可以由它对一组基中各个向量的作用完全确定。本章将从这些向量的坐标出发引出矩阵，再把线性空间同构推广为一般的线性映射，并研究线性映射的矩阵表示。
 
 \section{矩阵的概念与运算}
-\label{sec:matrix_origin}
+\label{sec_matrix_origin}
 
 在上一章中，我们介绍了线性空间同构的概念，但没有给出它的具体表示。对于域 \(\mathbb F\) 上的两个 \(n\) 维线性空间 \(V,W\)，给定一个线性空间同构
 \[
@@ -16,7 +16,7 @@
     \quad
     \mathcal B=(\bm b_1,\ldots,\bm b_n).
 \]
-并且，对于\( V \)中的每个基向量 \(\bm a_j\)，都有 \(\varphi(\bm a_j)\in W\)与之对应。又由于 \(\mathcal B\) 是 \(W\) 的一组基，根据基表示的唯一性（\cref{thm:basis_unique}），存在唯一的一组标量 \(t_{1j},\ldots,t_{nj}\)，使得
+并且，对于\( V \)中的每个基向量 \(\bm a_j\)，都有 \(\varphi(\bm a_j)\in W\)与之对应。又由于 \(\mathcal B\) 是 \(W\) 的一组基，根据基表示的唯一性（\cref{thm_basis_unique}），存在唯一的一组标量 \(t_{1j},\ldots,t_{nj}\)，使得
 \[
     \varphi(\bm a_j) = \sum_{i=1}^{n} t_{ij}\bm b_i.
 \]
@@ -50,7 +50,7 @@
 这个二维数组完整记录了同构 \(\varphi\) 在所选基下的作用。
 
 \begin{example}
-    \label{ex:linear_map_matrix}
+    \label{ex_linear_map_matrix}
     如\cref{fig_linear_map_square_shear} 所示，有一线性同构\(\varphi\) 可以将 \(V\) 中的单位正方形映成 \(W\) 中的一个平行四边形。
 
     \begin{center}
@@ -89,7 +89,7 @@
 注意到，上述推导中的线性空间 \(V\) 与 \(W\) 维数相同，因此得到的是一个方形数组。但上述推导实际只使用了映射保持向量加法和数乘，并没有使用它是双射这一条件。因此，可以令定义域的维数为 \(n\)，陪域的维数为 \(m\)，推导过程同样成立。最终得到 \(mn\) 个系数，并将它们排列为 \(m\) 行 \(n\) 列。基于这一观察，可以给出一般矩阵的定义。
 
 \begin{definition}[矩阵]
-    \label{def:matrix}
+    \label{def_matrix}
     设 \(m,n\) 是非负整数，\(\mathbb F\) 是一个域。由 \(mn\) 个属于 \(\mathbb F\) 的元素按照 \(m\) 行 \(n\) 列排列成的矩形数组
     \[
         \mathbf{A}=
@@ -110,7 +110,7 @@
 类似于向量，两个矩阵相等，当且仅当它们的行数和列数分别相同，并且对应位置的元素都相等。所有元素均为 \(0\) 的 \(m\times n\) 矩阵称为\textbf{零矩阵}，记作 \(\mathbf{0}\)。并且，矩阵的加法和数乘都按照对应位置的元素进行。
 
 \begin{definition}[矩阵加法与数乘]
-    \label{def:matrix_add_scalar}
+    \label{def_matrix_add_scalar}
     设 \(\mathbf{A}=(a_{ij}),\mathbf{B}=(b_{ij})\in \mathbb{F}^{m \times n}\)，\(\lambda\in\mathbb F\)，定义
     \[
         \mathbf{A}+\mathbf{B}=(a_{ij}+b_{ij}),
@@ -131,7 +131,7 @@
 转置同样是矩阵的一个基本运算。它将矩阵的行与列互换，得到一个新的矩阵。
 
 \begin{definition}[转置]
-    \label{def:matrix_transpose}
+    \label{def_matrix_transpose}
     设 \(\mathbf{A}=(a_{ij})\in \mathbb{F}^{m \times n}\)。由
     \[
         (\mathbf{A}^{\mathsf T})_{ij}=a_{ji}
@@ -168,12 +168,12 @@
 在后面的章节中，我们将给出对应的证明。
 
 \section{线性映射与矩阵乘法}
-\label{sec:linear_map}
+\label{sec_linear_map}
 
 在上一章中，我们通过推导发现，一个线性空间同构可以由一个方阵来表示。并指出，如果定义域与陪域的维数不同，可以得到一个更一般的矩阵。对于这个更一般的矩阵，其对应的映射不再是同构，而是一个更一般的映射，称为线性映射。
 
 \begin{definition}[线性映射]
-    \label{def:linear_map}
+    \label{def_linear_map}
     设 \(V,W\) 是域 \(\mathbb F\) 上的两个线性空间。映射 \(T:V\to W\) 如果对于任意 \(\bm u,\bm v\in V\) 和任意 \(\lambda\in\mathbb F\)，都有
     \[
         T(\bm u+\bm v)=T(\bm u)+T(\bm v),
@@ -185,7 +185,7 @@
 
 需要注意的是，线性变换并不一定是线性空间同构的。例如，\textbf{零映射} \(T:V\to V\) 定义为 \(T(\bm v)=\bm 0\) 对任意 \(\bm v\in V\) 成立。显然，它将\( V \)中的向量仍然映射到 \( V \) 中，但它不是双射，因此不是同构。此外，还有一种特殊的线性映射，其将每个向量映射到它自身，这种映射称为\textbf{恒等映射}，通常记作\(I\)。
 
-从\cref{def:linear_map}可以看出，线性映射要求保持向量加法和数乘。换句话说，线性映射是保持线性结构的映射。如\cref{fig:linear_map}所示，其背后的几何意义非常明确。
+从\cref{def_linear_map}可以看出，线性映射要求保持向量加法和数乘。换句话说，线性映射是保持线性结构的映射。如\cref{fig_linear_map}所示，其背后的几何意义非常明确。
 
 \begin{figure}[htb!]
     \centering
@@ -193,21 +193,21 @@
         \centering
         \includegraphics{img/2-matrix/linear_map_scalar_mult.asy}
         \caption{数乘不变}
-        \label{fig:linear_map_scalar_mult}
+        \label{fig_linear_map_scalar_mult}
     \end{subfigure}
     \begin{subfigure}{0.75\textwidth}
         \centering
         \includegraphics{img/2-matrix/linear_map_addition.asy}
         \caption{向量加法不变}
-        \label{fig:linear_map_addition}
+        \label{fig_linear_map_addition}
     \end{subfigure}
     \caption{线性映射保持线性结构}
-    \label{fig:linear_map}
+    \label{fig_linear_map}
 \end{figure}
 
 而如下的例子，则进一步展示出线性映射不仅仅局限于几何图像，还可以应用于更一般的线性空间。
 \begin{example}
-    \label{ex:derivative_linear_map}
+    \label{ex_derivative_linear_map}
     对于正整数 \(n\)，定义求导映射
     \[
         D:\mathcal P_n\to\mathcal P_{n-1}, \quad D(p)=p',
@@ -224,7 +224,7 @@
 正如上一章所述，对于线性变换\( T: V \to W  \)，在选定基后，可以用一个矩阵\( \mathbf{T} = [t_{ij}] \)来表示。下方的定义则给出了更严谨的表述。
 
 \begin{definition}[线性映射的表示矩阵]
-    \label{def:representation_matrix}
+    \label{def_representation_matrix}
     设 \(V\) 和\(W\) 是域 \(\mathbb F\) 上的线性空间，而\( \mathcal A=(\bm a_1,\ldots,\bm a_n) \)和\( \mathcal B=(\bm b_1,\ldots,\bm b_m) \)分别是两个线性空间上的一组基。若\(T:V\to W\) 是线性映射，并且\( V \)中的每个基向量 \(\bm a_j\) 在 \(W\) 中的像 \(T(\bm a_j)\) 在基 \(\mathcal B\) 下的坐标为
     \[
         T(\bm a_j) = \sum_{i=1}^{m} t_{ij}\bm b_i, \quad j=1,\ldots,n,
@@ -251,7 +251,7 @@
 可以验证，\(\mathcal L(V,W)\) 在上述运算下构成 \(\mathbb F\) 上的线性空间。固定 \(V\) 和 \(W\) 的基后，这一线性空间与相应的矩阵空间同构。
 
 \begin{theorem}[线性映射空间与矩阵空间的同构]
-    \label{thm:linear_map_matrix_space_isomorphism}
+    \label{thm_linear_map_matrix_space_isomorphism}
     设 \(V,W\) 是域 \(\mathbb F\) 上的有限维线性空间，\(\dim V=n\)，\(\dim W=m\)，并分别固定 \(V\) 和 \(W\) 的基 \(\mathcal A\) 和 \(\mathcal B\)。则
     \[
         \mathcal L(V,W)\cong\mathbb F^{m\times n}.
@@ -278,7 +278,7 @@
     \]
     这说明 \(\Phi\) 是线性映射。
 
-    由 \cref{def:representation_matrix} 可知，对于每一个线性映射 \(T\in\mathcal L(V,W)\)，都有唯一的表示矩阵 \(\mathbf T\) 与之对应，因此 \(\Phi\) 是双射。综上，\(\Phi\) 是线性空间同构，故
+    由 \cref{def_representation_matrix} 可知，对于每一个线性映射 \(T\in\mathcal L(V,W)\)，都有唯一的表示矩阵 \(\mathbf T\) 与之对应，因此 \(\Phi\) 是双射。综上，\(\Phi\) 是线性空间同构，故
     \[
         \mathcal L(V,W)\cong\mathbb F^{m\times n}.
     \]
@@ -295,7 +295,7 @@
 \]
 显然，在上式中，矩阵\( \mathbf{T} \)与向量\( \bm{\alpha} \)进行运算，得到了一个新的向量\( \bm{\beta} \)。由此可以定义矩阵与向量的乘法，如下所示。
 \begin{definition}[矩阵与向量的乘法]
-    \label{def:matrix_vector_mult}
+    \label{def_matrix_vector_mult}
     设 \(\mathbf{A}=[a_{ij}]\in \mathbb{F}^{m \times n}\)，\(\bm x=[x_1,\ldots,x_n]^{\mathsf T}\in \mathbb{F}^n\)。定义矩阵 \(\mathbf{A}\) 与向量 \(\bm x\) 的乘积为
     \[
         \bm{y} = \mathbf{A}\bm x \in \mathbb{F}^m,
@@ -379,7 +379,7 @@
 \]
 像这样全部由 \(0\)组成的矩阵（不一定是方阵）称为\textbf{零矩阵}，而对角线上全部为 \(1\) 且其余元素均为 \(0\) 的方阵称为\textbf{单位矩阵}。
 
-有意思的是，仔细观察\cref{def:matrix_vector_mult}，可以发现矩阵与向量的乘法非常适合用于表示向量组的线性组合。设矩阵 \(\mathbf{A}=[\bm a_1,\ldots,\bm a_n]\in \mathbb{F}^{m \times n}\)，其中每一列向量\(\bm a_j\in \mathbb{F}^m\)。那么，对于任意向量\(\bm x=[x_1,\ldots,x_n]^{\mathsf T}\in \mathbb{F}^n\)，有
+有意思的是，仔细观察\cref{def_matrix_vector_mult}，可以发现矩阵与向量的乘法非常适合用于表示向量组的线性组合。设矩阵 \(\mathbf{A}=[\bm a_1,\ldots,\bm a_n]\in \mathbb{F}^{m \times n}\)，其中每一列向量\(\bm a_j\in \mathbb{F}^m\)。那么，对于任意向量\(\bm x=[x_1,\ldots,x_n]^{\mathsf T}\in \mathbb{F}^n\)，有
 \[
     \mathbf{A}\bm x = \begin{bmatrix}
         \bm a_1 & \ldots & \bm a_n
@@ -390,7 +390,7 @@
     \end{bmatrix}
     = x_1\bm a_1 + \ldots + x_n\bm a_n = \sum_{j=1}^{n}x_j\bm a_j.
 \]
-这一观察使得我们无需记忆\cref{def:matrix_vector_mult}中的复杂的求和公式，而只需记住矩阵与向量的乘法就是将矩阵的列向量按向量的坐标进行线性组合，即可计算出结果。
+这一观察使得我们无需记忆\cref{def_matrix_vector_mult}中的复杂的求和公式，而只需记住矩阵与向量的乘法就是将矩阵的列向量按向量的坐标进行线性组合，即可计算出结果。
 
 或者，我们也可以将矩阵\( \mathbf{A} \)拆分成多个行向量\footnote{这里的行向量\( \bm{a}_i^{\mathsf{T}} \)表示矩阵的第 \(i\) 行，和前面提到的列向量\( \bm{a}_j \)取值并不相同。}，即
 \[
@@ -446,7 +446,7 @@
 \]
 这一观察使得我们可以定义矩阵与矩阵之间的乘法，如下所示。
 \begin{definition}[矩阵的乘法]
-    \label{def:matrix_mult}
+    \label{def_matrix_mult}
     设 \(\mathbf{A}=[a_{ij}]\in \mathbb{F}^{m \times p}\)，\(\mathbf{B}=[b_{ij}]\in \mathbb{F}^{p \times n}\)。定义矩阵 \(\mathbf{A}\) 与矩阵 \(\mathbf{B}\) 的乘积为
     \[
         \mathbf{C} = \mathbf{A}\mathbf{B} \in \mathbb{F}^{m \times n},
@@ -547,7 +547,7 @@
 
 这两种计算方式对应了对矩阵乘法的两种不同理解，在后续的章节中，我们将会看到它们在不同的场景下有着不同的应用。此外，为了记号的简便，在后文中，当提及一个向量时，我们默认该向量为其在标准基下的坐标表示；类似地，当提及一个矩阵时，我们默认该矩阵为其在两个线性空间均选取标准基时对应的表示矩阵。
 
-如此一来，矩阵和向量的乘法就可以看作是在一个线性空间中对一个向量进行变换，而矩阵乘法则可以看作是在这个空间中连续进行两次变换。如\cref{fig:matrix_vector_and_composition}所示，向量 \(\bm v=[1, 1]^{\mathsf T}\) 经过矩阵\( \mathbf{A} \)的作用变为
+如此一来，矩阵和向量的乘法就可以看作是在一个线性空间中对一个向量进行变换，而矩阵乘法则可以看作是在这个空间中连续进行两次变换。如\cref{fig_matrix_vector_and_composition}所示，向量 \(\bm v=[1, 1]^{\mathsf T}\) 经过矩阵\( \mathbf{A} \)的作用变为
 \[
     \mathbf{A} \bm{v} = \begin{bmatrix}
         1 & 0 \\
@@ -582,7 +582,7 @@
     \centering
     \includegraphics{img/2-matrix/matrix_composition.asy}
     \caption{矩阵作用于向量以及连续进行两次线性变换}
-    \label{fig:matrix_vector_and_composition}
+    \label{fig_matrix_vector_and_composition}
 \end{figure}
 
 \section{矩阵乘法的基本性质}
@@ -620,7 +620,7 @@
 
 除此以外，矩阵乘法满足的一些基本性质如下：
 \begin{property}
-    \label{thm:matrix_mult_basic_properties}
+    \label{thm_matrix_mult_basic_properties}
     设 \(\mathbf{A}\in\mathbb{F}^{m\times n}\)，\(\mathbf{B}\in\mathbb{F}^{n\times p}\)，\(\mathbf{C}\in\mathbb{F}^{p\times q}\)。
     则有以下性质：
     \begin{enumerate}
@@ -631,7 +631,7 @@
 \end{property}
 对于零矩阵、单位矩阵以及转置，矩阵乘法还满足如下性质：
 \begin{property}
-    \label{thm:zero_identity_matrix_properties}
+    \label{thm_zero_identity_matrix_properties}
     设 \(\mathbf{A}\in\mathbb{F}^{m\times n}\)，\(\mathbf{0}_m\in\mathbb{F}^{m\times m}\)，\(\mathbf{0}_n\in\mathbb{F}^{n\times n}\)，\(\mathbf{I}_m\in\mathbb{F}^{m\times m}\)，\(\mathbf{I}_n\in\mathbb{F}^{n\times n}\)。则有以下性质：
     \begin{enumerate}
         \item \(\mathbf{0}_m\mathbf{A}=\mathbf{0}_m\)，\(\mathbf{A}\mathbf{0}_n=\mathbf{0}_n\)；

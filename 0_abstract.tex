@@ -1,9 +1,9 @@
 \chapter{抽象代数基础}
-\label{chap:abstract_algebra}
+\label{chap_abstract_algebra}
 尽管本书侧重以几何直观作为理解线性代数的起点，但仍需借助准确的语言和严谨的符号加以表达。同时，线性代数中的部分概念也建立在基本代数结构之上。因此，本章将从集合与映射出发，简要介绍群、环与域，并讨论与后文相关的基本性质。这些内容既是对初等教育阶段所学数学知识的抽象与整理，也将帮助读者建立统一的符号语言，为后续学习做好准备。
 
 \section{集合与映射}
-\label{sec:sets_maps}
+\label{sec_sets_maps}
 
 在初等数学中，我们早已接触过集合（Set）的概念，例如自然数集、实数集等。那么，集合究竟是什么呢？在朴素的观念中，我们通常认为集合就是``满足某种特定性质的一堆东西''。然而，如果不加限制地使用这种观念，就会导致悖论的出现。为此，公理化集合论（Zermelo--Fraenkel Set Theory, ZFC）引入了一套严格的公理体系，用来规定哪些对象可以被看作集合。具体而言，一个合法的集合应当满足以下公理：
 \begin{enumerate}
@@ -52,7 +52,7 @@
 基于有序对的概念，可以定义两个集合的笛卡尔积。
 
 \begin{definition}[笛卡尔积]
-    \label{def:cartesian_product}
+    \label{def_cartesian_product}
     集合 \(A\) 与 \(B\) 的笛卡尔积定义为
     \[
         A\times B=\{(a,b)\mid a\in A,\ b\in B\}.
@@ -74,7 +74,7 @@
 
 在集合的基础上，映射描述了一个集合中的元素与另一个集合中的元素之间的对应关系。
 \begin{definition}[映射]
-    \label{def:map}
+    \label{def_map}
     设 \(A,B\) 是两个集合。若按照某个确定的对应法则，对集合 \(A\) 中的每个元素 \(x\)，都有集合 \(B\) 中唯一确定的元素与之对应，则称这个对应为从 \(A\) 到 \(B\) 的映射，记作
     \[
         f:A\rightarrow B.
@@ -100,7 +100,7 @@
 \end{enumerate}
 
 \begin{example}
-    \label{ex:map_square}
+    \label{ex_map_square}
     考虑同一个对应法则
     \[
         f(x)=x^2.
@@ -197,7 +197,7 @@
 因此，满射也可以理解为值域等于陪域的映射，即 \(f(A)=B\)。
 
 \begin{example}
-    \label{ex:map_image_preimage}
+    \label{ex_map_image_preimage}
     仍然考虑对应法则 \(f(x)=x^2\)。如\cref{fig_la_square_image_preimage} 所示，集合的原像描述的是陪域中的一个集合在定义域中对应的部分。
 
     \begin{center}
@@ -235,11 +235,11 @@
 \end{example}
 
 \section{二元运算与群}
-\label{sec:binary_op_group}
+\label{sec_binary_op_group}
 
 在初等数学中，我们接触到的映射通常是以一个元素为输入的函数。若函数的定义域和陪域是同一个集合 \(A\)，则它可以看作集合 \(A\) 上的一元运算。借助集合的笛卡尔积，还可以将多个元素组成的有序组作为映射的输入，从而描述多个输入分量与输出之间的对应关系。二元运算就是这样一类映射，其定义如下。
 \begin{definition}[二元运算]
-    \label{def:binary_op}
+    \label{def_binary_op}
     设 \(G\) 是一个集合，映射
     \[
         \circ:G\times G\rightarrow G,
@@ -268,7 +268,7 @@
 
 一般地，非空集合 \(A\) 及其上的一组运算，连同这些运算所满足的有限个恒等式（即运算满足的性质），共同构成一个\textbf{代数结构}（Algebraic Structure），也称为\textbf{代数系统}（Algebraic System）。不同的运算及其所满足的恒等式对应不同的代数结构，其中最常见的代数结构之一是群（Group）。
 \begin{definition}[群]
-    \label{def:group}
+    \label{def_group}
     设 \(G\) 是一个非空集合，\(\circ: G \times G \rightarrow G\) 是 \(G\) 上的一个二元运算。若 \(\circ\) 满足以下性质：
     \begin{enumerate}
         \item \textbf{结合律}：对于任意 \(a,b,c\in G\)，都有
@@ -295,7 +295,7 @@
 
 对于群中的单位元，我们有如下定理：
 \begin{theorem}[单位元的唯一性]
-    \label{thm:identity_unique}
+    \label{thm_identity_unique}
     设 \((G,\circ)\) 是一个群，则 \(G\) 中的单位元是唯一的。
 \end{theorem}
 \begin{proof}
@@ -314,7 +314,7 @@
 
 前面主要通过数及其运算来认识群，但群中的元素并不一定是数，群运算也不一定是通常的加法或乘法。几何图形的对称变换就是群的一个直观来源。下面以正方形为例，说明它的八个对称变换如何构成一个群。
 \begin{example}[正方形的对称群]
-    \label{ex:square_symmetry_group}
+    \label{ex_square_symmetry_group}
     如\cref{fig_square_eight_symmetries} 所示，一个正方形关于竖直轴、水平轴或两条对角线反射后，所得图形仍与原正方形重合。类似地，将它绕中心分别旋转 \(0^\circ\)、\(90^\circ\)、\(180^\circ\) 和 \(270^\circ\)，所得图形也与原图形重合。
     \begin{center}
         \captionsetup{type=figure}
@@ -330,7 +330,7 @@
 正方形的对称群还说明，群运算并不一定满足交换律。例如，先将正方形绕中心旋转 \(90^\circ\)，再关于某条对称轴反射，与先反射再旋转所得的变换通常不同。对于满足交换律的群，我们有如下定义。
 
 \begin{definition}[交换群]
-    \label{def:abelian_group}
+    \label{def_abelian_group}
     若群 \((G,\circ)\) 还满足交换律，即对于任意 \(a,b\in G\)，都有
     \[
         a\circ b=b\circ a,
@@ -345,7 +345,7 @@
 \]
 任意两个旋转的复合仍是旋转，每个旋转的逆变换也仍在 \(H\) 中，因此 \(H\) 关于变换的复合同样构成一个群。这种包含在一个群内部的群称为子群，其定义如下：
 \begin{definition}[子群]
-    \label{def:subgroup}
+    \label{def_subgroup}
     设 \((G,\circ)\) 是一个群，\(H\) 是 \(G\) 的非空子集。若\(H\) 关于 \(G\) 上原有的二元运算 \(\circ\) 也构成一个群，则称 \(H\) 是 \(G\) 的一个\textbf{子群}（Subgroup），记作
     \[
         H\leq G.
@@ -353,7 +353,7 @@
 \end{definition}
 对于\( G \)的一个非空子集，可以使用子群判定定理快速判断它是否是 \( G \) 的子群：
 \begin{theorem}[子群判定定理]
-    \label{thm:subgroup_criterion}
+    \label{thm_subgroup_criterion}
     设 \((G,\circ)\) 是一个群，\(H\) 是 \(G\) 的非空子集，若对任意 \(a,b\in H\)，都有 \(a\circ b^{-1}\in H\)，则 \(H\) 是 \(G\) 的一个子群。
 \end{theorem}
 \begin{proof}
@@ -374,7 +374,7 @@
 
 此外，对于一个有限群的子群，有如下定理：
 \begin{theorem}[拉格朗日定理]
-    \label{thm:lagrange}
+    \label{thm_lagrange}
     设 \((G,\circ)\) 是一个有限群，\(H\le G\) 是 \(G\) 的一个子群，则 \(H\) 的阶数\footnote{对于有限群，其元素的个数称为群的阶（Order）}，记作\( |H| \)，一定能整除 \(|G|\)。
 \end{theorem}
 \begin{proof}
@@ -404,7 +404,7 @@
 \end{proof}
 
 \begin{example}
-    \label{ex:lagrange_d4}
+    \label{ex_lagrange_d4}
     考虑正方形的对称群 \(D_4\) 及其子群 \(H=\{e,s_0\}\)。利用群中元素构建的8个左陪集为
     \[
         \begin{aligned}
@@ -424,12 +424,12 @@
 利用拉格朗日定理，可以得到一个有趣的结论：两次反射的复合一定等于一次旋转。不妨假设两次反射仍然是反射，则所有的4个反射操作加上单位操作构成了\( D_4 \)的一个子群，其阶数为 5。然而，5 不能整除 \(D_4\) 的阶数 8，这与拉格朗日定理矛盾。因此，两次反射的复合不可能是反射，只能是旋转。
 
 \section{环与域}
-\label{sec:ring_field}
+\label{sec_ring_field}
 
 群描述了一个集合关于一种二元运算所具有的代数结构。然而，在许多常见的数集上，往往同时存在加法和乘法两种运算。例如，整数既可以相加，也可以相乘，并且这两种运算通过分配律相互联系。环（Ring）则是一种可以描述这种具有两种运算的代数结构，其定义如下。
 
 \begin{definition}[环]
-    \label{def:ring}
+    \label{def_ring}
     设 \(R\) 是一个非空集合，其上定义了加法 \(+\) 和乘法 \(\cdot\) 两种二元运算。若满足以下性质：
     \begin{enumerate}
         \item \(R\) 关于加法构成交换群；
@@ -460,7 +460,7 @@
 整数集 \(\mathbb Z\) 关于加法和乘法构成一个交换含幺环，称为\textbf{整数环}。其中，加法单位元为 \(0\)，乘法单位元为 \(1\)。除了整数环以外，模运算也给出了一类重要的环。
 
 \begin{example}
-    \label{ex:modular_ring}
+    \label{ex_modular_ring}
     给定正整数 \(n\)，按照除以 \(n\) 所得余数的不同，可以将所有整数分为 \(n\) 类。分别用
     \[
         \overline 0,\overline 1,\ldots,\overline{n-1}
@@ -484,7 +484,7 @@
 
 环中的元素也不一定是数，比如下面这个例子。
 \begin{example}
-    \label{ex:function_ring}
+    \label{ex_function_ring}
     设 \(X\) 是一个非空集合，所有从 \(X\) 到 \(\mathbb R\) 的映射构成集合
     \[
         \mathcal F(X,\mathbb R)=\{f\mid f:X\rightarrow\mathbb R\}.
@@ -500,7 +500,7 @@
 在一般的环中，非零元素不一定存在乘法逆元。例如，在整数环 \(\mathbb Z\) 中，不存在整数 \(b\) 使得 \(2b=1\)。如果一个交换含幺环中的每个非零元素都有乘法逆元，便得到比环更特殊的代数结构。
 
 \begin{definition}[域]
-    \label{def:field}
+    \label{def_field}
     设 \(F\) 是一个至少含有两个元素的交换含幺环。如果对于任意非零元素 \(a\in F\)，都存在元素 \(a^{-1}\in F\)，使得
     \[
         aa^{-1}=a^{-1}a=1,
@@ -518,7 +518,7 @@
 
 对于整数环\( \mathbb{Z}_n \)，有如下定理：
 \begin{theorem}
-    \label{thm:zn_field_prime}
+    \label{thm_zn_field_prime}
     设 \(n\) 是大于 1 的整数，则模 \(n\) 整数环 \(\mathbb Z_n\) 是域的充分必要条件是 \(n\) 是素数。
 \end{theorem}
 \begin{proof}
@@ -545,7 +545,7 @@
 
 
 \section{小结}
-\label{sec:abstract_summary}
+\label{sec_abstract_summary}
 本章并不打算系统地介绍抽象代数，而是选取其中与后文密切相关的基本概念和结论。抽象代数将研究对象从具体的数及其加法、乘法中抽离出来，转而关注集合上的运算及其所满足的结构性质。这种抽象的观点有助于我们从更统一的角度理解后文中的向量、矩阵及其各种运算。本章主要介绍了以下内容：
 
 \begin{enumerate}
@@ -557,10 +557,10 @@
 这些内容为后续研究向量及其构成的线性空间提供了基本的符号语言和代数基础。
 
 \section{习题}
-\label{sec:abstract_exercises}
+\label{sec_abstract_exercises}
 
 \begin{exercise}
-    \label{exer:abstract_1}
+    \label{exer_abstract_1}
     分别判断下列映射是否为单射、满射或双射，并说明理由：
     \begin{enumerate}
         \item \(f:\mathbb Z\rightarrow\mathbb Z,\quad f(n)=2n\)；
@@ -570,7 +570,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:abstract_2}
+    \label{exer_abstract_2}
     设 \(f:A\rightarrow B\)，\(g:B\rightarrow C\)。证明：
     \begin{enumerate}
         \item 若 \(g\circ f\) 是单射，则 \(f\) 是单射；
@@ -580,17 +580,17 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:abstract_3}
+    \label{exer_abstract_3}
     设 \(f:A\rightarrow B\) 是双射。证明其逆映射 \(f^{-1}\) 也是双射，并且\( \left(f^{-1}\right)^{-1}=f. \)
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:abstract_4}
+    \label{exer_abstract_4}
     设 \(f:A\rightarrow B\) 和 \(g:B\rightarrow C\) 都是双射。证明 \(g\circ f\) 也是双射，并且\( (g\circ f)^{-1}=f^{-1}\circ g^{-1}. \)
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:abstract_5}
+    \label{exer_abstract_5}
     设 \(f:A\rightarrow B\)，\(S_1,S_2\subseteq A\)，\(T_1,T_2\subseteq B\)。证明：
     \[
         f(S_1\cup S_2)=f(S_1)\cup f(S_2),
@@ -604,7 +604,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:abstract_6}
+    \label{exer_abstract_6}
     判断下列运算是否为给定集合上的二元运算，并说明理由：
     \begin{enumerate}
         \item 整数集 \(\mathbb Z\) 上的减法；
@@ -615,7 +615,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:abstract_7}
+    \label{exer_abstract_7}
     在整数集 \(\mathbb Z\) 上定义运算
     \[
         a\circ b=a+b+1.
@@ -624,7 +624,7 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:abstract_8}
+    \label{exer_abstract_8}
     判断下列集合是否构成相应群的子群，并说明理由：
     \begin{enumerate}
         \item \(2\mathbb Z=\{2k\mid k\in\mathbb Z\}\) 是否为 \((\mathbb Z,+)\) 的子群；
@@ -634,12 +634,12 @@
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:abstract_9}
+    \label{exer_abstract_9}
     设 \(H_1,H_2\) 是群 \(G\) 的两个子群，证明 \(H_1\cap H_2\) 是 \(G\) 的子群
 \end{exercise}
 
 \begin{exercise}
-    \label{exer:abstract_10}
+    \label{exer_abstract_10}
     在加法群 \((\mathbb Z,+)\) 中，取子群
     \[
         H=3\mathbb Z=\{3k\mid k\in\mathbb Z\}.
