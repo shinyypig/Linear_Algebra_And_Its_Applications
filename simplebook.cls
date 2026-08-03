@@ -1163,6 +1163,8 @@
                 after skip=10pt,
                 fonttitle=\bfseries,
                 coltitle=black,
+                colback=white,
+                colbacktitle=white,
                 detach title,
                 before upper={\noindent\tcbtitle\par\smallskip},
                 before upper app={\SIMPLE@globalfootnotes},
@@ -1171,8 +1173,9 @@
         simpleboxcolor/.style={
                 simplethm,
                 colframe=#1,
-                colback=#1!4,
-                coltitle=#1!70!black,
+                colback=white,
+                colbacktitle=white,
+                coltitle=black,
                 borderline west={2pt}{0pt}{#1},
             },
         simpledefinition/.style={
@@ -1276,8 +1279,9 @@
             before skip=10pt,
             after skip=10pt,
             colframe=boxexample,
-            colback=boxexample!4,
-            coltitle=boxexample!70!black,
+            colback=white,
+            colbacktitle=white,
+            coltitle=black,
             borderline west={2pt}{0pt}{boxexample},
             fonttitle=\bfseries,
             detach title,
@@ -1319,11 +1323,6 @@
     \textbf{\color{second}\notename} \citshape}{\par}
 
 \renewenvironment{proof}{{\par\noindent\bfseries\proofname\;}}{\qed}
-% \newenvironment{proof}{
-%     \par\noindent\textbf{\color{second}\proofname\;}
-%     \color{black!90}\cfs}{
-%     % \hfill$\Box$\quad
-%     \par}
 
 \newenvironment{solution}{\par\noindent\textbf{\color{main}\solutionname\quad}\citshape}{\par}
 % \newenvironment{remark}{\noindent\textbf{\color{second}\remarkname}}{\par}
