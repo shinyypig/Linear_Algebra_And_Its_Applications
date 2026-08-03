@@ -639,34 +639,61 @@
     \label{fig_matrix_noncommutative_orders}
 \end{figure}
 
+这意味着，在矩阵加法和矩阵乘法下，\( \mathbb{F}^{n \times n} \)构成了一个含幺非交换环。对于这样的一个环，我们非常关心的就是其中是否存在零因子。显然是存在的，可以非常容易地得到如下的一个例子：
+\[
+    \mathbf A=
+    \begin{bmatrix}
+        1 & 0 \\
+        0 & 0
+    \end{bmatrix},
+    \quad
+    \mathbf B=
+    \begin{bmatrix}
+        0 & 0 \\
+        1 & 0
+    \end{bmatrix},
+\]
+则有
+\[
+    \mathbf A\mathbf B=
+    \begin{bmatrix}
+        0 & 0 \\
+        0 & 0
+    \end{bmatrix}=\mathbf{0}.
+\]
+由此，我们可以得出结论，矩阵乘法并不满足消去律，即
+\[
+    \mathbf{A}\mathbf{B}=\mathbf{A}\mathbf{C} \not\Rightarrow \mathbf{B}=\mathbf{C}.
+\]
+
 除此以外，矩阵乘法满足的一些基本性质如下：
 \begin{property}
     \label{thm_matrix_mult_basic_properties}
-    设 \(\mathbf{A}\in\mathbb{F}^{m\times n}\)，\(\mathbf{B}\in\mathbb{F}^{n\times p}\)，\(\mathbf{C}\in\mathbb{F}^{p\times q}\)。
-    则有以下性质：
+    设有域\( \mathbb{F} \)上的矩阵 \(\mathbf{A}, \mathbf{B}, \mathbf{C}\)，且它们的维数满足矩阵乘法的定义。则矩阵乘法满足以下性质：
     \begin{enumerate}
-        \item \textbf{结合律}：\((\mathbf{A}\mathbf{B})\mathbf{C}=\mathbf{A}(\mathbf{B}\mathbf{C})\)；
-        \item \textbf{分配律}：\((\mathbf{A}+\mathbf{B})\mathbf{C}=\mathbf{A}\mathbf{C}+\mathbf{B}\mathbf{C}\)，\(\mathbf{A}(\mathbf{B}+\mathbf{C})=\mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}\)；
-        \item \textbf{数乘结合律}：\((\lambda\mathbf A)\mathbf B=\lambda(\mathbf A\mathbf B)=\mathbf A(\lambda\mathbf B)\)，其中 \(\lambda\in\mathbb F\)。
+        \item \textbf{结合律}：\((\mathbf{A}\mathbf{B})\mathbf{C}=\mathbf{A}(\mathbf{B}\mathbf{C})\)
+        \item \textbf{分配律}：\((\mathbf{A}+\mathbf{B})\mathbf{C}=\mathbf{A}\mathbf{C}+\mathbf{B}\mathbf{C}\)，\(\mathbf{A}(\mathbf{B}+\mathbf{C})=\mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}\)
+        \item \textbf{数乘结合律}：\((\lambda\mathbf A)\mathbf B=\lambda(\mathbf A\mathbf B)=\mathbf A(\lambda\mathbf B)\)，其中 \(\lambda\in\mathbb F\)
     \end{enumerate}
 \end{property}
 对于零矩阵、单位矩阵以及转置，矩阵乘法还满足如下性质：
 \begin{property}
     \label{thm_zero_identity_matrix_properties}
-    设 \(\mathbf{A}\in\mathbb{F}^{m\times n}\)，\(\mathbf{0}_{m}\in\mathbb{F}^{m\times m}\)，\(\mathbf{0}_n\in\mathbb{F}^{n\times n}\)，\(\mathbf{I}_m\in\mathbb{F}^{m\times m}\)，\(\mathbf{I}_n\in\mathbb{F}^{n\times n}\)。则有以下性质：
+    设有矩阵\(\mathbf{A}, \mathbf{B}\)，其维数满足矩阵乘法的定义。则有
     \begin{enumerate}
-        \item \(\mathbf{0}_m\mathbf{A}=\mathbf{0}_{m \times n}\)，\(\mathbf{A}\mathbf{0}_n=\mathbf{0}_{m \times n}\)；
-        \item \(\mathbf{I}_m\mathbf{A}=\mathbf{A}\)，\(\mathbf{A}\mathbf{I}_n=\mathbf{A}\)。
-        \item \((\mathbf{A}\mathbf{B})^{\mathsf T}=\mathbf{B}^{\mathsf T}\mathbf{A}^{\mathsf T}\)。
+        \item \(\mathbf{0}_{m}\mathbf{A}=\mathbf{0}_{m \times n}\)，\(\mathbf{A}\mathbf{0}_n=\mathbf{0}_{m \times n}\)
+        \item \(\mathbf{I}_m\mathbf{A}=\mathbf{A}\)，\(\mathbf{A}\mathbf{I}_n=\mathbf{A}\)
+        \item \((\mathbf{A}\mathbf{B})^{\mathsf T}=\mathbf{B}^{\mathsf T}\mathbf{A}^{\mathsf T}\)
     \end{enumerate}
+    在本性质中，\( \bm{0}_{m \times n} \) 和 \( \mathbf{I}_{m \times n} \)分别表示 \( m \times n \) 的零矩阵和单位矩阵。当 \( m = n \) 时，对应的零矩阵和单位矩阵分别简记为 \( \bm{0}_m \) 和 \( \mathbf{I}_m \)。
 \end{property}
-这些性质的证明均可以通过直接计算矩阵乘法的定义来完成，这里不再赘述。
+以上性质的证明均可以通过直接计算矩阵乘法的定义来完成，这里不再赘述。
 
-在\cref{fig_matrix_multiplication_two_views}中，我们给出了矩阵乘法的两种计算方式。这两种方式实质上是将矩阵按行或列进行拆分，然后按照相应的方式进行计算。可以将其进行进一步地推广，得到分块矩阵的运算规则，具体如下。
+在\cref{fig_matrix_multiplication_two_views}中，我们给出了矩阵乘法的两种计算方式。这两种方式实质上是将矩阵按行或列进行拆分，然后按照相应的方式进行计算。因此，可以将其进行进一步地推广，得到分块矩阵的运算规则，具体如下。
 
 \begin{definition}[分块矩阵乘法]
     \label{def_block_matrix}
-    设 \(\mathbf{A}\in\mathbb{F}^{m\times q}\)，\(\mathbf{B}\in\mathbb{F}^{p \times n}\)。若将矩阵 \(\mathbf{A}\) 按行划分为 \(r\) 个子矩阵，按列划分为 \(s\) 个子矩阵；与此同时，将矩阵 \(\mathbf{B}\) 按行划分为 \(s\) 个子矩阵，按列划分为 \(t\) 个子矩阵。则有
+    设 \(\mathbf{A}\in\mathbb{F}^{m\times p}\)，\(\mathbf{B}\in\mathbb{F}^{p \times n}\)。若将矩阵 \(\mathbf{A}\) 按行划分为 \(r\) 个子矩阵，按列划分为 \(s\) 个子矩阵；与此同时，将矩阵 \(\mathbf{B}\) 按行划分为 \(s\) 个子矩阵，按列划分为 \(t\) 个子矩阵。则有
     \[
         \mathbf{A}=
         \begin{bmatrix}
@@ -682,9 +709,9 @@
             \mathbf{B}_{s1} & \cdots & \mathbf{B}_{st}
         \end{bmatrix},
     \]
-    其中，\(\mathbf{A}_{ij}\) 是 \(m_i \times q_j\) 的矩阵，\(\mathbf{B}_{ij}\) 是 \(q_i \times n_j\) 的矩阵。并且，满足
+    其中，\(\mathbf{A}_{ij}\) 是 \(m_i \times p_j\) 的矩阵，\(\mathbf{B}_{ij}\) 是 \(p_i \times n_j\) 的矩阵。并且，满足
     \[
-        m_1+\cdots+m_r=m, \quad q_1+\cdots+q_s=q, \quad n_1+\cdots+n_t=n.
+        m_1+\cdots+m_r=m, \quad p_1+\cdots+p_s=p, \quad n_1+\cdots+n_t=n.
     \]
     则有
     \[
@@ -744,3 +771,4 @@
     \]
     这与直接计算的结果一致。
 \end{example}
+
