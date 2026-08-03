@@ -792,3 +792,269 @@
     这与直接计算的结果一致。
 \end{example}
 
+\section{线性映射的核、像与秩}
+\label{sec_kernel_image_rank}
+
+线性映射将一个线性空间中的向量映射到另一个线性空间中，但它并不一定能够区分定义域中的所有向量，也不一定能够得到陪域中的所有向量。例如，零映射将所有向量都映射为零向量，而一个投影映射通常只能得到某个较低维的子空间。为了描述线性映射丢失了哪些信息，以及它的取值能够覆盖多大的范围，我们引入核与像的概念。
+
+\begin{definition}[核与像]
+    \label{def_kernel_image}
+    设 \(V,W\) 是域 \(\mathbb F\) 上的线性空间，\(T:V\to W\) 是线性映射。定义
+    \[
+        \ker T=\{\bm v\in V\mid T(\bm v)=\bm 0\}
+    \]
+    为线性映射 \(T\) 的\textbf{核}（Kernel），定义
+    \[
+        \operatorname{im}T=\{T(\bm v)\mid \bm v\in V\}
+    \]
+    为线性映射 \(T\) 的\textbf{像}（Image）。
+\end{definition}
+
+由定义可知，\(\ker T\) 是定义域 \(V\) 的子集，而 \(\operatorname{im}T\) 是陪域 \(W\) 的子集。由于 \(T\) 是线性映射，这两个集合还具有更强的结构。
+
+\begin{proposition}
+    \label{prop_kernel_image_subspaces}
+    设 \(T:V\to W\) 是域 \(\mathbb F\) 上的线性映射，则 \(\ker T\) 是 \(V\) 的子空间，\(\operatorname{im}T\) 是 \(W\) 的子空间。
+\end{proposition}
+\begin{proof}
+    由于 \(T(\bm 0)=\bm 0\)，所以 \(\bm 0\in\ker T\)，从而 \(\ker T\) 非空。对于任意 \(\bm u,\bm v\in\ker T\) 和 \(\lambda,\mu\in\mathbb F\)，有
+    \[
+        T(\lambda\bm u+\mu\bm v)
+        =\lambda T(\bm u)+\mu T(\bm v)
+        =\bm 0,
+    \]
+    因此 \(\lambda\bm u+\mu\bm v\in\ker T\)。根据子空间判定定理，\(\ker T\) 是 \(V\) 的子空间。
+
+    同样，由 \(T(\bm 0)=\bm 0\) 可知 \(\operatorname{im}T\) 非空。对于任意 \(\bm w_1,\bm w_2\in\operatorname{im}T\)，存在 \(\bm v_1,\bm v_2\in V\)，使得
+    \[
+        \bm w_1=T(\bm v_1),
+        \quad
+        \bm w_2=T(\bm v_2).
+    \]
+    因此，对于任意 \(\lambda,\mu\in\mathbb F\)，有
+    \[
+        \lambda\bm w_1+\mu\bm w_2
+        =T(\lambda\bm v_1+\mu\bm v_2)
+        \in\operatorname{im}T.
+    \]
+    所以 \(\operatorname{im}T\) 是 \(W\) 的子空间。
+\end{proof}
+
+下面考虑一个简单的投影映射。
+\begin{example}
+    \label{ex_projection_kernel_image}
+    定义线性映射 \(P:\mathbb R^3\to\mathbb R^3\) 为
+    \[
+        P\left(\begin{bmatrix}x\\y\\z\end{bmatrix}\right)
+        =\begin{bmatrix}x\\y\\0\end{bmatrix}.
+    \]
+    该映射将空间中的向量投影到 \(xy\) 平面。一个向量被映射为零向量，当且仅当其前两个坐标均为 \(0\)，因此
+    \[
+        \ker P
+        =\operatorname{span}\left\{
+        \begin{bmatrix}0\\0\\1\end{bmatrix}
+        \right\}.
+    \]
+    另一方面，\(P\) 的像恰好是 \(xy\) 平面，即
+    \[
+        \operatorname{im}P
+        =\operatorname{span}\left\{
+        \begin{bmatrix}1\\0\\0\end{bmatrix},
+        \begin{bmatrix}0\\1\\0\end{bmatrix}
+        \right\}.
+    \]
+    由此可见，核描述了投影过程中被压缩为零向量的方向，而像描述了投影后所有可能得到的向量。
+\end{example}
+
+核与像还可以直接刻画线性映射是否为单射或满射。
+\begin{theorem}[单射与满射的判定]
+    \label{thm_injective_surjective_kernel_image}
+    设 \(T:V\to W\) 是域 \(\mathbb F\) 上的线性映射，则有：
+    \begin{enumerate}
+        \item \(T\) 是单射，当且仅当 \(\ker T=\{\bm 0\}\)；
+        \item \(T\) 是满射，当且仅当 \(\operatorname{im}T=W\)。
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    首先假设 \(T\) 是单射。若 \(\bm v\in\ker T\)，则
+    \[
+        T(\bm v)=\bm 0=T(\bm 0).
+    \]
+    由单射的定义可知 \(\bm v=\bm 0\)，因此 \(\ker T=\{\bm 0\}\)。
+
+    反过来，假设 \(\ker T=\{\bm 0\}\)。若 \(T(\bm u)=T(\bm v)\)，则
+    \[
+        T(\bm u-\bm v)=T(\bm u)-T(\bm v)=\bm 0.
+    \]
+    因此 \(\bm u-\bm v\in\ker T\)，从而 \(\bm u=\bm v\)，所以 \(T\) 是单射。
+
+    根据像的定义，\(\operatorname{im}T\) 正是 \(T\) 的所有可能取值构成的集合。因此，\(T\) 是满射，当且仅当 \(W\) 中的每个向量都属于 \(\operatorname{im}T\)，也就是 \(\operatorname{im}T=W\)。
+\end{proof}
+
+由于核与像都是线性空间，我们可以用它们的维数来衡量线性映射丢失和保留的信息。
+\begin{definition}[线性映射的秩与零化度]
+    \label{def_linear_map_rank_nullity}
+    设 \(V,W\) 是域 \(\mathbb F\) 上的有限维线性空间，\(T:V\to W\) 是线性映射。定义
+    \[
+        \operatorname{rank}T=\dim(\operatorname{im}T),
+        \quad
+        \operatorname{nullity}T=\dim(\ker T),
+    \]
+    分别称为线性映射 \(T\) 的\textbf{秩}（Rank）与\textbf{零化度}（Nullity）。
+\end{definition}
+
+为了研究秩与零化度之间的关系，先给出一个关于基的结论。
+\begin{lemma}[基扩充]
+    \label{lem_basis_extension}
+    设 \(V\) 是有限维线性空间，\((\bm u_1,\ldots,\bm u_r)\) 是 \(V\) 中的线性无关向量组，则可以向其中加入有限个向量，使其成为 \(V\) 的一组基。
+\end{lemma}
+\begin{proof}
+    如果 \((\bm u_1,\ldots,\bm u_r)\) 已经张成 \(V\)，那么它本身就是 \(V\) 的一组基。否则，可以选取
+    \[
+        \bm v_1\in V\setminus\operatorname{span}(\bm u_1,\ldots,\bm u_r).
+    \]
+    此时 \((\bm u_1,\ldots,\bm u_r,\bm v_1)\) 仍然线性无关。如果新的向量组还不能张成 \(V\)，则继续从其张成空间之外选取向量并加入其中。由于 \(V\) 有限维，而 \(V\) 中线性无关向量组所含向量的个数不超过 \(\dim V\)，上述过程经过有限步后必然停止，最终得到 \(V\) 的一组基。
+\end{proof}
+
+\begin{theorem}[秩—零化度定理]
+    \label{thm_rank_nullity}
+    设 \(V,W\) 是域 \(\mathbb F\) 上的有限维线性空间，\(T:V\to W\) 是线性映射，则
+    \[
+        \dim V=\operatorname{rank}T+\operatorname{nullity}T.
+    \]
+\end{theorem}
+\begin{proof}
+    设 \((\bm u_1,\ldots,\bm u_r)\) 是 \(\ker T\) 的一组基，其中
+    \[
+        r=\operatorname{nullity}T.
+    \]
+    根据\cref{lem_basis_extension}，可以将其扩充为 \(V\) 的一组基
+    \[
+        (\bm u_1,\ldots,\bm u_r,\bm v_1,\ldots,\bm v_s).
+    \]
+    下面证明 \((T(\bm v_1),\ldots,T(\bm v_s))\) 是 \(\operatorname{im}T\) 的一组基。
+
+    对于任意 \(\bm v\in V\)，存在标量 \(\alpha_1,\ldots,\alpha_r,\beta_1,\ldots,\beta_s\)，使得
+    \[
+        \bm v
+        =\sum_{i=1}^{r}\alpha_i\bm u_i
+        +\sum_{j=1}^{s}\beta_j\bm v_j.
+    \]
+    由于 \(T(\bm u_i)=\bm 0\)，有
+    \[
+        T(\bm v)=\sum_{j=1}^{s}\beta_jT(\bm v_j),
+    \]
+    因此 \(T(\bm v_1),\ldots,T(\bm v_s)\) 张成 \(\operatorname{im}T\)。
+
+    再假设
+    \[
+        \sum_{j=1}^{s}\beta_jT(\bm v_j)=\bm 0.
+    \]
+    那么
+    \[
+        T\left(\sum_{j=1}^{s}\beta_j\bm v_j\right)=\bm 0,
+    \]
+    所以 \(\sum_{j=1}^{s}\beta_j\bm v_j\in\ker T\)。于是存在标量 \(\alpha_1,\ldots,\alpha_r\)，使得
+    \[
+        \sum_{j=1}^{s}\beta_j\bm v_j
+        =\sum_{i=1}^{r}\alpha_i\bm u_i.
+    \]
+    由于扩充后的向量组是 \(V\) 的一组基，它必然线性无关，所以所有 \(\alpha_i\) 和 \(\beta_j\) 都等于 \(0\)。因此，\(T(\bm v_1),\ldots,T(\bm v_s)\) 线性无关，从而构成 \(\operatorname{im}T\) 的一组基。于是
+    \[
+        \operatorname{rank}T=s,
+        \quad
+        \operatorname{nullity}T=r,
+    \]
+    最终得到
+    \[
+        \dim V=r+s
+        =\operatorname{rank}T+\operatorname{nullity}T.
+    \]
+\end{proof}
+
+回到\cref{ex_derivative_linear_map}中的求导映射，可以具体地观察这一结论。
+\begin{example}
+    \label{ex_derivative_rank_nullity}
+    对于求导映射
+    \[
+        D:\mathcal P_n\to\mathcal P_{n-1},
+        \quad
+        D(p)=p',
+    \]
+    只有常数多项式的导数为零，因此
+    \[
+        \ker D=\operatorname{span}\{1\},
+        \quad
+        \operatorname{nullity}D=1.
+    \]
+    任意 \(\mathcal P_{n-1}\) 中的多项式都有一个属于 \(\mathcal P_n\) 的原函数，所以
+    \[
+        \operatorname{im}D=\mathcal P_{n-1},
+        \quad
+        \operatorname{rank}D=n.
+    \]
+    这与秩—零化度定理给出的等式
+    \[
+        \dim\mathcal P_n=n+1
+        =\operatorname{rank}D+\operatorname{nullity}D
+    \]
+    一致。
+\end{example}
+
+最后，将上述概念应用到矩阵上。设矩阵 \(\mathbf A\in\mathbb F^{m\times n}\)，它对应线性映射
+\[
+    T_{\mathbf A}:\mathbb F^n\to\mathbb F^m,
+    \quad
+    T_{\mathbf A}(\bm x)=\mathbf A\bm x.
+\]
+矩阵的列向量组不仅决定了矩阵的秩，也恰好张成了对应线性映射的像。
+
+\begin{proposition}
+    \label{prop_matrix_kernel_image_rank}
+    设
+    \[
+        \mathbf A=
+        \begin{bmatrix}
+            \bm a_1 & \cdots & \bm a_n
+        \end{bmatrix}
+        \in\mathbb F^{m\times n}.
+    \]
+    则线性映射 \(T_{\mathbf A}(\bm x)=\mathbf A\bm x\) 满足
+    \[
+        \ker T_{\mathbf A}
+        =\{\bm x\in\mathbb F^n\mid \mathbf A\bm x=\bm 0\},
+    \]
+    以及
+    \[
+        \operatorname{im}T_{\mathbf A}
+        =\operatorname{span}(\bm a_1,\ldots,\bm a_n).
+    \]
+    因此，
+    \[
+        \operatorname{rank}T_{\mathbf A}=\operatorname{rank}\mathbf A.
+    \]
+\end{proposition}
+\begin{proof}
+    关于核的等式可由定义直接得到。对于任意
+    \(\bm x=[x_1,\ldots,x_n]^{\mathsf T}\in\mathbb F^n\)，有
+    \[
+        T_{\mathbf A}(\bm x)
+        =\mathbf A\bm x
+        =x_1\bm a_1+\cdots+x_n\bm a_n.
+    \]
+    当 \(\bm x\) 取遍 \(\mathbb F^n\) 时，右侧恰好取遍 \(\bm a_1,\ldots,\bm a_n\) 的所有线性组合，因此
+    \[
+        \operatorname{im}T_{\mathbf A}
+        =\operatorname{span}(\bm a_1,\ldots,\bm a_n).
+    \]
+    根据矩阵的秩与线性映射的秩的定义，立即得到
+    \(\operatorname{rank}T_{\mathbf A}=\operatorname{rank}\mathbf A\)。
+\end{proof}
+
+将\cref{thm_rank_nullity}应用于 \(T_{\mathbf A}\)，可得
+\[
+    n
+    =\operatorname{rank}\mathbf A
+    +\dim\{\bm x\in\mathbb F^n\mid\mathbf A\bm x=\bm 0\}.
+\]
+这个等式将矩阵的列向量组、齐次线性方程 \(\mathbf A\bm x=\bm 0\) 的解空间以及线性映射的结构联系在了一起。特别地，矩阵 \(\mathbf A\) 的列向量线性无关，当且仅当 \(T_{\mathbf A}\) 的核只含零向量，也就是 \(T_{\mathbf A}\) 为单射。
