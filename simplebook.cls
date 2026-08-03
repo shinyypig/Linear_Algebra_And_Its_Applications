@@ -334,6 +334,15 @@
 \definecolor{bule}{RGB}{18,29,57}
 \colorlet{coverlinecolor}{second}
 
+% shared math diagram colors, matching the c1-c7 pens in bookstyle.asy
+\definecolor{c1}{RGB}{0,114,189}
+\definecolor{c2}{RGB}{217,83,25}
+\definecolor{c3}{RGB}{237,177,32}
+\definecolor{c4}{RGB}{126,47,142}
+\definecolor{c5}{RGB}{119,172,48}
+\definecolor{c6}{RGB}{77,190,238}
+\definecolor{c7}{RGB}{162,20,47}
+
 
 % ----- Title Style -----
 \ifdefstring{\SIMPLE@titlestyle}{hang}{\def\style{hang}}{\relax}

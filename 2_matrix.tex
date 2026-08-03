@@ -653,10 +653,94 @@
 对于零矩阵、单位矩阵以及转置，矩阵乘法还满足如下性质：
 \begin{property}
     \label{thm_zero_identity_matrix_properties}
-    设 \(\mathbf{A}\in\mathbb{F}^{m\times n}\)，\(\mathbf{0}_m\in\mathbb{F}^{m\times m}\)，\(\mathbf{0}_n\in\mathbb{F}^{n\times n}\)，\(\mathbf{I}_m\in\mathbb{F}^{m\times m}\)，\(\mathbf{I}_n\in\mathbb{F}^{n\times n}\)。则有以下性质：
+    设 \(\mathbf{A}\in\mathbb{F}^{m\times n}\)，\(\mathbf{0}_{m}\in\mathbb{F}^{m\times m}\)，\(\mathbf{0}_n\in\mathbb{F}^{n\times n}\)，\(\mathbf{I}_m\in\mathbb{F}^{m\times m}\)，\(\mathbf{I}_n\in\mathbb{F}^{n\times n}\)。则有以下性质：
     \begin{enumerate}
-        \item \(\mathbf{0}_m\mathbf{A}=\mathbf{0}_m\)，\(\mathbf{A}\mathbf{0}_n=\mathbf{0}_n\)；
+        \item \(\mathbf{0}_m\mathbf{A}=\mathbf{0}_{m \times n}\)，\(\mathbf{A}\mathbf{0}_n=\mathbf{0}_{m \times n}\)；
         \item \(\mathbf{I}_m\mathbf{A}=\mathbf{A}\)，\(\mathbf{A}\mathbf{I}_n=\mathbf{A}\)。
         \item \((\mathbf{A}\mathbf{B})^{\mathsf T}=\mathbf{B}^{\mathsf T}\mathbf{A}^{\mathsf T}\)。
     \end{enumerate}
 \end{property}
+这些性质的证明均可以通过直接计算矩阵乘法的定义来完成，这里不再赘述。
+
+在\cref{fig_matrix_multiplication_two_views}中，我们给出了矩阵乘法的两种计算方式。这两种方式实质上是将矩阵按行或列进行拆分，然后按照相应的方式进行计算。可以将其进行进一步地推广，得到分块矩阵的运算规则，具体如下。
+
+\begin{definition}[分块矩阵乘法]
+    \label{def_block_matrix}
+    设 \(\mathbf{A}\in\mathbb{F}^{m\times q}\)，\(\mathbf{B}\in\mathbb{F}^{p \times n}\)。若将矩阵 \(\mathbf{A}\) 按行划分为 \(r\) 个子矩阵，按列划分为 \(s\) 个子矩阵；与此同时，将矩阵 \(\mathbf{B}\) 按行划分为 \(s\) 个子矩阵，按列划分为 \(t\) 个子矩阵。则有
+    \[
+        \mathbf{A}=
+        \begin{bmatrix}
+            \mathbf{A}_{11} & \cdots & \mathbf{A}_{1s} \\
+            \vdots          & \ddots & \vdots          \\
+            \mathbf{A}_{r1} & \cdots & \mathbf{A}_{rs}
+        \end{bmatrix},
+        \quad
+        \mathbf{B}=
+        \begin{bmatrix}
+            \mathbf{B}_{11} & \cdots & \mathbf{B}_{1t} \\
+            \vdots          & \ddots & \vdots          \\
+            \mathbf{B}_{s1} & \cdots & \mathbf{B}_{st}
+        \end{bmatrix},
+    \]
+    其中，\(\mathbf{A}_{ij}\) 是 \(m_i \times q_j\) 的矩阵，\(\mathbf{B}_{ij}\) 是 \(q_i \times n_j\) 的矩阵。并且，满足
+    \[
+        m_1+\cdots+m_r=m, \quad q_1+\cdots+q_s=q, \quad n_1+\cdots+n_t=n.
+    \]
+    则有
+    \[
+        \mathbf{A}\mathbf{B}=
+        \begin{bmatrix}
+            \sum_{k=1}^{s}\mathbf{A}_{1k}\mathbf{B}_{k1} & \cdots & \sum_{k=1}^{s}\mathbf{A}_{1k}\mathbf{B}_{kt} \\
+            \vdots                                       & \ddots & \vdots                                       \\
+            \sum_{k=1}^{s}\mathbf{A}_{rk}\mathbf{B}_{k1} & \cdots & \sum_{k=1}^{s}\mathbf{A}_{rk}\mathbf{B}_{kt}
+        \end{bmatrix}.
+    \]
+\end{definition}
+
+从\cref{def_block_matrix}可以看出，分块矩阵的乘法与普通矩阵的乘法在形式上是完全一致的，只是将其中的元素换成了矩阵而已。只要保证分块矩阵的维数满足相应的条件，就可以进行分块矩阵的乘法运算。下面通过一个具体数值的例子说明这一运算。
+
+\begin{example}
+    考虑两个 \(4 \times 4\) 矩阵的乘法，其中矩阵 \(\mathbf{A}\) 和 \(\mathbf{B}\) 都按相同的方式划分为 \(2 \times 2\) 分块：
+    \[
+        \mathbf{A}=
+        \begin{bmatrix}
+            \textcolor{c1}{1}  & \textcolor{c1}{2}  & \textcolor{c2}{5}  & \textcolor{c2}{6}  \\
+            \textcolor{c1}{3}  & \textcolor{c1}{4}  & \textcolor{c2}{7}  & \textcolor{c2}{8}  \\
+            \textcolor{c3}{9}  & \textcolor{c3}{10} & \textcolor{c4}{13} & \textcolor{c4}{14} \\
+            \textcolor{c3}{11} & \textcolor{c3}{12} & \textcolor{c4}{15} & \textcolor{c4}{16}
+        \end{bmatrix},
+        \quad
+        \mathbf{B}=
+        \begin{bmatrix}
+            \textcolor{c1}{1} & \textcolor{c1}{0} & \textcolor{c2}{2} & \textcolor{c2}{0} \\
+            \textcolor{c1}{0} & \textcolor{c1}{1} & \textcolor{c2}{0} & \textcolor{c2}{2} \\
+            \textcolor{c3}{0} & \textcolor{c3}{1} & \textcolor{c4}{1} & \textcolor{c4}{1} \\
+            \textcolor{c3}{1} & \textcolor{c3}{0} & \textcolor{c4}{1} & \textcolor{c4}{1}
+        \end{bmatrix}.
+    \]
+    直接按矩阵乘法计算，可得
+    \[
+        \mathbf{A}\mathbf{B}=
+        \begin{bmatrix}
+            7  & 7  & 13 & 15 \\
+            11 & 11 & 21 & 23 \\
+            23 & 23 & 45 & 47 \\
+            27 & 27 & 53 & 55
+        \end{bmatrix}.
+    \]
+    取乘积左上角的 \(2\times 2\) 分块，按照\cref{def_block_matrix}给出的分块矩阵乘法公式，它应当等于
+    \[
+        \begin{bmatrix}\textcolor{c1}{1} & \textcolor{c1}{2} \\ \textcolor{c1}{3} & \textcolor{c1}{4}\end{bmatrix}
+        \begin{bmatrix}\textcolor{c1}{1} & \textcolor{c1}{0} \\ \textcolor{c1}{0} & \textcolor{c1}{1}\end{bmatrix}
+        +
+        \begin{bmatrix}\textcolor{c2}{5} & \textcolor{c2}{6} \\ \textcolor{c2}{7} & \textcolor{c2}{8}\end{bmatrix}
+        \begin{bmatrix}\textcolor{c3}{0} & \textcolor{c3}{1} \\ \textcolor{c3}{1} & \textcolor{c3}{0}\end{bmatrix}
+        =
+        \begin{bmatrix}1 & 2 \\ 3 & 4\end{bmatrix}
+        +
+        \begin{bmatrix}6 & 5 \\ 8 & 7\end{bmatrix}
+        =
+        \begin{bmatrix}7 & 7 \\ 11 & 11\end{bmatrix},
+    \]
+    这与直接计算的结果一致。
+\end{example}
